@@ -5,7 +5,6 @@
  */
 
 module.exports = {
-  /* Your site config here */
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
@@ -21,5 +20,16 @@ module.exports = {
         path: `${__dirname}/src/algorithms`
       },
     },
-  ],
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `roboto`,
+          `source sans pro\:300,400,400i,700` // you can also specify font weights and styles
+        ],
+        display: 'swap'
+      }
+    },
+    `gatsby-plugin-mdx`
+  ]
 }
