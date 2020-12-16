@@ -52,7 +52,7 @@ const SearchBar = styled.input`
   border-radius: 5px;
 `
 
-export const Nav = ({ children }) => {
+export const Nav = () => {
   return (
     <NavWrapper>
       <Brand href="/">algo-lib</Brand>
