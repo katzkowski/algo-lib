@@ -30,6 +30,36 @@ module.exports = {
         display: 'swap'
       }
     },
-    `gatsby-plugin-mdx`
+    { 
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-embed-snippet`,
+            options: {},
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {},
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-embed-snippet`,
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {},
+          }
+        ]
+      }
+    },
+      
   ]
 }

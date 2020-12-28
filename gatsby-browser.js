@@ -1,6 +1,7 @@
-import React from "react"
-import { createGlobalStyle, ThemeProvider } from "styled-components"
-import Theme from "./src/themes/theme"
+import React from "react";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import Theme from "./src/themes/theme";
+require("prismjs/themes/prism.css"); // theme for code blocks
 
 const GlobalStyles = createGlobalStyle`
   * {
