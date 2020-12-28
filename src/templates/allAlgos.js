@@ -30,14 +30,13 @@ export default function allAlgos({pageContext, data}) {
   );
 }
 
-// Diese query schmeißt error
 export const pageQuery = graphql`
   query AllAlgosQuery($skip: Int!, $limit: Int!) {
     allMdx(sort: {fields: frontmatter___date, order: DESC}, skip: $skip, limit: $limit) {
       edges {
         node {
           frontmatter {
-            date
+            date(formatString: "MMM DD, YYYY")
             preview_text
             slug
             title

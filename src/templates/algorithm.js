@@ -13,7 +13,6 @@ export default function algorithmPage({ data }) {
     <PageWrapper>
       <ContentWrapper>
         <Title data={data} />
-        <h5>{data.mdx.frontmatter.date}</h5>
         <MDXRenderer MDXRenderer>{data.mdx.body}</MDXRenderer>
       </ContentWrapper>
     </PageWrapper>
@@ -25,7 +24,7 @@ export const pageQuery = graphql`
     mdx(id: {eq: $id}) {
       body
       frontmatter {
-        date
+        date(formatString: "MMM DD, YYYY")
         preview_text
         slug
         title

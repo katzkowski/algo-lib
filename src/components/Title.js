@@ -1,6 +1,6 @@
 import React from "react"
 import { Tag, TagBar } from "./Tag"
-import { H1, H3 } from "../components/elements";
+import { H1, Date } from "../components/elements";
 
 export default function Title(props) {
   const Tags = props.data.mdx.frontmatter.tags.map(tag => <Tag to={`/${tag}`}>{tag}</Tag>)
@@ -9,6 +9,7 @@ export default function Title(props) {
     <div>
       <TagBar>{Tags}</TagBar>
       <H1>{props.data.mdx.frontmatter.title}</H1>
+      <Date>{props.data.mdx.frontmatter.date}</Date>
     </div>
   )
 }

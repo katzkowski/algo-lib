@@ -6,6 +6,7 @@ const StyledFooter = styled.footer`
   position: relative;
   padding: ${props => props.theme.spacing.large};
   background-color: ${props => props.theme.color.surface};
+  margin-top: ${props => props.theme.spacing.large};
 `
 
 export default function Footer() {

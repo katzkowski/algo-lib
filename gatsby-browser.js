@@ -7,13 +7,16 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    line-height: 1.42;
   }
   
   html, body {
     font-family: ${props => props.theme.font.main};
-    // height: 100%;
-    // width: 100%;
     background-color: ${props => props.theme.color.background};
+  }
+
+  pre {
+    font-family: ${props => props.theme.font.code};
   }
 `
 
