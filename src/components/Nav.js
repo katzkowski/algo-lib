@@ -8,7 +8,8 @@ const NavWrapper = styled.nav`
   padding: ${props => props.theme.spacing.small} ${props => props.theme.spacing.medium}; 
   // display: flex;
   // justify-content: space-between;
-  position: fixed;
+  position: absolute;
+  top: 0;
 `;
 
 // styled component for project name
@@ -39,7 +40,7 @@ const NavItemWrapper = styled.li`
 
 // styled component for nav items
 const NavItem = styled.a`
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   text-decoration: none;
   color: ${props => props.theme.color.text};
 `;

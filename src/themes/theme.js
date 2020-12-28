@@ -8,7 +8,12 @@ export default {
     secondary: "green",
     background: "white",
     surface: "lightgray",
-    text: "black"
+    text: "black",
+    textLight: "darkgray",
+    tag: {
+      Recursive: "lightblue",
+      Backtracking: "lightgreen"
+    }
   },
   breakpoint: {
     mobile: "only screen and (max-width: 50rem)",
