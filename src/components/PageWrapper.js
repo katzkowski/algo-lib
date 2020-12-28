@@ -12,7 +12,7 @@ export default function PageWrapper({ children }) {
         h1: H1,
         h2: H2,
         h3: H3,
-        p: P
+        p: P,
       }}
     >
       <Nav />

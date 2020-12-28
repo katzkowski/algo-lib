@@ -2,7 +2,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // query slugs with graphql
   const { data } = await graphql(`
     query {
-      allMdx(sort: {fields: frontmatter___date, order: DESC}) {
+      algorithms: allMdx(sort: {fields: frontmatter___date, order: DESC}) {
         edges {
           node {
             frontmatter {
@@ -12,11 +12,21 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      tagGroups: allMdx {
+        group(field: frontmatter___tags) {
+          tag: fieldValue
+          totalCount
+        }
+      }
     }
   `);
+
+  // extract algorithm data
+  const algorithms = data.algorithms;
+
   // create paginated pages for algorithms
   const algosPerPage = 3;
-  const numPages = Math.ceil(data.allMdx.edges.length / algosPerPage);
+  const numPages = Math.ceil(algorithms.edges.length / algosPerPage);
 
   Array.from({length: numPages}).forEach((_, i) => {
     actions.createPage({
@@ -32,14 +42,28 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 
   // create single algorithm page
-  data.allMdx.edges.forEach(edge => {
+  algorithms.edges.forEach(edge => {
     const slug = edge.node.frontmatter.slug;
     const id = edge.node.id;
 
     actions.createPage({
       path: '/' + slug,
       component: require.resolve(`./src/templates/algorithm.js`),
-      context: {id}
+      context: { id }
     })
   })
+
+    // Extract tag data from query
+    const tags = data.tagGroups.group;
+    // Make tag pages
+    tags.forEach(tag => {
+      actions.createPage({
+        path: `/${tag.tag}/`,
+        component:  require.resolve(`./src/templates/tags.js`),
+        context: {
+          tag: tag.tag,
+        },
+      })
+    })
+
 }

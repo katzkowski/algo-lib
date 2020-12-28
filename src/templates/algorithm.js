@@ -2,9 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import PageWrapper from "../components/PageWrapper";
-import { H1, H3 } from "../components/elements";
 import ContentWrapper from "../components/ContentWrapper";
-import {Tag, TagBar} from "../components/Tag";
 import Title from "../components/Title";
 
 
