@@ -8,7 +8,7 @@ export const H1 = styled.h1`
 `
 
 export const H2 = styled.h2`
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: bold;
   color: ${props => props.theme.color.textLight};
   margin: ${props => props.theme.spacing.small} 0;
@@ -34,4 +34,5 @@ export const Date = styled.h5`
 
 export const P = styled.p`
   margin: ${props => props.theme.spacing.small} 0;
+  color: ${props => props.theme.color.text};
 `

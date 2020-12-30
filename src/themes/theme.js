@@ -11,8 +11,11 @@ export default {
     text: "black",
     textLight: "darkgray",
     tag: {
-      Recursive: "lightblue",
-      Backtracking: "lightgreen"
+      // tag names need to be in camelCase
+      recursive: "lightblue",
+      backtracking: "lightgreen",
+      sorting: "#F2C94C",
+      divideAndConquer: "#C07DFF"
     }
   },
   breakpoint: {

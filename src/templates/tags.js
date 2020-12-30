@@ -1,36 +1,37 @@
 import React from "react"
-import PropTypes from "prop-types"
-
-// Components
 import { Link, graphql } from "gatsby"
+import PageWrapper from "../components/PageWrapper"
+import ContentWrapper from "../components/ContentWrapper"
+import TagTitle from "../components/TagTitle"
+import { AlgoCard } from "../components/AlgoCard"
 
 const Tags = ({ pageContext, data }) => {
-  const { tag } = pageContext
-  const { edges, totalCount } = data.allMdx
-  const tagHeader = `${totalCount} algorithm${
-    totalCount === 1 ? "" : "s"
-  } tagged with "${tag}"`
+  const { tag } = pageContext;
+  const { totalCount } = data.allMdx;
+  const algos = data.allMdx.edges;
 
   return (
-    <div>
-      <h1>{tagHeader}</h1>
-      <ul>
-        {edges.map(({ node }) => {
-          const { slug } = node.frontmatter
-          const { title } = node.frontmatter
-          return (
-            <li key={slug}>
-              <Link to={slug}>{title}</Link>
-            </li>
-          )
-        })}
-      </ul>
-      {/*
+    <PageWrapper>
+      <ContentWrapper>
+    	  <TagTitle tag={tag} totalCount={totalCount} />
+        {/* <LargeTag to={`/${tag}`}>{tag}</LargeTag> */}
+        {algos.map(algo => (
+        <AlgoCard
+          key={algo.node.frontmatter.slug}
+          date={algo.node.frontmatter.date}
+          title={algo.node.frontmatter.title}
+          preview_text={algo.node.frontmatter.preview_text}
+          slug={algo.node.frontmatter.slug}
+          tags={algo.node.frontmatter.tags}
+        />
+      ))}
+        {/*
               This links to a page that does not yet exist.
               You'll come back to it!
             */}
-      <Link to="/tags">All tags</Link>
-    </div>
+        <Link to="/tags">All tags</Link>
+      </ContentWrapper>
+    </PageWrapper>
   )
 }
 
@@ -48,6 +49,10 @@ export const pageQuery = graphql`
         node {
           frontmatter {
             title
+            slug
+            preview_text
+            date(formatString: "MMM DD, YYYY")
+            tags
           }
         }
       }
