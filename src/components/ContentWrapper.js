@@ -1,16 +1,22 @@
-import React from "react";
-import styled from "styled-components";
+import React from "react"
+import styled from "styled-components"
 
 const Wrapper = styled.div`
-  width: 80%;
-  margin: ${props => props.theme.spacing.xxLarge} auto 0;
   position: relative;
+  width: 50%;
+  margin: ${props => props.theme.spacing.xxLarge} 15% 0 15%;
+
+  @media ${props => props.theme.breakpoint.tablet} {
+    width: 85%;
+    margin: ${props => props.theme.spacing.xxLarge} 7.5% 0 7.5%;
+  }
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    width: 90%;
+    margin: ${props => props.theme.spacing.xxLarge} 5% 0 5%;
+  }
 `
 
-export default function ContentWrapper ({ children }) {
-  return (
-    <Wrapper>
-      {children}
-    </Wrapper>
-  )
+export default function ContentWrapper({ children }) {
+  return <Wrapper>{children}</Wrapper>
 }

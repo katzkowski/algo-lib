@@ -10,27 +10,24 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `pages`,
-        path: `${__dirname}/src/pages`
+        path: `${__dirname}/src/pages`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `algorithms`,
-        path: `${__dirname}/src/algorithms`
+        path: `${__dirname}/src/algorithms`,
       },
     },
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [
-          `roboto`,
-          `roboto mono`
-        ],
-        display: 'swap'
-      }
+        fonts: [`roboto`, `roboto mono`, `material icons`],
+        display: "swap",
+      },
     },
-    { 
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
@@ -56,10 +53,9 @@ module.exports = {
           {
             resolve: `gatsby-remark-prismjs`,
             options: {},
-          }
-        ]
-      }
+          },
+        ],
+      },
     },
-      
-  ]
+  ],
 }

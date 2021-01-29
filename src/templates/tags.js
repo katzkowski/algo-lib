@@ -1,21 +1,19 @@
+import { graphql, Link } from "gatsby"
 import React from "react"
-import { Link, graphql } from "gatsby"
-import PageWrapper from "../components/PageWrapper"
-import ContentWrapper from "../components/ContentWrapper"
-import TagTitle from "../components/TagTitle"
 import { AlgoCard } from "../components/AlgoCard"
+import PageWrapper from "../components/PageWrapper"
+import TagTitle from "../components/TagTitle"
 
 const Tags = ({ pageContext, data }) => {
-  const { tag } = pageContext;
-  const { totalCount } = data.allMdx;
-  const algos = data.allMdx.edges;
+  const { tag } = pageContext
+  const { totalCount } = data.allMdx
+  const algos = data.allMdx.edges
 
   return (
-    <PageWrapper>
-      <ContentWrapper>
-    	  <TagTitle tag={tag} totalCount={totalCount} />
-        {/* <LargeTag to={`/${tag}`}>{tag}</LargeTag> */}
-        {algos.map(algo => (
+    <PageWrapper tags={[tag]}>
+      <TagTitle tag={tag} totalCount={totalCount} />
+      {/* <LargeTag to={`/${tag}`}>{tag}</LargeTag> */}
+      {algos.map(algo => (
         <AlgoCard
           key={algo.node.frontmatter.slug}
           date={algo.node.frontmatter.date}
@@ -25,12 +23,11 @@ const Tags = ({ pageContext, data }) => {
           tags={algo.node.frontmatter.tags}
         />
       ))}
-        {/*
+      {/*
               This links to a page that does not yet exist.
               You'll come back to it!
             */}
-        <Link to="/tags">All tags</Link>
-      </ContentWrapper>
+      <Link to="/tags">All tags</Link>
     </PageWrapper>
   )
 }

@@ -1,11 +1,11 @@
-import React from "react"
-import { Nav } from "./Nav"
-import Footer from "./Footer"
-import ContentWrapper from "./ContentWrapper"
 import { MDXProvider } from "@mdx-js/react"
+import React from "react"
+import ContentWrapper from "./ContentWrapper"
 import { H1, H2, H3, P } from "./elements"
+import Footer from "./Footer"
+import { Nav } from "./Nav"
 
-export default function PageWrapper({ children }) {
+export default function PageWrapper({ children, tags }) {
   return (
     <MDXProvider
       components={{
@@ -15,7 +15,7 @@ export default function PageWrapper({ children }) {
         p: P,
       }}
     >
-      <Nav />
+      <Nav tags={tags} />
       <ContentWrapper>{children}</ContentWrapper>
       <Footer></Footer>
     </MDXProvider>
