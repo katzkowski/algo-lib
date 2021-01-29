@@ -2,16 +2,50 @@
 title: Minimax
 slug: minimax
 date: 2020-12-28
-preview-text: The Minimax algorithm determines the best possible score in a game after players get to move a certain number of times. Minimax is only applicable in 2-player games, where the gain of player *A* is exactly the loss of player *B*.
+preview-text: The Minimax algorithm determines the best score in a game after players get to move a certain number of times. Minimax is only applicable in 2-player games, where the gain of player *A* is exactly the loss of player *B*.
 tags: ["Recursive", "Backtracking"]
 published: true
 ---
 
-The Minimax algorithm determines the best possible score in a game after players get to move a certain number of times. Minimax is only applicable in 2-player games, where the gain of player _A_ is exactly the loss of player _B_.
+The Minimax algorithm determines the best score in a game after players get to move a certain number of times. Minimax is only applicable in 2-player games, where the gain of player _A_ is exactly the loss of player _B_.
 
 ### Implementation
 
-`embed:minimax.cpp#L111-141`
+```cpp
+maxNode(int depth) {
+    // Leaf nodes are evaluated
+    if (depth == 0)
+        return evaluation()
+
+    // Maximize score for all possible moves
+    score = 0
+    bestScore = INT_MIN
+    for (move : generateMoves()) {
+        playMove(move)
+        score = minNode(depth - 1)
+        takebackMove(move)
+        bestScore = max(bestScore, score)
+    }
+    return bestScore
+}
+
+minNode(depth) {
+    // Leaf nodes are evaluated
+    if (depth == 0)
+        return evaluation()
+
+    // Minimize score for all possible moves
+    score = 0
+    bestScore = INT_MAX
+    for (move : generateMoves()) {
+        playMove(move)
+        score = maxNode(depth - 1)
+        takebackMove(move)
+        bestScore = min(bestScore, score)
+    }
+    return bestScore
+}
+```
 
 ### Description
 
@@ -22,6 +56,8 @@ For all nodes in the tree, the player to turn chooses the move that scores best 
 ### Usage
 
 The Minimax Algorithm is used in a variety of 2-player games like Chess, Go or Shogi. It acts as artifial intelligfence in order to play the most promising moves and in the game. However, most implementations rely on a modified version called Negamax to avoid redundant code.
+
+The initial call to start a recursive game tree search depends on the player to move. The minimizing player calls `min(depth)` while the maximizing player finds his best score with `max(depth)`.
 
 ### Complexity
 
