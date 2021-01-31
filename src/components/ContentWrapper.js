@@ -4,16 +4,16 @@ import styled from "styled-components"
 const Wrapper = styled.div`
   position: relative;
   width: 50%;
-  margin: ${props => props.theme.spacing.xxLarge} 15% 0 15%;
+  margin: ${props => props.theme.spacing.medium} 15% 0 15%;
 
   @media ${props => props.theme.breakpoint.tablet} {
     width: 85%;
-    margin: ${props => props.theme.spacing.xxLarge} 7.5% 0 7.5%;
+    margin: ${props => props.theme.spacing.medium} 7.5% 0 7.5%;
   }
 
   @media ${props => props.theme.breakpoint.mobile} {
     width: 90%;
-    margin: ${props => props.theme.spacing.xxLarge} 5% 0 5%;
+    margin: ${props => props.theme.spacing.medium} 5% 0 5%;
   }
 `
 
