@@ -1,7 +1,7 @@
-import React from "react";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import Theme from "./src/themes/theme";
-require("prismjs/themes/prism.css"); // theme for code blocks
+import React from "react"
+import { createGlobalStyle, ThemeProvider } from "styled-components"
+import { lightTheme } from "./src/themes/theme"
+require("prismjs/themes/prism.css") // theme for code blocks
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     line-height: 1.42;
   }
-  
+
   html, body {
     font-family: ${props => props.theme.font.main};
     background-color: ${props => props.theme.color.background};
@@ -21,9 +21,11 @@ const GlobalStyles = createGlobalStyle`
   }
 `
 
-export const wrapRootElement = ({ element }) => (
-  <ThemeProvider theme={Theme}>
-    <GlobalStyles />
-    {element}
-  </ThemeProvider>
-)
+export const wrapRootElement = ({ element }) => {
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <GlobalStyles />
+      {element}
+    </ThemeProvider>
+  )
+}

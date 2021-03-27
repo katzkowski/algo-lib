@@ -28,20 +28,27 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-styled-components-dark-mode`,
       options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-embed-snippet`,
-            options: {},
-          },
-          {
-            resolve: `gatsby-remark-prismjs`,
-            options: {},
-          },
-        ],
+        light: require(`${__dirname}/src/themes/theme.js`).lightTheme,
+        dark: require(`${__dirname}/src/themes/theme.js`).darkTheme,
       },
     },
+    // {
+    //   resolve: `gatsby-transformer-remark`,
+    //   options: {
+    //     plugins: [
+    //       {
+    //         resolve: `gatsby-remark-embed-snippet`,
+    //         options: {},
+    //       },
+    //       {
+    //         resolve: `gatsby-remark-prismjs`,
+    //         options: {},
+    //       },
+    //     ],
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-mdx`,
       options: {

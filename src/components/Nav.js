@@ -2,6 +2,7 @@ import { Sun } from "@styled-icons/boxicons-regular/Sun"
 import { Moon } from "@styled-icons/boxicons-solid/Moon"
 import { Close } from "@styled-icons/evaicons-solid/Close"
 import { Menu } from "@styled-icons/evaicons-solid/Menu"
+import { useStyledDarkMode } from "gatsby-styled-components-dark-mode"
 import React, { useState } from "react"
 import styled from "styled-components"
 import { calcGradient } from "../utils/color"
@@ -10,13 +11,20 @@ import { calcGradient } from "../utils/color"
 const NavWrapper = styled.nav`
   width: 100%;
   background: ${props => calcGradient(props.tags, props.theme)};
-  padding: ${props => props.theme.spacing.xSmall}
-    ${props => props.theme.spacing.medium};
+
   display: flex;
   justify-content: space-between;
 
+  padding: ${props => props.theme.spacing.xxSmall} 12.5%
+    ${props => props.theme.spacing.xxSmall} 12.5%;
+
+  @media ${props => props.theme.breakpoint.tablet} {
+    padding: ${props => props.theme.spacing.xxSmall}
+      ${props => props.theme.spacing.medium};
+  }
+
   @media ${props => props.theme.breakpoint.mobile} {
-    padding: ${props => props.theme.spacing.xSmall} 2.5%
+    padding: ${props => props.theme.spacing.xxSmall} 2.5%
       ${props => props.theme.spacing.xSmall} 5%;
   }
 `
@@ -65,23 +73,30 @@ const NavItem = styled.a`
 
 const SearchBar = styled.input`
   font-size: 1.05rem;
-  left: 15%;
-  width: 35%;
+  left: 37.5%;
+  width: 25%;
+  // max-width: 325px;
   padding: ${props => props.theme.spacing.xxSmall}
     ${props => props.theme.spacing.small}
     ${props => props.theme.spacing.xxSmall};
   margin: ${props => props.theme.spacing.xSmall} 0;
-  border-radius: 5px;
+  border-radius: 15px;
   position: absolute;
-  background: none;
-  border: 2px solid darkgray;
+
+  // background: rgba(229, 229, 229, 0.5);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  border: none;
 
   @media ${props => props.theme.breakpoint.tablet} {
-    left: calc(65rem * 0.15);
+    // left: calc(65rem * 0.25);
+    // width: 20%;
   }
 
   @media ${props => props.theme.breakpoint.mobile} {
-    width: 45%;
+    left: 35%;
+    width: 30%;
+    min-width: 10rem;
     // display: none;
   }
 `
@@ -128,6 +143,7 @@ const LightModeIcon = styled(Sun)`
 
 export const Nav = props => {
   const [mobileMenuVisible, toggleMobileMenu] = useState(false)
+  const { toggleDark } = useStyledDarkMode()
 
   return (
     <NavWrapper tags={props.tags}>
@@ -140,7 +156,7 @@ export const Nav = props => {
         <NavItemWrapper>
           <NavItem href="/">types</NavItem>
         </NavItemWrapper>
-        <DarkModeIcon visible />
+        <DarkModeIcon visible onClick={() => toggleDark()} />
         <LightModeIcon />
         <CloseIcon
           visible={mobileMenuVisible}
