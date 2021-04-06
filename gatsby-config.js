@@ -27,13 +27,13 @@ module.exports = {
         display: "swap",
       },
     },
-    {
-      resolve: `gatsby-styled-components-dark-mode`,
-      options: {
-        light: require(`${__dirname}/src/themes/theme.js`).lightTheme,
-        dark: require(`${__dirname}/src/themes/theme.js`).darkTheme,
-      },
-    },
+    // {
+    //   resolve: `gatsby-styled-components-dark-mode`,
+    //   options: {
+    //     light: require(`${__dirname}/src/themes/theme.js`).lightTheme,
+    //     dark: require(`${__dirname}/src/themes/theme.js`).darkTheme,
+    //   },
+    // },
     // {
     //   resolve: `gatsby-transformer-remark`,
     //   options: {
