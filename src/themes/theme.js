@@ -8,8 +8,9 @@ export const lightTheme = {
     secondary: "green",
     background: "white",
     surface: "lightgray",
-    text: "rgba(0,0,0,0.8)",
-    textLight: "darkgray",
+    heading: "#202124",
+    text: "rgba(0,0,0,1.0)",
+    textLight: "#5f6368",
     tagText: "black",
     tag: {
       // tag names need to be in camelCase
@@ -27,10 +28,10 @@ export const lightTheme = {
     xxSmall: ".25rem",
     xSmall: ".5rem",
     small: "1rem",
-    medium: "2rem",
-    large: "3rem",
-    xLarge: "4rem",
-    xxLarge: "6rem",
+    medium: "1.5rem",
+    large: "2rem",
+    xLarge: "3rem",
+    xxLarge: "4rem",
   },
   animation: {
     button: "box-shadow 0.3s ease",
@@ -38,6 +39,7 @@ export const lightTheme = {
   },
   shadow: {
     shadow1: "0px 5px 20px rgba(30, 30, 31, 0.05)",
+    menu: "0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)",
   },
 }
 

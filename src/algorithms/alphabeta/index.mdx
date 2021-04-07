@@ -12,7 +12,7 @@ published: true
 Alpha-Beta search is an advanced version of the Minimax algorithm, where the best possible score in a game after players get to move a certain number of times is determined. `alpha` and `beta` are scoring bounds to safely prune subtrees in a search.
 Like Minimax, the algorithm is only applicable in 2-player games, where the gain of player A is exactly the loss of player B.
 
-### Implementation
+## Implementation
 
 ```cpp
 maxNode(depth, alpha, beta) {
@@ -58,7 +58,7 @@ minNode(depth, alpha, beta) {
 }
 ```
 
-### Description
+## Description
 
 The Alpha-Beta algorithm searches a game tree in a recursive depth first search fashion, just like Minimax. While player _A_ tries to maximize his score, player _B_ tries to minimize the score, since the loss of a player is the other one's gain. After all positions have been considered, the best score for the player to move is propagated back to the root.
 
@@ -66,13 +66,13 @@ The function takes additional parameters `alpha` and `beta` to keep track of the
 
 Finding a good first move to refute other moves early in a position is key to further improve the algorithm. Therefore, move ordering should be considered for fast game tree traversal.
 
-### Usage
+## Usage
 
 The Alpha-Beta algorithm dervives from Minimax and is used in similar applications like Chess, Go or Shogi. It acts as artifial intelligfence in order to play the most promising moves and in the game. However, most implementations rely on a modified version called Negamax to avoid redundant code.
 
 The initial call to start the tree search depends on the player to move. The minimizing player calls `min(depth, -INFINITY, INFINITY)` while the maximizing player finds his best score with `max(depth, -INFINITY, INFINITY)`.
 
-### Complexity
+## Complexity
 
 **Time**
 For a branching factor _b_ and depth _d_:

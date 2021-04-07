@@ -19,6 +19,14 @@ const GlobalStyles = createGlobalStyle`
   pre {
     font-family: ${props => props.theme.font.code};
   }
+
+  /* code blocks */
+  div.gatsby-highlight {
+    @media ${props => props.theme.breakpoint.mobile} {
+      margin: 1rem -1rem; /* full screen */
+    }
+  }
+
 `
 
 export const wrapRootElement = ({ element }) => {

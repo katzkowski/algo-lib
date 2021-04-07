@@ -54,9 +54,9 @@ module.exports = {
       options: {
         extensions: [`.mdx`, `.md`],
         gatsbyRemarkPlugins: [
-          {
-            resolve: `gatsby-remark-embed-snippet`,
-          },
+          // {
+          //   resolve: `gatsby-remark-embed-snippet`,
+          // },
           {
             resolve: `gatsby-remark-prismjs`,
             options: {},

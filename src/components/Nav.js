@@ -10,13 +10,16 @@ import { calcGradient } from "../utils/color"
 // styled component for nav
 const NavWrapper = styled.nav`
   width: 100%;
-  background: ${props => calcGradient(props.tags, props.theme)};
+  z-index: 1;
+  // background: ${props => calcGradient(props.tags, props.theme)};
+  background: ${props => props.theme.color.background};
+  // box-shadow: ${props => props.theme.shadow.menu};
 
   display: flex;
   justify-content: space-between;
 
-  padding: ${props => props.theme.spacing.xxSmall} 12.5%
-    ${props => props.theme.spacing.xxSmall} 12.5%;
+  padding: ${props => props.theme.spacing.xxSmall}
+    ${props => props.theme.spacing.medium};
 
   @media ${props => props.theme.breakpoint.tablet} {
     padding: ${props => props.theme.spacing.xxSmall}
@@ -24,15 +27,20 @@ const NavWrapper = styled.nav`
   }
 
   @media ${props => props.theme.breakpoint.mobile} {
-    padding: ${props => props.theme.spacing.xxSmall} 2.5%
-      ${props => props.theme.spacing.xSmall} 5%;
+    padding: ${props => props.theme.spacing.xSmall} 1rem
+      ${props => props.theme.spacing.xSmall} 1rem;
   }
+`
+
+const BarWrapper = styled.div`
+  width: 100%;
+  box-shadow: ${props => props.theme.shadow.menu};
 `
 
 // styled component for project name
 const Brand = styled.a`
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   text-decoration: none;
 
   color: ${props => props.theme.color.text};
@@ -101,6 +109,14 @@ const SearchBar = styled.input`
   }
 `
 
+const GradientBar = styled.div`
+  width: 100%;
+  height: 0.25rem;
+  background: ${props => calcGradient(props.tags, props.theme)};
+  // box-shadow: ${props => props.theme.shadow.menu};
+  z-index: -1;
+`
+
 const HamburgerIcon = styled(Menu)`
   display: none;
   color: ${props => props.theme.color.text};
@@ -146,27 +162,31 @@ export const Nav = props => {
   const { toggleDark } = useStyledDarkMode()
 
   return (
-    <NavWrapper tags={props.tags}>
-      <Brand href="/">algo-lib</Brand>
-      <SearchBar tpye="text" placeholder="search ..."></SearchBar>
-      <NavItemList>
-        <NavItemWrapper>
-          <NavItem href="/">applications</NavItem>
-        </NavItemWrapper>
-        <NavItemWrapper>
-          <NavItem href="/">types</NavItem>
-        </NavItemWrapper>
-        <DarkModeIcon visible onClick={() => toggleDark()} />
-        <LightModeIcon />
-        <CloseIcon
-          visible={mobileMenuVisible}
-          onClick={() => toggleMobileMenu(!mobileMenuVisible)}
-        />
-        <HamburgerIcon
-          visible={!mobileMenuVisible}
-          onClick={() => toggleMobileMenu(!mobileMenuVisible)}
-        />
-      </NavItemList>
-    </NavWrapper>
+    <BarWrapper>
+      {/* <GradientBar tags={props.tags} /> */}
+      <NavWrapper tags={props.tags}>
+        <Brand href="/">algo-lib</Brand>
+        <SearchBar tpye="text" placeholder="search ..."></SearchBar>
+        <NavItemList>
+          <NavItemWrapper>
+            <NavItem href="/">applications</NavItem>
+          </NavItemWrapper>
+          <NavItemWrapper>
+            <NavItem href="/">types</NavItem>
+          </NavItemWrapper>
+          <DarkModeIcon visible onClick={() => toggleDark()} />
+          <LightModeIcon />
+          <CloseIcon
+            visible={mobileMenuVisible}
+            onClick={() => toggleMobileMenu(!mobileMenuVisible)}
+          />
+          <HamburgerIcon
+            visible={!mobileMenuVisible}
+            onClick={() => toggleMobileMenu(!mobileMenuVisible)}
+          />
+        </NavItemList>
+      </NavWrapper>
+      <GradientBar tags={props.tags} />
+    </BarWrapper>
   )
 }
