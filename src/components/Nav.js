@@ -9,30 +9,6 @@ import styled from "styled-components"
 import { calcGradient } from "../utils/color"
 
 // styled component for nav
-const NavWrapper = styled.nav`
-  width: 100%;
-  z-index: 1;
-  // background: ${props => calcGradient(props.tags, props.theme)};
-  background: ${props => props.theme.color.background};
-  // box-shadow: ${props => props.theme.shadow.menu};
-
-  display: flex;
-  justify-content: space-between;
-
-  padding: ${props => props.theme.spacing.xxSmall}
-    ${props => props.theme.spacing.medium};
-
-  @media ${props => props.theme.breakpoint.tablet} {
-    padding: ${props => props.theme.spacing.xxSmall}
-      ${props => props.theme.spacing.medium};
-  }
-
-  @media ${props => props.theme.breakpoint.mobile} {
-    padding: ${props => props.theme.spacing.xSmall} 1rem
-      ${props => props.theme.spacing.xSmall} 1rem;
-  }
-`
-
 const NavContainer = styled.nav`
   width: 100%;
   height: 64px;
@@ -77,34 +53,13 @@ const Brand = styled.a`
   }
 `
 
-// styled component for navigation list
-const NavItemList = styled.ul`
-  display: flex;
-  align-items: center;
-  list-style-type: none;
-  // margin: 0.3275rem;
-`
-
+// styled component nav items container
 const NavItems = styled.div`
   height: 100%;
   display: flex;
   flex-grow: 1;
   align-items: center;
   padding-left: ${props => props.theme.spacing.xLarge};
-
-  @media ${props => props.theme.breakpoint.mobile} {
-    display: none;
-  }
-`
-
-// styled component for wrapping nav items
-const NavItemWrapper = styled.li`
-  // display: inline;
-  margin: 0 ${props => props.theme.spacing.small};
-
-  &:nth-last-child(2) {
-    margin-right: ${props => props.theme.spacing.xSmall};
-  }
 
   @media ${props => props.theme.breakpoint.mobile} {
     display: none;
@@ -120,8 +75,8 @@ const NavItem = styled(props => <Link {...props} />)`
 
   font-size: 1.05rem;
   text-decoration: none;
-  // color: ${props => props.theme.color.text};
-  color: rgba(0, 0, 0, 0.8); // TODO new theme color
+  color: ${props => props.theme.color.text};
+  // color: rgba(0, 0, 0, 0.8); // TODO new theme color
 
   padding: 0 ${props => props.theme.spacing.small};
 
@@ -218,7 +173,7 @@ const LightModeIcon = styled(Sun)`
 
 export const Nav = props => {
   const [mobileMenuVisible, toggleMobileMenu] = useState(false)
-  const { toggleDark } = useStyledDarkMode()
+  const { isDark, toggleDark } = useStyledDarkMode()
 
   return (
     <BarWrapper>
@@ -242,8 +197,8 @@ export const Nav = props => {
 
         <SearchWrapper>
           <SearchBar tpye="text" placeholder="search ..."></SearchBar>
-          <DarkModeIcon visible onClick={() => toggleDark()} />
-          <LightModeIcon />
+          <DarkModeIcon visible={!isDark} onClick={() => toggleDark()} />
+          <LightModeIcon visible={isDark} onClick={() => toggleDark()} />
         </SearchWrapper>
       </NavContainer>
       <GradientBar tags={props.tags} />

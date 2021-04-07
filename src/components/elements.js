@@ -2,9 +2,9 @@ import styled from "styled-components"
 
 export const H1 = styled.h1`
   font-size: 2.25rem;
-  margin: 0.75rem 0 ${props => props.theme.spacing.medium};
   font-weight: bold;
   color: ${props => props.theme.color.heading};
+  margin: 0.75rem 0 ${props => props.theme.spacing.medium};
 `
 
 export const H2 = styled.h2`

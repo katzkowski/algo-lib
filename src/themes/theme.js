@@ -1,4 +1,4 @@
-export const lightTheme = {
+const lightTheme = {
   font: {
     main: "Roboto, sans-serif",
     code: "Roboto Mono, monospace",
@@ -43,7 +43,7 @@ export const lightTheme = {
   },
 }
 
-export const darkTheme = {
+const darkTheme = {
   font: {
     main: "Roboto, sans-serif",
     code: "Roboto Mono, monospace",
@@ -53,8 +53,10 @@ export const darkTheme = {
     secondary: "green",
     background: "black",
     surface: "lightgray",
+    heading: "white",
     text: "white",
     textLight: "darkgray",
+    tagText: "black",
     tag: {
       // tag names need to be in camelCase
       recursive: "lightblue",
@@ -71,10 +73,10 @@ export const darkTheme = {
     xxSmall: ".25rem",
     xSmall: ".5rem",
     small: "1rem",
-    medium: "2rem",
-    large: "3rem",
-    xLarge: "4rem",
-    xxLarge: "6rem",
+    medium: "1.5rem",
+    large: "2rem",
+    xLarge: "3rem",
+    xxLarge: "4rem",
   },
   animation: {
     button: "box-shadow 0.3s ease",
@@ -82,5 +84,8 @@ export const darkTheme = {
   },
   shadow: {
     shadow1: "none",
+    menu: "none",
   },
 }
+
+module.exports = { lightTheme, darkTheme }
