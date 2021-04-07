@@ -2,6 +2,7 @@ import { Sun } from "@styled-icons/boxicons-regular/Sun"
 import { Moon } from "@styled-icons/boxicons-solid/Moon"
 import { Close } from "@styled-icons/evaicons-solid/Close"
 import { Menu } from "@styled-icons/evaicons-solid/Menu"
+import { Link } from "gatsby"
 import { useStyledDarkMode } from "gatsby-styled-components-dark-mode"
 import React, { useState } from "react"
 import styled from "styled-components"
@@ -32,6 +33,28 @@ const NavWrapper = styled.nav`
   }
 `
 
+const NavContainer = styled.nav`
+  width: 100%;
+  height: 64px;
+  z-index: 1;
+  background: ${props => props.theme.color.background};
+
+  display: flex;
+  // justify-content: space-between;
+
+  padding: 0 ${props => props.theme.spacing.medium};
+
+  @media ${props => props.theme.breakpoint.tablet} {
+    padding: ${props => props.theme.spacing.xxSmall}
+      ${props => props.theme.spacing.medium};
+  }
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    padding: ${props => props.theme.spacing.xSmall} 1rem
+      ${props => props.theme.spacing.xSmall} 1rem;
+  }
+`
+
 const BarWrapper = styled.div`
   width: 100%;
   box-shadow: ${props => props.theme.shadow.menu};
@@ -39,14 +62,19 @@ const BarWrapper = styled.div`
 
 // styled component for project name
 const Brand = styled.a`
+  min-width: 80px;
+  align-self: center;
+
   font-weight: 600;
   font-size: 1.4rem;
   text-decoration: none;
-
+  user-select: none;
   color: ${props => props.theme.color.text};
 
-  align-self: center;
-  margin: ${props => props.theme.spacing.xSmall} 0;
+  @media ${props => props.theme.breakpoint.mobile} {
+    flex-grow: 1;
+    margin: 0 ${props => props.theme.spacing.small} 0 0;
+  }
 `
 
 // styled component for navigation list
@@ -55,6 +83,18 @@ const NavItemList = styled.ul`
   align-items: center;
   list-style-type: none;
   // margin: 0.3275rem;
+`
+
+const NavItems = styled.div`
+  height: 100%;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  padding-left: ${props => props.theme.spacing.xLarge};
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    display: none;
+  }
 `
 
 // styled component for wrapping nav items
@@ -72,28 +112,44 @@ const NavItemWrapper = styled.li`
 `
 
 // styled component for nav items
-const NavItem = styled.a`
+const NavItem = styled(props => <Link {...props} />)`
+  // make items full bar height
+  height: 100%;
+  display: flex;
+  align-items: center;
+
   font-size: 1.05rem;
   text-decoration: none;
   // color: ${props => props.theme.color.text};
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.8); // TODO new theme color
+
+  padding: 0 ${props => props.theme.spacing.small};
+
+  &:hover {
+    background-color: rgba(32, 33, 36, 0.04); // TODO new theme color
+  }
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    display: none;
+  }
+`
+
+// wrapping search bar and dark mode icons
+const SearchWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `
 
 const SearchBar = styled.input`
-  font-size: 1.05rem;
-  left: 37.5%;
-  width: 25%;
-  // max-width: 325px;
   padding: ${props => props.theme.spacing.xxSmall}
     ${props => props.theme.spacing.small}
     ${props => props.theme.spacing.xxSmall};
-  margin: ${props => props.theme.spacing.xSmall} 0;
-  border-radius: 15px;
-  position: absolute;
 
-  // background: rgba(229, 229, 229, 0.5);
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
+  font-size: 1.05rem;
+  background-color: ${props => props.theme.color.surface};
+
+  border-radius: 5px;
   border: none;
 
   @media ${props => props.theme.breakpoint.tablet} {
@@ -118,11 +174,13 @@ const GradientBar = styled.div`
 `
 
 const HamburgerIcon = styled(Menu)`
+  align-self: center;
   display: none;
   color: ${props => props.theme.color.text};
   height: 2rem;
   width: 2rem;
-  margin: 0 0 0 ${props => props.theme.spacing.small};
+  min-width: 2rem;
+  margin: 0 ${props => props.theme.spacing.small} 0 0;
 
   @media ${props => props.theme.breakpoint.mobile} {
     display: ${props => (props.visible ? "inline-block" : "none")};
@@ -130,11 +188,12 @@ const HamburgerIcon = styled(Menu)`
 `
 
 const CloseIcon = styled(Close)`
+  align-self: center;
   display: none;
   color: ${props => props.theme.color.text};
   height: 2rem;
   width: 2rem;
-  margin: 0 0 0 ${props => props.theme.spacing.small};
+  margin: 0 ${props => props.theme.spacing.small} 0 0;
 
   @media ${props => props.theme.breakpoint.mobile} {
     display: ${props => (props.visible ? "inline-block" : "none")};
@@ -164,28 +223,29 @@ export const Nav = props => {
   return (
     <BarWrapper>
       {/* <GradientBar tags={props.tags} /> */}
-      <NavWrapper tags={props.tags}>
+      <NavContainer tags={props.tags}>
+        <CloseIcon
+          visible={mobileMenuVisible}
+          onClick={() => toggleMobileMenu(!mobileMenuVisible)}
+        />
+        <HamburgerIcon
+          visible={!mobileMenuVisible}
+          onClick={() => toggleMobileMenu(!mobileMenuVisible)}
+        />
         <Brand href="/">algo-lib</Brand>
-        <SearchBar tpye="text" placeholder="search ..."></SearchBar>
-        <NavItemList>
-          <NavItemWrapper>
-            <NavItem href="/">applications</NavItem>
-          </NavItemWrapper>
-          <NavItemWrapper>
-            <NavItem href="/">types</NavItem>
-          </NavItemWrapper>
+
+        <NavItems>
+          <NavItem href="/">applications</NavItem>
+          <NavItem href="/">types</NavItem>
+          <NavItem href="/">about</NavItem>
+        </NavItems>
+
+        <SearchWrapper>
+          <SearchBar tpye="text" placeholder="search ..."></SearchBar>
           <DarkModeIcon visible onClick={() => toggleDark()} />
           <LightModeIcon />
-          <CloseIcon
-            visible={mobileMenuVisible}
-            onClick={() => toggleMobileMenu(!mobileMenuVisible)}
-          />
-          <HamburgerIcon
-            visible={!mobileMenuVisible}
-            onClick={() => toggleMobileMenu(!mobileMenuVisible)}
-          />
-        </NavItemList>
-      </NavWrapper>
+        </SearchWrapper>
+      </NavContainer>
       <GradientBar tags={props.tags} />
     </BarWrapper>
   )

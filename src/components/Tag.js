@@ -5,15 +5,18 @@ import { camelCase } from "../utils/string"
 
 export const Tag = styled(props => <Link {...props} />)`
   display: inline-block;
-  font-size: 0.75rem;
+
   padding: ${props => props.theme.spacing.xxSmall};
   margin: 0 ${props => props.theme.spacing.xxSmall};
+
+  font-size: 0.75rem;
   text-decoration: none;
+  color: ${props => props.theme.color.tagText};
+
   background-color: ${props =>
     props.theme.color.tag[camelCase(props.to.slice(1))]};
   border-radius: 5px;
   cursor: pointer;
-  color: ${props => props.theme.color.tagText};
 
   &:first-child {
     margin-left: 0;
@@ -28,6 +31,7 @@ export const TagBar = styled.div`
 export const LargeTag = styled(Tag)`
   font-size: 1.75rem;
   font-weight: bold;
+
   padding: ${props => props.theme.spacing.xSmall};
   margin: 0 0 ${props => props.theme.spacing.small}
     ${props => props.theme.spacing.small};
