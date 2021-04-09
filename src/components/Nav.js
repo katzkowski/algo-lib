@@ -49,15 +49,23 @@ const Brand = styled.a`
 
   @media ${props => props.theme.breakpoint.mobile} {
     flex-grow: 1;
-    margin: 0 ${props => props.theme.spacing.small} 0 0;
+    // margin: 0 ${props => props.theme.spacing.small} 0 0;
   }
 `
 
 // styled component nav items container
 const NavItems = styled.div`
+  // hide navigation on searchbar focus
+  display: ${props => (props.visible ? "flex" : "none")};
+  // display: flex;
+
+  // visibility: ${props => (props.visible ? "visible" : "hidden")};
+
+  overflow: visible;
   height: 100%;
-  display: flex;
-  flex-grow: 1;
+  flex-grow: 2;
+  // flex-grow: ${props => (props.visible ? "1" : "0")};
+
   align-items: center;
   padding-left: ${props => props.theme.spacing.xLarge};
 
@@ -92,14 +100,28 @@ const NavItem = styled(props => <Link {...props} />)`
 // wrapping search bar and dark mode icons
 const SearchWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: ${props => (props.expanded ? "flex-end" : "flex-end")};
   align-items: center;
+
+  flex-grow: ${props => (props.expanded ? "2" : "1")};
+  // transition: flex-grow 0.2s ease-in-out;
+
+  padding-left: ${props => props.theme.spacing.xLarge};
+
+  // width: ${props => (props.expanded ? "100%" : "auto")};
+  // overflow: visible;
 `
 
 const SearchBar = styled.input`
   padding: ${props => props.theme.spacing.xxSmall}
     ${props => props.theme.spacing.small}
     ${props => props.theme.spacing.xxSmall};
+
+  // width: 100%;
+  // width: ${props => (props.expanded ? "200%" : "auto")};
+  flex-grow: ${props => (props.expanded ? "1" : "0")};
+  // flex-grow: 1;
+  transition: flex-grow 0.2s ease-in-out;
 
   font-size: 1.05rem;
   background-color: ${props => props.theme.color.surface};
@@ -158,8 +180,10 @@ const CloseIcon = styled(Close)`
 const DarkModeIcon = styled(Moon)`
   display: ${props => (props.visible ? "inline-block" : "none")};
   color: ${props => props.theme.color.text};
-  height: 1.25rem;
-  width: 1.25rem;
+  max-height: 1.25rem;
+  min-height: 1.25rem;
+  max-width: 1.25rem;
+  min-width: 1.25rem;
   margin: 0 0 0 ${props => props.theme.spacing.small};
 `
 
@@ -175,6 +199,9 @@ export const Nav = props => {
   const [mobileMenuVisible, toggleMobileMenu] = useState(false)
   const { isDark, toggleDark } = useStyledDarkMode()
 
+  const [searchBarExpanded, toggleSearchBar] = useState(false)
+  const [navDisplayed, toggleNavDisplay] = useState(true)
+
   return (
     <BarWrapper>
       {/* <GradientBar tags={props.tags} /> */}
@@ -189,14 +216,28 @@ export const Nav = props => {
         />
         <Brand href="/">algo-lib</Brand>
 
-        <NavItems>
+        <NavItems visible={navDisplayed}>
           <NavItem href="/">applications</NavItem>
           <NavItem href="/">types</NavItem>
           <NavItem href="/">about</NavItem>
         </NavItems>
 
-        <SearchWrapper>
-          <SearchBar tpye="text" placeholder="search ..."></SearchBar>
+        <SearchWrapper expanded={searchBarExpanded}>
+          <SearchBar
+            expanded={searchBarExpanded}
+            onFocus={() => {
+              toggleNavDisplay(false)
+              toggleSearchBar(true)
+            }}
+            onBlur={() => {
+              toggleSearchBar(false)
+              setTimeout(() => {
+                toggleNavDisplay(true)
+              }, 200)
+            }}
+            type="text"
+            placeholder="search ..."
+          ></SearchBar>
           <DarkModeIcon visible={!isDark} onClick={() => toggleDark()} />
           <LightModeIcon visible={isDark} onClick={() => toggleDark()} />
         </SearchWrapper>

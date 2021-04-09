@@ -12,7 +12,7 @@ export const H2 = styled.h2`
   font-weight: bold;
   color: ${props => props.theme.color.heading};
   margin: ${props => props.theme.spacing.medium} 0
-    ${props => props.theme.spacing.small};
+    ${props => props.theme.spacing.xxSmall};
 `
 
 export const H3 = styled.h3`
@@ -35,7 +35,7 @@ export const Date = styled.h5`
 `
 
 export const P = styled.p`
-  margin: ${props => props.theme.spacing.small} 0 1.25rem;
+  margin: 0 0 1.25rem;
   color: ${props => props.theme.color.text};
   line-height: 2rem;
   font-size: 1.15rem;
