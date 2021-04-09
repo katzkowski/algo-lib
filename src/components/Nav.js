@@ -2,6 +2,7 @@ import { Sun } from "@styled-icons/boxicons-regular/Sun"
 import { Moon } from "@styled-icons/boxicons-solid/Moon"
 import { Close } from "@styled-icons/evaicons-solid/Close"
 import { Menu } from "@styled-icons/evaicons-solid/Menu"
+import { Search } from "@styled-icons/evaicons-solid/Search"
 import { Link } from "gatsby"
 import { useStyledDarkMode } from "gatsby-styled-components-dark-mode"
 import React, { useState } from "react"
@@ -31,9 +32,18 @@ const NavContainer = styled.nav`
   }
 `
 
+// wrapping navbar and gradient
 const BarWrapper = styled.div`
   width: 100%;
   box-shadow: ${props => props.theme.shadow.menu};
+`
+
+const GradientBar = styled.div`
+  width: 100%;
+  height: 0.25rem;
+  background: ${props => calcGradient(props.tags, props.theme)};
+  // box-shadow: ${props => props.theme.shadow.menu};
+  z-index: -1;
 `
 
 // styled component for project name
@@ -50,6 +60,7 @@ const Brand = styled.a`
   @media ${props => props.theme.breakpoint.mobile} {
     flex-grow: 1;
     // margin: 0 ${props => props.theme.spacing.small} 0 0;
+    display: ${props => (props.visible ? "inline-block" : "none")};
   }
 `
 
@@ -57,14 +68,10 @@ const Brand = styled.a`
 const NavItems = styled.div`
   // hide navigation on searchbar focus
   display: ${props => (props.visible ? "flex" : "none")};
-  // display: flex;
-
-  // visibility: ${props => (props.visible ? "visible" : "hidden")};
 
   overflow: visible;
   height: 100%;
   flex-grow: 2;
-  // flex-grow: ${props => (props.visible ? "1" : "0")};
 
   align-items: center;
   padding-left: ${props => props.theme.spacing.xLarge};
@@ -97,6 +104,12 @@ const NavItem = styled(props => <Link {...props} />)`
   }
 `
 
+const RightSide = styled.div`
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+`
+
 // wrapping search bar and dark mode icons
 const SearchWrapper = styled.div`
   display: flex;
@@ -104,30 +117,50 @@ const SearchWrapper = styled.div`
   align-items: center;
 
   flex-grow: ${props => (props.expanded ? "2" : "1")};
-  // transition: flex-grow 0.2s ease-in-out;
 
   padding-left: ${props => props.theme.spacing.xLarge};
 
-  // width: ${props => (props.expanded ? "100%" : "auto")};
-  // overflow: visible;
+  @media ${props => props.theme.breakpoint.mobile} {
+    padding-left: 0;
+  }
+`
+
+const SearchBarWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-grow: ${props => (props.expanded ? "1" : "0")};
+  transition: flex-grow 0.2s ease-in-out;
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    flex-grow: 1;
+    display: ${props => (props.mobileSearchVisible ? "flex" : "none")};
+  }
 `
 
 const SearchBar = styled.input`
   padding: ${props => props.theme.spacing.xxSmall}
-    ${props => props.theme.spacing.small}
-    ${props => props.theme.spacing.xxSmall};
+    ${props => props.theme.spacing.xSmall}
+    ${props => props.theme.spacing.xxSmall}
+    ${props => props.theme.spacing.large};
 
-  // width: 100%;
-  // width: ${props => (props.expanded ? "200%" : "auto")};
-  flex-grow: ${props => (props.expanded ? "1" : "0")};
-  // flex-grow: 1;
-  transition: flex-grow 0.2s ease-in-out;
+  // flex-grow: ${props => (props.expanded ? "1" : "0")};
+  // transition: flex-grow 0.2s ease-in-out;
+  width: 100%;
 
   font-size: 1.05rem;
   background-color: ${props => props.theme.color.surface};
+  color: ${props => props.theme.color.textLight};
 
   border-radius: 5px;
   border: none;
+  max-height: 2.25rem;
+  min-height: 2.25rem;
+
+  &:focus {
+    border: 1px solid ${props => props.theme.color.text};
+    outline: none;
+  }
 
   @media ${props => props.theme.breakpoint.tablet} {
     // left: calc(65rem * 0.25);
@@ -135,19 +168,49 @@ const SearchBar = styled.input`
   }
 
   @media ${props => props.theme.breakpoint.mobile} {
-    left: 35%;
-    width: 30%;
-    min-width: 10rem;
-    // display: none;
+    display: ${props => (props.mobileSearchVisible ? "inline-block" : "none")};
   }
 `
 
-const GradientBar = styled.div`
-  width: 100%;
-  height: 0.25rem;
-  background: ${props => calcGradient(props.tags, props.theme)};
-  // box-shadow: ${props => props.theme.shadow.menu};
-  z-index: -1;
+const SearchBarIcon = styled(Search)`
+  position: absolute;
+  left: ${props => props.theme.spacing.xSmall};
+  color: ${props => props.theme.color.textLight};
+  max-height: 1.25rem;
+  min-height: 1.25rem;
+  max-width: 1.25rem;
+  min-width: 1.25rem;
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    display: ${props => (props.mobileSearchVisible ? "inline-block" : "none")};
+  }
+`
+
+const SearchIcon = styled(Search)`
+  display: none;
+  color: ${props => props.theme.color.text};
+  max-height: 1.25rem;
+  min-height: 1.25rem;
+  max-width: 1.25rem;
+  min-width: 1.25rem;
+  margin: 0 0 0 ${props => props.theme.spacing.xSmall};
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    display: ${props => (props.visible ? "inline-block" : "none")};
+  }
+`
+const CloseSearchIcon = styled(Close)`
+  display: none;
+  color: ${props => props.theme.color.text};
+  max-height: 1.25rem;
+  min-height: 1.25rem;
+  max-width: 1.25rem;
+  min-width: 1.25rem;
+  margin: 0 0 0 ${props => props.theme.spacing.xxSmall};
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    display: ${props => (props.visible ? "inline-block" : "none")};
+  }
 `
 
 const HamburgerIcon = styled(Menu)`
@@ -190,21 +253,23 @@ const DarkModeIcon = styled(Moon)`
 const LightModeIcon = styled(Sun)`
   display: ${props => (props.visible ? "inline-block" : "none")};
   color: ${props => props.theme.color.text};
-  height: 1.25rem;
-  width: 1.25rem;
+  max-height: 1.25rem;
+  min-height: 1.25rem;
+  max-width: 1.25rem;
+  min-width: 1.25rem;
   margin: 0 0 0 ${props => props.theme.spacing.small};
 `
 
 export const Nav = props => {
   const [mobileMenuVisible, toggleMobileMenu] = useState(false)
-  const { isDark, toggleDark } = useStyledDarkMode()
+  const [isDark, toggleDark] = useStyledDarkMode()
 
   const [searchBarExpanded, toggleSearchBar] = useState(false)
   const [navDisplayed, toggleNavDisplay] = useState(true)
+  const [mobileSearch, toggleMobileSearch] = useState(false)
 
   return (
     <BarWrapper>
-      {/* <GradientBar tags={props.tags} /> */}
       <NavContainer tags={props.tags}>
         <CloseIcon
           visible={mobileMenuVisible}
@@ -214,7 +279,9 @@ export const Nav = props => {
           visible={!mobileMenuVisible}
           onClick={() => toggleMobileMenu(!mobileMenuVisible)}
         />
-        <Brand href="/">algo-lib</Brand>
+        <Brand visible={!mobileSearch} href="/">
+          algo-lib
+        </Brand>
 
         <NavItems visible={navDisplayed}>
           <NavItem href="/">applications</NavItem>
@@ -222,25 +289,47 @@ export const Nav = props => {
           <NavItem href="/">about</NavItem>
         </NavItems>
 
-        <SearchWrapper expanded={searchBarExpanded}>
-          <SearchBar
-            expanded={searchBarExpanded}
-            onFocus={() => {
-              toggleNavDisplay(false)
-              toggleSearchBar(true)
-            }}
-            onBlur={() => {
-              toggleSearchBar(false)
-              setTimeout(() => {
-                toggleNavDisplay(true)
-              }, 200)
-            }}
-            type="text"
-            placeholder="search ..."
-          ></SearchBar>
+        <RightSide>
+          <SearchWrapper expanded={searchBarExpanded}>
+            <SearchBarWrapper
+              mobileSearchVisible={mobileSearch}
+              expanded={searchBarExpanded}
+            >
+              <SearchBarIcon mobileSearchVisible={mobileSearch} />
+              <SearchBar
+                expanded={searchBarExpanded}
+                onFocus={() => {
+                  toggleNavDisplay(false)
+                  toggleSearchBar(true)
+                }}
+                onBlur={() => {
+                  toggleSearchBar(false)
+                  toggleMobileSearch(false)
+                  setTimeout(() => {
+                    toggleNavDisplay(true)
+                  }, 200)
+                }}
+                type="text"
+                placeholder="search ..."
+                mobileSearchVisible={mobileSearch}
+              />
+            </SearchBarWrapper>
+
+            <SearchIcon
+              visible={!mobileSearch}
+              onClick={() => {
+                toggleMobileSearch(true)
+              }}
+            />
+            <CloseSearchIcon
+              visible={mobileSearch}
+              onClick={() => toggleMobileSearch(false)}
+            />
+          </SearchWrapper>
+
           <DarkModeIcon visible={!isDark} onClick={() => toggleDark()} />
           <LightModeIcon visible={isDark} onClick={() => toggleDark()} />
-        </SearchWrapper>
+        </RightSide>
       </NavContainer>
       <GradientBar tags={props.tags} />
     </BarWrapper>
