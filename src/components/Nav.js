@@ -8,6 +8,7 @@ import { useStyledDarkMode } from "gatsby-styled-components-dark-mode"
 import React, { useState } from "react"
 import styled from "styled-components"
 import { calcGradient } from "../utils/color"
+import { SearchResults } from "./SearchResults"
 
 // styled component for nav
 const NavContainer = styled.nav`
@@ -113,6 +114,7 @@ const RightSide = styled.div`
 // wrapping search bar and dark mode icons
 const SearchWrapper = styled.div`
   display: flex;
+  // flex-direction: column;
   justify-content: ${props => (props.expanded ? "flex-end" : "flex-end")};
   align-items: center;
 
@@ -127,7 +129,9 @@ const SearchWrapper = styled.div`
 
 const SearchBarWrapper = styled.div`
   position: relative;
+  z-index: 10;
   display: flex;
+  flex-direction: column;
   align-items: center;
   flex-grow: ${props => (props.expanded ? "1" : "0")};
   transition: flex-grow 0.2s ease-in-out;
@@ -139,6 +143,9 @@ const SearchBarWrapper = styled.div`
 `
 
 const SearchBar = styled.input`
+  display: flex;
+  z-index: 10;
+  align-items: center;
   padding: ${props => props.theme.spacing.xxSmall}
     ${props => props.theme.spacing.xSmall}
     ${props => props.theme.spacing.xxSmall}
@@ -174,7 +181,9 @@ const SearchBar = styled.input`
 
 const SearchBarIcon = styled(Search)`
   position: absolute;
+  z-index: 11;
   left: ${props => props.theme.spacing.xSmall};
+  top: ${props => props.theme.spacing.xSmall};
   color: ${props => props.theme.color.textLight};
   max-height: 1.25rem;
   min-height: 1.25rem;
@@ -184,6 +193,11 @@ const SearchBarIcon = styled(Search)`
   @media ${props => props.theme.breakpoint.mobile} {
     display: ${props => (props.mobileSearchVisible ? "inline-block" : "none")};
   }
+`
+
+const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 const SearchIcon = styled(Search)`
@@ -267,7 +281,7 @@ export const Nav = props => {
 
   const [navDisplayed, toggleNavDisplay] = useState(true)
   const [searchBarExpanded, toggleSearchBar] = useState(false)
-  const [mobileSearch, toggleMobileSearch] = useState(false)
+  const [mobileSearchVisible, toggleMobileSearch] = useState(false)
 
   return (
     <BarWrapper>
@@ -280,7 +294,7 @@ export const Nav = props => {
           visible={!mobileMenuVisible}
           onClick={() => toggleMobileMenu(!mobileMenuVisible)}
         />
-        <Brand visible={!mobileSearch} href="/">
+        <Brand visible={!mobileSearchVisible} href="/">
           algo-lib
         </Brand>
 
@@ -293,15 +307,17 @@ export const Nav = props => {
         <RightSide>
           <SearchWrapper expanded={searchBarExpanded}>
             <SearchBarWrapper
-              mobileSearchVisible={mobileSearch}
+              mobileSearchVisible={mobileSearchVisible}
               expanded={searchBarExpanded}
             >
-              <SearchBarIcon mobileSearchVisible={mobileSearch} />
+              <SearchBarIcon mobileSearchVisible={mobileSearchVisible} />
               <SearchBar
+                id="navbar-search"
                 expanded={searchBarExpanded}
                 onFocus={() => {
                   toggleNavDisplay(false)
                   toggleSearchBar(true)
+                  toggleMobileSearch(true)
                 }}
                 onBlur={() => {
                   toggleSearchBar(false)
@@ -312,24 +328,32 @@ export const Nav = props => {
                 }}
                 type="text"
                 placeholder="search ..."
-                mobileSearchVisible={mobileSearch}
+                mobileSearchVisible={mobileSearchVisible}
+              ></SearchBar>
+              <SearchResults
+                displayResults={searchBarExpanded || mobileSearchVisible}
               />
             </SearchBarWrapper>
+          </SearchWrapper>
 
+          <IconWrapper>
             <SearchIcon
-              visible={!mobileSearch}
+              visible={!mobileSearchVisible}
               onClick={() => {
                 toggleMobileSearch(true)
+                setTimeout(() => {
+                  // TODO geht das schöner?
+                  document.getElementById("navbar-search").focus()
+                }, 10)
               }}
             />
             <CloseSearchIcon
-              visible={mobileSearch}
+              visible={mobileSearchVisible}
               onClick={() => toggleMobileSearch(false)}
             />
-          </SearchWrapper>
-
-          <DarkModeIcon visible={!isDark} onClick={() => toggleDark()} />
-          <LightModeIcon visible={isDark} onClick={() => toggleDark()} />
+            <DarkModeIcon visible={!isDark} onClick={() => toggleDark()} />
+            <LightModeIcon visible={isDark} onClick={() => toggleDark()} />
+          </IconWrapper>
         </RightSide>
       </NavContainer>
       <GradientBar tags={props.tags} />
