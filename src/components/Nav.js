@@ -199,6 +199,7 @@ const SearchIcon = styled(Search)`
     display: ${props => (props.visible ? "inline-block" : "none")};
   }
 `
+
 const CloseSearchIcon = styled(Close)`
   display: none;
   color: ${props => props.theme.color.text};
@@ -262,10 +263,10 @@ const LightModeIcon = styled(Sun)`
 
 export const Nav = props => {
   const [mobileMenuVisible, toggleMobileMenu] = useState(false)
-  const [isDark, toggleDark] = useStyledDarkMode()
+  const { isDark, toggleDark } = useStyledDarkMode()
 
-  const [searchBarExpanded, toggleSearchBar] = useState(false)
   const [navDisplayed, toggleNavDisplay] = useState(true)
+  const [searchBarExpanded, toggleSearchBar] = useState(false)
   const [mobileSearch, toggleMobileSearch] = useState(false)
 
   return (
