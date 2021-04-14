@@ -14,6 +14,7 @@ const SearchItem = styled(props => <Link {...props} />)`
   }
 `
 
-export const SearchResultItem = ({ children }) => {
-  return <SearchItem>{children}</SearchItem>
+export const SearchResultItem = props => {
+  return <SearchItem>{props.item.title}</SearchItem>
+  // return <SearchItem>{props.item}</SearchItem>
 }

@@ -73,9 +73,6 @@ const SearchBarIcon = styled(Search)`
 `
 
 export const SearchBar = props => {
-  const { search } = window.location
-  // const query = new URLSearchParams(search).get("navbar-search")
-  // let query = ""
   const [searchQuery, setSearchQuery] = useState("")
   const data = useStaticQuery(graphql`
     query {
@@ -105,10 +102,7 @@ export const SearchBar = props => {
         mobileSearchVisible={props.mobileSearchVisible}
         onFocus={props.onFocus}
         onBlur={props.onBlur}
-        onChange={e => {
-          setSearchQuery(e.target.value)
-          console.log(e.target.value)
-        }}
+        onChange={e => setSearchQuery(e.target.value)}
       />
       <SearchResults
         displayResults={props.expanded || props.mobileSearchVisible}

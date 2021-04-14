@@ -8,7 +8,7 @@ import { useStyledDarkMode } from "gatsby-styled-components-dark-mode"
 import React, { useState } from "react"
 import styled from "styled-components"
 import { calcGradient } from "../utils/color"
-import { SearchResults } from "./SearchResults"
+import { SearchBar } from "./SearchBar"
 
 // styled component for nav
 const NavContainer = styled.nav`
@@ -18,7 +18,6 @@ const NavContainer = styled.nav`
   background: ${props => props.theme.color.background};
 
   display: flex;
-  // justify-content: space-between;
 
   padding: 0 ${props => props.theme.spacing.medium};
 
@@ -111,87 +110,16 @@ const RightSide = styled.div`
   align-items: center;
 `
 
-// wrapping search bar and dark mode icons
+// wrapping search element in navbar
 const SearchWrapper = styled.div`
   display: flex;
-  // flex-direction: column;
-  justify-content: ${props => (props.expanded ? "flex-end" : "flex-end")};
+  justify-content: flex-end;
   align-items: center;
-
   flex-grow: ${props => (props.expanded ? "2" : "1")};
-
   padding-left: ${props => props.theme.spacing.xLarge};
 
   @media ${props => props.theme.breakpoint.mobile} {
     padding-left: 0;
-  }
-`
-
-const SearchBarWrapper = styled.div`
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-grow: ${props => (props.expanded ? "1" : "0")};
-  transition: flex-grow 0.2s ease-in-out;
-
-  @media ${props => props.theme.breakpoint.mobile} {
-    flex-grow: 1;
-    display: ${props => (props.mobileSearchVisible ? "flex" : "none")};
-  }
-`
-
-const SearchBar = styled.input`
-  display: flex;
-  z-index: 10;
-  align-items: center;
-  padding: ${props => props.theme.spacing.xxSmall}
-    ${props => props.theme.spacing.xSmall}
-    ${props => props.theme.spacing.xxSmall}
-    ${props => props.theme.spacing.large};
-
-  // flex-grow: ${props => (props.expanded ? "1" : "0")};
-  // transition: flex-grow 0.2s ease-in-out;
-  width: 100%;
-
-  font-size: 1.05rem;
-  background-color: ${props => props.theme.color.surface};
-  color: ${props => props.theme.color.textLight};
-
-  border-radius: 5px;
-  border: none;
-  max-height: 2.25rem;
-  min-height: 2.25rem;
-
-  &:focus {
-    border: 1px solid ${props => props.theme.color.text};
-    outline: none;
-  }
-
-  @media ${props => props.theme.breakpoint.tablet} {
-    // left: calc(65rem * 0.25);
-    // width: 20%;
-  }
-
-  @media ${props => props.theme.breakpoint.mobile} {
-    display: ${props => (props.mobileSearchVisible ? "inline-block" : "none")};
-  }
-`
-
-const SearchBarIcon = styled(Search)`
-  position: absolute;
-  z-index: 11;
-  left: ${props => props.theme.spacing.xSmall};
-  top: ${props => props.theme.spacing.xSmall};
-  color: ${props => props.theme.color.textLight};
-  max-height: 1.25rem;
-  min-height: 1.25rem;
-  max-width: 1.25rem;
-  min-width: 1.25rem;
-
-  @media ${props => props.theme.breakpoint.mobile} {
-    display: ${props => (props.mobileSearchVisible ? "inline-block" : "none")};
   }
 `
 
@@ -306,34 +234,22 @@ export const Nav = props => {
 
         <RightSide>
           <SearchWrapper expanded={searchBarExpanded}>
-            <SearchBarWrapper
+            <SearchBar
+              onFocus={() => {
+                toggleNavDisplay(false)
+                toggleSearchBar(true)
+                toggleMobileSearch(true)
+              }}
+              onBlur={() => {
+                toggleSearchBar(false)
+                toggleMobileSearch(false)
+                setTimeout(() => {
+                  toggleNavDisplay(true)
+                }, 200)
+              }}
               mobileSearchVisible={mobileSearchVisible}
               expanded={searchBarExpanded}
-            >
-              <SearchBarIcon mobileSearchVisible={mobileSearchVisible} />
-              <SearchBar
-                id="navbar-search"
-                expanded={searchBarExpanded}
-                onFocus={() => {
-                  toggleNavDisplay(false)
-                  toggleSearchBar(true)
-                  toggleMobileSearch(true)
-                }}
-                onBlur={() => {
-                  toggleSearchBar(false)
-                  toggleMobileSearch(false)
-                  setTimeout(() => {
-                    toggleNavDisplay(true)
-                  }, 200)
-                }}
-                type="text"
-                placeholder="search ..."
-                mobileSearchVisible={mobileSearchVisible}
-              ></SearchBar>
-              <SearchResults
-                displayResults={searchBarExpanded || mobileSearchVisible}
-              />
-            </SearchBarWrapper>
+            ></SearchBar>
           </SearchWrapper>
 
           <IconWrapper>

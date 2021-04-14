@@ -16,16 +16,20 @@ const ResultsWrapper = styled.div`
   // border: 1px solid ${props => props.theme.color.textLight};
 `
 
+const unFlattenResults = results =>
+  results.map(post => {
+    const { slug, tags, title } = post
+    return { slug, title, tags }
+  })
+
 export const SearchResults = props => {
-  const results = ["Algorithm 1", "Algorithm 2", "Algorithm 3"]
-  // TODO: add key
-  const searchResults = results.map(result => (
-    <SearchResultItem>{result}</SearchResultItem>
-  ))
+  const algos = unFlattenResults(props.results)
 
   return (
     <ResultsWrapper visible={props.displayResults}>
-      {searchResults}
+      {algos.map(algo => (
+        <SearchResultItem key={algo.slug} item={algo} />
+      ))}
     </ResultsWrapper>
   )
 }
