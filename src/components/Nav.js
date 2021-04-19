@@ -10,6 +10,15 @@ import styled from "styled-components"
 import { calcGradient } from "../utils/color"
 import { SearchBar } from "./SearchBar"
 
+// wrapping navbar and gradient
+const BarWrapper = styled.div`
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 5;
+  box-shadow: ${props => props.theme.shadow.menu};
+`
+
 // styled component for nav
 const NavContainer = styled.nav`
   width: 100%;
@@ -30,12 +39,6 @@ const NavContainer = styled.nav`
     padding: ${props => props.theme.spacing.xSmall} 1rem
       ${props => props.theme.spacing.xSmall} 1rem;
   }
-`
-
-// wrapping navbar and gradient
-const BarWrapper = styled.div`
-  width: 100%;
-  box-shadow: ${props => props.theme.shadow.menu};
 `
 
 const GradientBar = styled.div`

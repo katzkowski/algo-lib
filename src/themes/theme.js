@@ -10,7 +10,8 @@ const lightTheme = {
     surface: "#f1f3f4",
     heading: "#202124",
     text: "rgba(0,0,0,1.0)",
-    textLight: "#5f6368",
+    textSurface: "#5f6368",
+    textLight: "rgba(0,0,0,.65)",
     tagText: "black",
     tag: {
       // tag names need to be in camelCase

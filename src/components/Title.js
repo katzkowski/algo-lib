@@ -1,9 +1,13 @@
 import React from "react"
+import { Date, H1 } from "../components/elements"
 import { Tag, TagBar } from "./Tag"
-import { H1, Date } from "../components/elements";
 
 export default function Title(props) {
-  const Tags = props.data.mdx.frontmatter.tags.map(tag => <Tag to={`/${tag}`} key={tag}>{tag}</Tag>)
+  const Tags = props.data.mdx.frontmatter.tags.map(tag => (
+    <Tag to={`/${tag}`} key={tag}>
+      {tag}
+    </Tag>
+  ))
 
   return (
     <div>
