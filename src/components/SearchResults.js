@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { Date } from "./elements"
 import { SearchResultItem } from "./SearchResultItem"
 
 const ResultsWrapper = styled.div`
@@ -10,26 +11,42 @@ const ResultsWrapper = styled.div`
   top: 2rem;
   width: 100%;
 
-  padding-top: 0.25rem;
-
-  background-color: ${props => props.theme.color.surface};
-  // border: 1px solid ${props => props.theme.color.textLight};
+  padding-top: ${props => props.theme.spacing.xSmall};
+  background-color: ${props => props.theme.color.background};
+  border: 1px solid ${props => props.theme.color.surface};
+  border-radius: 0 0 5px 5px;
 `
 
-const unFlattenResults = results =>
-  results.map(post => {
-    const { slug, tags, title } = post
-    return { slug, title, tags }
-  })
+const Subsection = styled(Date)`
+  margin: ${props => props.theme.spacing.xxSmall}
+    ${props => props.theme.spacing.medium} 0;
+`
+
+const NoResults = styled.p`
+  width: 100%;
+  text-decoration: none;
+  color: ${props => props.theme.color.text};
+  padding: ${props => props.theme.spacing.xSmall}
+    ${props => props.theme.spacing.medium};
+`
 
 export const SearchResults = props => {
-  const algos = unFlattenResults(props.results)
+  // element to display when there to search results
+  const noResultsText = <NoResults>No results</NoResults>
+
+  const algos = props.results.map(algo => (
+    <SearchResultItem
+      key={algo.slug}
+      to={algo.slug}
+      item={algo}
+      onClick={props.setLinkClicked(true)}
+    />
+  ))
 
   return (
     <ResultsWrapper visible={props.displayResults}>
-      {algos.map(algo => (
-        <SearchResultItem key={algo.slug} item={algo} />
-      ))}
+      <Subsection>algorithms</Subsection>
+      {algos.length === 0 ? noResultsText : algos}
     </ResultsWrapper>
   )
 }

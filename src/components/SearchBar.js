@@ -74,6 +74,8 @@ const SearchBarIcon = styled(Search)`
 
 export const SearchBar = props => {
   const [searchQuery, setSearchQuery] = useState("")
+  const [showResults, setShowResults] = useState(false)
+  const [linkClicked, setLinkClicked] = useState(false)
   const data = useStaticQuery(graphql`
     query {
       localSearchAlgorithms {
@@ -101,12 +103,20 @@ export const SearchBar = props => {
         placeholder="search ..."
         mobileSearchVisible={props.mobileSearchVisible}
         onFocus={props.onFocus}
-        onBlur={props.onBlur}
-        onChange={e => setSearchQuery(e.target.value)}
+        onBlur={linkClicked ? undefined : props.onBlur}
+        onChange={e => {
+          setSearchQuery(e.target.value)
+          e.target.value.trim() !== ""
+            ? setShowResults(true)
+            : setShowResults(false)
+        }}
       />
       <SearchResults
-        displayResults={props.expanded || props.mobileSearchVisible}
+        displayResults={
+          showResults && (props.mobileSearchVisible || props.expanded)
+        }
         results={results}
+        setLinkClicked={setLinkClicked}
       />
     </SearchBarWrapper>
   )

@@ -230,9 +230,9 @@ export const Nav = props => {
         </Brand>
 
         <NavItems visible={navDisplayed}>
-          <NavItem href="/">applications</NavItem>
-          <NavItem href="/">types</NavItem>
-          <NavItem href="/">about</NavItem>
+          <NavItem to="/">applications</NavItem>
+          <NavItem to="/">types</NavItem>
+          <NavItem to="/">about</NavItem>
         </NavItems>
 
         <RightSide>

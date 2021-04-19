@@ -6,8 +6,8 @@ const SearchItem = styled(props => <Link {...props} />)`
   width: 100%;
   text-decoration: none;
   color: ${props => props.theme.color.text};
-  padding: ${props => props.theme.spacing.xxSmall}
-    ${props => props.theme.spacing.xSmall};
+  padding: ${props => props.theme.spacing.xSmall}
+    ${props => props.theme.spacing.medium};
 
   &:hover {
     background-color: rgba(32, 33, 36, 0.04); // TODO new theme color
@@ -15,6 +15,5 @@ const SearchItem = styled(props => <Link {...props} />)`
 `
 
 export const SearchResultItem = props => {
-  return <SearchItem>{props.item.title}</SearchItem>
-  // return <SearchItem>{props.item}</SearchItem>
+  return <SearchItem to={`/${props.item.slug}`}>{props.item.title}</SearchItem>
 }
