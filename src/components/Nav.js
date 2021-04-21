@@ -5,7 +5,7 @@ import { Menu } from "@styled-icons/evaicons-solid/Menu"
 import { Search } from "@styled-icons/evaicons-solid/Search"
 import { Link } from "gatsby"
 import { useStyledDarkMode } from "gatsby-styled-components-dark-mode"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { calcGradient } from "../utils/color"
 import { SearchBar } from "./SearchBar"
@@ -15,8 +15,10 @@ const BarWrapper = styled.div`
   width: 100%;
   position: fixed;
   top: 0;
-  z-index: 5;
-  box-shadow: ${props => props.theme.shadow.menu};
+  z-index: 10;
+  box-shadow: ${props =>
+    props.shadowVisible ? props.theme.shadow.menu : "none"};
+  transition: box-shadow 0.3s;
 `
 
 // styled component for nav
@@ -42,10 +44,10 @@ const NavContainer = styled.nav`
 `
 
 const GradientBar = styled.div`
+  display: ${props => (props.visible ? "block" : "none")};
   width: 100%;
   height: 0.25rem;
   background: ${props => calcGradient(props.tags, props.theme)};
-  // box-shadow: ${props => props.theme.shadow.menu};
   z-index: -1;
 `
 
@@ -132,7 +134,7 @@ const IconWrapper = styled.div`
 `
 
 const SearchIcon = styled(Search)`
-  display: none;
+  display: ${props => (props.hiddenSearchBar ? "inline-block" : "none")};
   color: ${props => props.theme.color.text};
   max-height: 1.25rem;
   min-height: 1.25rem;
@@ -209,13 +211,27 @@ const LightModeIcon = styled(Sun)`
 export const Nav = props => {
   const [mobileMenuVisible, toggleMobileMenu] = useState(false)
   const { isDark, toggleDark } = useStyledDarkMode()
-
+  const [shadowVisible, showShadow] = useState(false)
   const [navDisplayed, toggleNavDisplay] = useState(true)
-  const [searchBarExpanded, toggleSearchBar] = useState(false)
+  const [searchBarExpanded, expandSearchBar] = useState(false)
   const [mobileSearchVisible, toggleMobileSearch] = useState(false)
 
+  // display shadow when page has been scrolled
+  const shadowOnScroll = () => {
+    window.addEventListener("scroll", e => {
+      if (window.pageYOffset > 20) {
+        showShadow(true)
+      } else {
+        showShadow(false)
+      }
+    })
+  }
+
+  // componentDidMount equivalent for function compontents
+  useEffect(shadowOnScroll, [])
+
   return (
-    <BarWrapper>
+    <BarWrapper shadowVisible={shadowVisible}>
       <NavContainer tags={props.tags}>
         <CloseIcon
           visible={mobileMenuVisible}
@@ -238,13 +254,14 @@ export const Nav = props => {
         <RightSide>
           <SearchWrapper expanded={searchBarExpanded}>
             <SearchBar
+              id="search-navbar"
               onFocus={() => {
-                toggleNavDisplay(false)
-                toggleSearchBar(true)
+                expandSearchBar(true)
                 toggleMobileSearch(true)
+                toggleNavDisplay(false)
               }}
               onBlur={() => {
-                toggleSearchBar(false)
+                expandSearchBar(false)
                 toggleMobileSearch(false)
                 setTimeout(() => {
                   toggleNavDisplay(true)
@@ -253,18 +270,30 @@ export const Nav = props => {
               mobileSearchVisible={mobileSearchVisible}
               expanded={searchBarExpanded}
               inNavbar={true}
+              hidden={props.hideSearchBar}
             ></SearchBar>
           </SearchWrapper>
 
           <IconWrapper>
             <SearchIcon
               visible={!mobileSearchVisible}
+              hiddenSearchBar={props.hideSearchBar}
               onClick={() => {
-                toggleMobileSearch(true)
-                setTimeout(() => {
-                  // TODO geht das schöner?
-                  document.getElementById("navbar-search").focus()
-                }, 10)
+                if (!props.hideSearchBar) {
+                  toggleMobileSearch(true)
+                  setTimeout(() => {
+                    // timeout for browser to display element
+                    const search = document.getElementById("search-navbar")
+                    if (search !== undefined) search.focus()
+                  }, 10)
+                } else {
+                  const search = document.getElementById("search-landing")
+                  if (search !== undefined) {
+                    search.focus()
+                    // scroll to search bar
+                    window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+                  }
+                }
               }}
             />
             <CloseSearchIcon
@@ -276,7 +305,7 @@ export const Nav = props => {
           </IconWrapper>
         </RightSide>
       </NavContainer>
-      {/* <GradientBar tags={props.tags} /> */}
+      <GradientBar tags={props.tags} visible={props.showGradient} />
     </BarWrapper>
   )
 }

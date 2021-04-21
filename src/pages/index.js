@@ -46,7 +46,7 @@ export default function Index({ data }) {
           pre: Pre,
         }}
       >
-        <Nav />
+        <Nav hideSearchBar />
         <ContentWrapper>
           <center>
             <LandingHeadline>A library of algorithms</LandingHeadline>
@@ -55,7 +55,7 @@ export default function Index({ data }) {
             </LandingSubtitle>
           </center>
           <SearchWrapper>
-            <SearchBar inNavbar={false} />
+            <SearchBar id="search-landing" inNavbar={false} />
           </SearchWrapper>
 
           <TagSlider category="by application" tags={tags}></TagSlider>

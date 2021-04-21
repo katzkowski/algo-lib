@@ -46,7 +46,7 @@ export default function PageWrapper({ children, tags }) {
           pre: Pre,
         }}
       >
-        <Nav tags={tags} />
+        <Nav tags={tags} showGradient hideSearchbar={false} />
         <ContentWrapper>{children}</ContentWrapper>
         <Footer></Footer>
       </MDXProvider>

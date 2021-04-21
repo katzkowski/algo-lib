@@ -8,8 +8,7 @@ import { SearchResults } from "./SearchResults"
 // wrapping search bar and search results
 const SearchBarWrapper = styled.div`
   position: relative;
-  z-index: 10;
-  display: flex;
+  display: {props => props.hidden ? "none" : "flex"};
   flex-direction: column;
   align-items: center;
   flex-grow: ${props => (props.expanded ? "1" : "0")};
@@ -18,13 +17,14 @@ const SearchBarWrapper = styled.div`
   @media ${props => props.theme.breakpoint.mobile} {
     flex-grow: 1;
     display: ${props =>
-      props.mobileSearchVisible || !props.inNavbar ? "flex" : "none"};
+      (props.mobileSearchVisible || !props.inNavbar) && !props.hidden
+        ? "flex"
+        : "none"};
   }
 `
 
 const SearchInput = styled.input`
   display: flex;
-  z-index: 10;
   align-items: center;
   padding: ${props => props.theme.spacing.xxSmall}
     ${props => props.theme.spacing.xSmall}
@@ -49,13 +49,14 @@ const SearchInput = styled.input`
 
   @media ${props => props.theme.breakpoint.mobile} {
     display: ${props =>
-      props.mobileSearchVisible || !props.inNavbar ? "inline-block" : "none"};
+      (props.mobileSearchVisible || !props.inNavbar) && !props.hidden
+        ? "inline-block"
+        : "none"};
   }
 `
 
 const SearchBarIcon = styled(Search)`
   position: absolute;
-  z-index: 11;
   left: ${props => props.theme.spacing.xSmall};
   top: ${props => props.theme.spacing.xSmall};
   color: ${props => props.theme.color.textLight};
@@ -94,12 +95,13 @@ export const SearchBar = props => {
       mobileSearchVisible={props.mobileSearchVisible}
       expanded={props.expanded}
       inNavbar={props.inNavbar}
+      hidden={props.hidden}
     >
       <SearchBarIcon
         mobileSearchVisible={props.mobileSearchVisible && props.inNavbar}
       />
       <SearchInput
-        id="navbar-search"
+        id={props.id}
         type="text"
         placeholder="search ..."
         mobileSearchVisible={props.mobileSearchVisible && props.inNavbar}
