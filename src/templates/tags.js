@@ -2,17 +2,25 @@ import { graphql, Link } from "gatsby"
 import React from "react"
 import { AlgoCard } from "../components/AlgoCard"
 import PageWrapper from "../components/PageWrapper"
+import { Pagination } from "../components/Pagination"
 import TagTitle from "../components/TagTitle"
 
 const Tags = ({ pageContext, data }) => {
-  const { tag } = pageContext
+  const { tag, currentPage, numPagesForTag } = pageContext
+  const isFirst = currentPage === 1
+  const isLast = currentPage === numPagesForTag
+  const prevPage =
+    currentPage - 1 === 1
+      ? `/${tag.toLowerCase()}`
+      : `/${tag}/${currentPage - 1}`
+  const nextPage = `/${tag.toLowerCase()}/${currentPage + 1}`
   const { totalCount } = data.allMdx
   const algos = data.allMdx.edges
 
   return (
     <PageWrapper tags={[tag]}>
       <TagTitle tag={tag} totalCount={totalCount} />
-      {/* <LargeTag to={`/${tag}`}>{tag}</LargeTag> */}
+
       {algos.map(algo => (
         <AlgoCard
           key={algo.node.frontmatter.slug}
@@ -23,10 +31,12 @@ const Tags = ({ pageContext, data }) => {
           tags={algo.node.frontmatter.tags}
         />
       ))}
-      {/*
-              This links to a page that does not yet exist.
-              You'll come back to it!
-            */}
+      <Pagination
+        isFirst={isFirst}
+        isLast={isLast}
+        prevPage={prevPage}
+        nextPage={nextPage}
+      />
       <Link to="/tags">All tags</Link>
     </PageWrapper>
   )
@@ -35,11 +45,12 @@ const Tags = ({ pageContext, data }) => {
 export default Tags
 
 export const pageQuery = graphql`
-  query($tag: String) {
+  query($tag: String, $skip: Int!, $limit: Int!) {
     allMdx(
-      limit: 2000
+      limit: $limit
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }
+      skip: $skip
     ) {
       totalCount
       edges {

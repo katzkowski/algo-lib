@@ -25,10 +25,10 @@ exports.createPages = async ({ graphql, actions }) => {
   const algorithms = data.algorithms
 
   // create paginated pages for algorithms
-  const algosPerPage = 2
-  const numPages = Math.ceil(algorithms.edges.length / algosPerPage)
+  const algosPerPage = 1
+  const numAlgoPages = Math.ceil(algorithms.edges.length / algosPerPage)
 
-  Array.from({ length: numPages }).forEach((_, i) => {
+  Array.from({ length: numAlgoPages }).forEach((_, i) => {
     actions.createPage({
       // path: i === 0 ? `/` : `/${i + 1}`,
       path: `/${i + 1}`,
@@ -36,7 +36,7 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         limit: algosPerPage,
         skip: i * algosPerPage,
-        numPages,
+        numAlgoPages,
         currentPage: i + 1,
       },
     })
@@ -54,16 +54,29 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  // Extract tag data from query
+  // extract tag data from query
   const tags = data.tagGroups.group
-  // Make tag pages
+
+  // create pages for every tag
   tags.forEach(tag => {
-    actions.createPage({
-      path: `/${tag.tag.toLowerCase()}/`,
-      component: require.resolve(`./src/templates/tags.js`),
-      context: {
-        tag: tag.tag,
-      },
+    let numPagesForTag = Math.ceil(tag.totalCount / algosPerPage)
+
+    // create paginated pages for each tag
+    Array.from({ length: numPagesForTag }).forEach((_, i) => {
+      actions.createPage({
+        path:
+          i === 0
+            ? `/${tag.tag.toLowerCase()}`
+            : `/${tag.tag.toLowerCase()}/${i + 1}`,
+        component: require.resolve(`./src/templates/tags.js`),
+        context: {
+          tag: tag.tag,
+          limit: algosPerPage,
+          skip: i * algosPerPage,
+          numPagesForTag,
+          currentPage: i + 1,
+        },
+      })
     })
   })
 }

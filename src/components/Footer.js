@@ -101,8 +101,12 @@ export default function Footer() {
           </span>
         </center>
         <FooterLinks>
-          <FooterInternalLink tabIndex="0">about</FooterInternalLink>
-          <FooterInternalLink tabIndex="0">all tags</FooterInternalLink>
+          <FooterInternalLink tabIndex="0" to={"/about"}>
+            about
+          </FooterInternalLink>
+          <FooterInternalLink tabIndex="0" to={"/about"}>
+            all tags
+          </FooterInternalLink>
           <FooterExternalLink
             href="https://github.com/katzkowski/algo-lib"
             tabIndex="0"
