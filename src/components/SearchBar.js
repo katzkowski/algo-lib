@@ -17,7 +17,8 @@ const SearchBarWrapper = styled.div`
 
   @media ${props => props.theme.breakpoint.mobile} {
     flex-grow: 1;
-    display: ${props => (props.mobileSearchVisible ? "flex" : "none")};
+    display: ${props =>
+      props.mobileSearchVisible || !props.inNavbar ? "flex" : "none"};
   }
 `
 
@@ -46,13 +47,9 @@ const SearchInput = styled.input`
     outline: none;
   }
 
-  @media ${props => props.theme.breakpoint.tablet} {
-    // left: calc(65rem * 0.25);
-    // width: 20%;
-  }
-
   @media ${props => props.theme.breakpoint.mobile} {
-    display: ${props => (props.mobileSearchVisible ? "inline-block" : "none")};
+    display: ${props =>
+      props.mobileSearchVisible || !props.inNavbar ? "inline-block" : "none"};
   }
 `
 
@@ -68,7 +65,8 @@ const SearchBarIcon = styled(Search)`
   min-width: 1.25rem;
 
   @media ${props => props.theme.breakpoint.mobile} {
-    display: ${props => (props.mobileSearchVisible ? "inline-block" : "none")};
+    display: ${props =>
+      props.mobileSearchVisible || !props.inNavbar ? "inline-block" : "none"};
   }
 `
 
@@ -95,13 +93,16 @@ export const SearchBar = props => {
     <SearchBarWrapper
       mobileSearchVisible={props.mobileSearchVisible}
       expanded={props.expanded}
+      inNavbar={props.inNavbar}
     >
-      <SearchBarIcon mobileSearchVisible={props.mobileSearchVisible} />
+      <SearchBarIcon
+        mobileSearchVisible={props.mobileSearchVisible && props.inNavbar}
+      />
       <SearchInput
         id="navbar-search"
         type="text"
         placeholder="search ..."
-        mobileSearchVisible={props.mobileSearchVisible}
+        mobileSearchVisible={props.mobileSearchVisible && props.inNavbar}
         onFocus={props.onFocus}
         onBlur={linkClicked ? undefined : props.onBlur}
         onChange={e => {
@@ -113,7 +114,8 @@ export const SearchBar = props => {
       />
       <SearchResults
         displayResults={
-          showResults && (props.mobileSearchVisible || props.expanded)
+          showResults &&
+          (props.mobileSearchVisible || props.expanded || !props.inNavbar)
         }
         results={results}
         setLinkClicked={setLinkClicked}

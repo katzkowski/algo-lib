@@ -53,7 +53,7 @@ const darkTheme = {
   color: {
     primary: "blue",
     secondary: "green",
-    background: "black",
+    background: "#505050",
     surface: "#f1f3f4",
     heading: "white",
     text: "white",

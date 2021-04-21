@@ -252,6 +252,7 @@ export const Nav = props => {
               }}
               mobileSearchVisible={mobileSearchVisible}
               expanded={searchBarExpanded}
+              inNavbar={true}
             ></SearchBar>
           </SearchWrapper>
 

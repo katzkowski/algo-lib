@@ -22,6 +22,12 @@ const SearchWrapper = styled.div`
   margin: ${props => props.theme.spacing.xLarge} auto;
   position: relative;
   width: 50%;
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    flex-grow: 1;
+    margin: ${props => props.theme.spacing.xLarge} 1.5rem;
+    width: auto;
+  }
 `
 
 export default function Index({ data }) {
@@ -49,7 +55,7 @@ export default function Index({ data }) {
             </LandingSubtitle>
           </center>
           <SearchWrapper>
-            <SearchBar />
+            <SearchBar inNavbar={false} />
           </SearchWrapper>
 
           <TagSlider category="by application" tags={tags}></TagSlider>
