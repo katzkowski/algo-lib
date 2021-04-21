@@ -13,6 +13,7 @@ const lightTheme = {
     textSurface: "#5f6368",
     textLight: "rgba(0,0,0,.65)",
     tagText: "black",
+    link: "rgba(0,0,0,.65)",
     tag: {
       // tag names need to be in camelCase
       recursive: "lightblue",

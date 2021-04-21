@@ -12,7 +12,7 @@ const SearchBarWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   flex-grow: ${props => (props.expanded ? "1" : "0")};
-  transition: flex-grow 0.2s ease-in-out;
+  transition: flex-grow 0.25s ease-in-out;
 
   @media ${props => props.theme.breakpoint.mobile} {
     flex-grow: 1;
