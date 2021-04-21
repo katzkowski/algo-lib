@@ -2,7 +2,7 @@ import React from "react"
 import { Date, H1 } from "../components/elements"
 import { Tag, TagBar } from "./Tag"
 
-export default function Title(props) {
+export function Title(props) {
   const Tags = props.data.mdx.frontmatter.tags.map(tag => (
     <Tag to={`/${tag}`} key={tag}>
       {tag}

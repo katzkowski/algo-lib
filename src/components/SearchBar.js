@@ -37,7 +37,7 @@ const SearchInput = styled.input`
   color: ${props => props.theme.color.textLight};
 
   border-radius: 5px;
-  border: none;
+  border: 1px solid ${props => props.theme.color.surface};
   max-height: 2.25rem;
   min-height: 2.25rem;
 

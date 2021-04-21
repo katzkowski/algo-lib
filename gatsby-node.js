@@ -25,12 +25,13 @@ exports.createPages = async ({ graphql, actions }) => {
   const algorithms = data.algorithms
 
   // create paginated pages for algorithms
-  const algosPerPage = 2;
+  const algosPerPage = 2
   const numPages = Math.ceil(algorithms.edges.length / algosPerPage)
 
   Array.from({ length: numPages }).forEach((_, i) => {
     actions.createPage({
-      path: i === 0 ? `/` : `/${i + 1}`,
+      // path: i === 0 ? `/` : `/${i + 1}`,
+      path: `/${i + 1}`,
       component: require.resolve("./src/templates/allAlgos.js"),
       context: {
         limit: algosPerPage,
@@ -58,7 +59,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Make tag pages
   tags.forEach(tag => {
     actions.createPage({
-      path: `/${tag.tag}/`,
+      path: `/${tag.tag.toLowerCase()}/`,
       component: require.resolve(`./src/templates/tags.js`),
       context: {
         tag: tag.tag,

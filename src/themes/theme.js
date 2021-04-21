@@ -19,6 +19,7 @@ const lightTheme = {
       backtracking: "lightgreen",
       sorting: "#F2C94C",
       divideAndConquer: "#C07DFF",
+      search: "#2D9CDB",
     },
   },
   breakpoint: {
@@ -64,6 +65,7 @@ const darkTheme = {
       backtracking: "lightgreen",
       sorting: "#F2C94C",
       divideAndConquer: "#C07DFF",
+      search: "#2D9CDB",
     },
   },
   breakpoint: {

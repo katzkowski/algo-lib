@@ -275,7 +275,7 @@ export const Nav = props => {
           </IconWrapper>
         </RightSide>
       </NavContainer>
-      <GradientBar tags={props.tags} />
+      {/* <GradientBar tags={props.tags} /> */}
     </BarWrapper>
   )
 }

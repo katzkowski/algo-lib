@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const H1 = styled.h1`
-  font-size: 2.25rem;
+  font-size: 3rem;
   font-weight: bold;
   color: ${props => props.theme.color.heading};
   margin: 0.75rem 0 ${props => props.theme.spacing.medium};
@@ -21,6 +21,17 @@ export const H3 = styled.h3`
   color: ${props => props.theme.color.heading};
   margin: ${props => props.theme.spacing.medium} 0
     ${props => props.theme.spacing.small};
+`
+
+export const LandingHeadline = styled(H1)`
+  font-weight: 600;
+  margin: 0 0 ${props => props.theme.spacing.xSmall};
+`
+
+export const LandingSubtitle = styled(H3)`
+  font-weight: 500;
+  color: ${props => props.theme.color.textLight};
+  margin: ${props => props.theme.spacing.xSmall} 0;
 `
 
 export const Container = styled.div`

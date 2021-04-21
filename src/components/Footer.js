@@ -39,9 +39,7 @@ export default function Footer() {
       <FooterContent>
         <Brand>algo-lib </Brand>
         {/* <br /> */}
-        <span>
-          is an open collection of algorithms with code and explanation
-        </span>
+        <span>is an open library of algorithms with code and explanation</span>
       </FooterContent>
     </FooterWrapper>
   )

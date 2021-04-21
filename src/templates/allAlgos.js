@@ -1,14 +1,15 @@
-import React from "react"
 import { graphql } from "gatsby"
-import { Pagination } from "../components/Pagination"
+import React from "react"
 import { AlgoCard } from "../components/AlgoCard"
 import ContentWrapper from "../components/ContentWrapper"
+import { Pagination } from "../components/Pagination"
 
 export default function allAlgos({ pageContext, data }) {
   const { currentPage, numPages } = pageContext
   const isFirst = currentPage === 1
   const isLast = currentPage === numPages
-  const prevPage = currentPage - 1 === 1 ? "/" : `/${currentPage - 1}`
+  // const prevPage = currentPage - 1 === 1 ? "/" : `/${currentPage - 1}`
+  const prevPage = `/${currentPage - 1}`
   const nextPage = `/${currentPage + 1}`
   const algos = data.allMdx.edges
 

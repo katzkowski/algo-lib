@@ -2,7 +2,7 @@ import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
 import PageWrapper from "../components/PageWrapper"
-import Title from "../components/Title"
+import { Title } from "../components/Title"
 
 export default function algorithmPage({ data }) {
   return (

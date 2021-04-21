@@ -6,7 +6,7 @@ import { H1, H2, H3, P, Pre } from "./elements"
 import Footer from "./Footer"
 import { Nav } from "./Nav"
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
     margin: 0;
@@ -29,7 +29,6 @@ const GlobalStyle = createGlobalStyle`
       margin: 1rem -1rem; /* full screen */
     }
   }
-
 `
 
 export default function PageWrapper({ children, tags }) {
