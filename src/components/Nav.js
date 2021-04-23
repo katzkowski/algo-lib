@@ -96,12 +96,11 @@ const NavItem = styled(props => <Link {...props} />)`
   font-size: 1.05rem;
   text-decoration: none;
   color: ${props => props.theme.color.text};
-  // color: rgba(0, 0, 0, 0.8); // TODO new theme color
 
   padding: 0 ${props => props.theme.spacing.small};
 
   &:hover {
-    background-color: rgba(32, 33, 36, 0.04); // TODO new theme color
+    background-color: ${props => props.theme.color.hover};
   }
 
   @media ${props => props.theme.breakpoint.mobile} {

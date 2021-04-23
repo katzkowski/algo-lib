@@ -30,7 +30,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
   Array.from({ length: numAlgoPages }).forEach((_, i) => {
     actions.createPage({
-      // path: i === 0 ? `/` : `/${i + 1}`,
       path: `/${i + 1}`,
       component: require.resolve("./src/templates/allAlgos.js"),
       context: {

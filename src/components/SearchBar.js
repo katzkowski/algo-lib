@@ -43,7 +43,7 @@ const SearchInput = styled.input`
   min-height: 2.25rem;
 
   &:focus {
-    border: 1px solid ${props => props.theme.color.text};
+    border: 1px solid ${props => props.theme.color.textLight};
     outline: none;
   }
 

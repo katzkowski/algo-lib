@@ -4,16 +4,15 @@ const lightTheme = {
     code: "Roboto Mono, monospace",
   },
   color: {
-    primary: "blue",
-    secondary: "green",
     background: "white",
+    hover: "rgba(32, 33, 36, 0.04)",
     surface: "#f1f3f4",
     heading: "#202124",
-    text: "rgba(0,0,0,1.0)",
-    textSurface: "#5f6368",
-    textLight: "rgba(0,0,0,.65)",
-    tagText: "black",
-    link: "rgba(0,0,0,.65)",
+    text: "rgba(0,0,0,0.87)",
+    textLight: "rgba(0,0,0,.7)",
+    tagText: "#121212",
+    link: "rgba(0,0,0,.7)",
+    disabled: "rgba(0,0,0,0.38)",
     tag: {
       // tag names need to be in camelCase
       recursive: "lightblue",
@@ -35,10 +34,6 @@ const lightTheme = {
     large: "2rem",
     xLarge: "3rem",
     xxLarge: "4rem",
-  },
-  animation: {
-    button: "box-shadow 0.3s ease",
-    link: "color 0.2s ease",
   },
   shadow: {
     shadow1: "0px 5px 20px rgba(30, 30, 31, 0.05)",
@@ -52,14 +47,15 @@ const darkTheme = {
     code: "Roboto Mono, monospace",
   },
   color: {
-    primary: "blue",
-    secondary: "green",
-    background: "#505050",
-    surface: "#f1f3f4",
-    heading: "white",
-    text: "white",
-    textLight: "darkgray",
-    tagText: "black",
+    background: "#121212",
+    hover: "rgba(32, 33, 36, 0.45)",
+    surface: "#1f1f1f",
+    heading: "rgba(255,255,255,0.87)",
+    text: "rgba(255,255,255,0.87)",
+    textLight: "rgba(255,255,255,0.7)",
+    tagText: "#121212",
+    link: "rgba(255,255,255,0.7)",
+    disabled: "rgba(255,255,255,0.38)",
     tag: {
       // tag names need to be in camelCase
       recursive: "lightblue",
@@ -82,13 +78,9 @@ const darkTheme = {
     xLarge: "3rem",
     xxLarge: "4rem",
   },
-  animation: {
-    button: "box-shadow 0.3s ease",
-    link: "color 0.2s ease",
-  },
   shadow: {
-    shadow1: "none",
-    menu: "none",
+    shadow1: "0px 5px 20px rgba(30, 30, 31, 0.05)",
+    menu: "0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)",
   },
 }
 

@@ -10,9 +10,11 @@ const CardWrapper = styled.div`
   border: 1px solid ${props => props.theme.color.background};
   border-radius: 5px;
   transition: border 0.1s;
+  transition: box-shadow 0.3s;
 
   &:hover {
-    border: 1px solid ${props => props.theme.color.textLight};
+    // border: 1px solid ${props => props.theme.color.textLight};
+    box-shadow: ${props => props.theme.shadow.menu};
   }
 `
 
