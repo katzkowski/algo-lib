@@ -5,7 +5,7 @@ import { Date, H3, P } from "./elements"
 import { Tag, TagBar } from "./Tag"
 
 const CardWrapper = styled.div`
-  margin: ${props => props.theme.spacing.medium} 0;
+  margin: 0 ${props => props.theme.spacing.xSmall};
   padding: ${props => props.theme.spacing.small};
   border: 1px solid ${props => props.theme.color.background};
   border-radius: 5px;
@@ -15,6 +15,10 @@ const CardWrapper = styled.div`
   &:hover {
     // border: 1px solid ${props => props.theme.color.textLight};
     box-shadow: ${props => props.theme.shadow.menu};
+  }
+
+  &:first-child() {
+    margin-top: ${props => props.theme.spacing.xSmall};
   }
 `
 
@@ -31,6 +35,7 @@ const CardText = styled(P)`
     ${props => props.theme.spacing.xSmall};
   line-height: 1.32;
   color: ${props => props.theme.color.text};
+  font-size: 1.05rem;
 `
 
 const CardLink = styled(Link)`

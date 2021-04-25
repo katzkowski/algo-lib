@@ -80,7 +80,7 @@ const darkTheme = {
   },
   shadow: {
     shadow1: "0px 5px 20px rgba(30, 30, 31, 0.05)",
-    menu: "0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)",
+    menu: "0 1px 2px 0 rgb(0 0 0 / 30%), 0 2px 6px 2px rgb(0 0 0 / 15%)",
   },
 }
 

@@ -2,8 +2,10 @@ import { MDXProvider } from "@mdx-js/react"
 import { graphql } from "gatsby"
 import React, { useContext } from "react"
 import styled, { ThemeContext } from "styled-components"
+import { AlgoCard } from "../components/AlgoCard"
 import ContentWrapper from "../components/ContentWrapper"
 import {
+  Date,
   H1,
   H2,
   H3,
@@ -30,9 +32,14 @@ const SearchWrapper = styled.div`
   }
 `
 
+const RecentTitle = styled(Date)`
+  margin: ${props => props.theme.spacing.xSmall} 0 0 1.5rem;
+`
+
 export default function Index({ data }) {
   const theme = useContext(ThemeContext)
   const tags = data.allMdx.group
+  const algos = data.allMdx.edges
 
   return (
     <div>
@@ -63,6 +70,18 @@ export default function Index({ data }) {
             category="by type"
             tags={[].concat(tags).reverse()}
           ></TagSlider>
+
+          <RecentTitle>Recently added v</RecentTitle>
+          {algos.map(algo => (
+            <AlgoCard
+              key={algo.node.frontmatter.slug}
+              date={algo.node.frontmatter.date}
+              title={algo.node.frontmatter.title}
+              preview_text={algo.node.frontmatter.preview_text}
+              slug={algo.node.frontmatter.slug}
+              tags={algo.node.frontmatter.tags}
+            />
+          ))}
         </ContentWrapper>
         <Footer></Footer>
       </MDXProvider>
@@ -72,7 +91,7 @@ export default function Index({ data }) {
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allMdx(sort: { fields: frontmatter___date, order: DESC }, limit: 4) {
+    allMdx(sort: { fields: frontmatter___date, order: DESC }, limit: 8) {
       edges {
         node {
           frontmatter {
