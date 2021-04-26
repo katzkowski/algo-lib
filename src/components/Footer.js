@@ -1,6 +1,6 @@
-import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
+import { ExternalLink, InternalLink } from "./elements"
 
 const FooterWrapper = styled.footer`
   font-size: 0.95rem;
@@ -54,42 +54,6 @@ const FooterLinks = styled.div`
   justify-content: center;
 `
 
-const FooterInternalLink = styled(Link)`
-  padding: 0 ${props => props.theme.spacing.xSmall};
-  color: ${props => props.theme.color.link};
-  text-decoration: none;
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    text-decoration: underline;
-    color: ${props => props.theme.color.link};
-  }
-
-  &:link,
-  &:visited {
-    color: ${props => props.theme.color.link};
-  }
-`
-
-const FooterExternalLink = styled.a`
-  padding: 0 ${props => props.theme.spacing.xSmall};
-  color: ${props => props.theme.color.link};
-  text-decoration: none;
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    text-decoration: underline;
-    color: ${props => props.theme.color.link};
-  }
-
-  &:link,
-  &:visited {
-    color: ${props => props.theme.color.link};
-  }
-`
-
 export default function Footer() {
   return (
     <FooterWrapper>
@@ -101,18 +65,19 @@ export default function Footer() {
           </span>
         </center>
         <FooterLinks>
-          <FooterInternalLink tabIndex="0" to={"/about"}>
+          <InternalLink tabIndex="0" to={"/about"} invertedunderline>
             about
-          </FooterInternalLink>
-          <FooterInternalLink tabIndex="0" to={"/about"}>
+          </InternalLink>
+          <InternalLink tabIndex="0" to={"/about"} invertedunderline>
             all tags
-          </FooterInternalLink>
-          <FooterExternalLink
+          </InternalLink>
+          <ExternalLink
             href="https://github.com/katzkowski/algo-lib"
             tabIndex="0"
+            invertedunderline
           >
             source code
-          </FooterExternalLink>
+          </ExternalLink>
         </FooterLinks>
       </FooterContent>
     </FooterWrapper>

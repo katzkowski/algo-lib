@@ -5,6 +5,7 @@ import ContentWrapper from "./ContentWrapper"
 import { H1, H2, H3, P, Pre } from "./elements"
 import Footer from "./Footer"
 import { Nav } from "./Nav"
+require("katex/dist/katex.min.css")
 
 export const GlobalStyle = createGlobalStyle`
   * {

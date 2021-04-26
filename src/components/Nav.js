@@ -29,13 +29,7 @@ const NavContainer = styled.nav`
   background: ${props => props.theme.color.background};
 
   display: flex;
-
   padding: 0 ${props => props.theme.spacing.medium};
-
-  @media ${props => props.theme.breakpoint.tablet} {
-    padding: ${props => props.theme.spacing.xxSmall}
-      ${props => props.theme.spacing.medium};
-  }
 
   @media ${props => props.theme.breakpoint.mobile} {
     padding: ${props => props.theme.spacing.xSmall} 1rem

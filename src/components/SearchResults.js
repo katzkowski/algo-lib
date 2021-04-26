@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { Date } from "./elements"
+import { Subtitle } from "./elements"
 import { SearchResultItem } from "./SearchResultItem"
 
 const ResultsWrapper = styled.div`
@@ -17,7 +17,7 @@ const ResultsWrapper = styled.div`
   border-radius: 0 0 5px 5px;
 `
 
-const Subsection = styled(Date)`
+const Subsection = styled(Subtitle)`
   margin: ${props => props.theme.spacing.xxSmall}
     ${props => props.theme.spacing.medium} 0;
 `

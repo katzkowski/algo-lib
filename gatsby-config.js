@@ -3,6 +3,8 @@
  *
  * See: https://www.gatsbyjs.com/docs/gatsby-config/
  */
+const remarkMath = require(`remark-math`)
+const rehypeKatex = require("rehype-katex")
 
 module.exports = {
   plugins: [
@@ -45,12 +47,11 @@ module.exports = {
     //   options: {
     //     plugins: [
     //       {
-    //         resolve: `gatsby-remark-embed-snippet`,
-    //         options: {},
-    //       },
-    //       {
-    //         resolve: `gatsby-remark-prismjs`,
-    //         options: {},
+    //         resolve: `gatsby-remark-katex`,
+    //         options: {
+    //           // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
+    //           // strict: `ignore`,
+    //         },
     //       },
     //     ],
     //   },
@@ -67,7 +68,15 @@ module.exports = {
             resolve: `gatsby-remark-prismjs`,
             options: {},
           },
+          {
+            resolve: `gatsby-remark-katex`,
+            options: {
+              strict: `ignore`,
+            },
+          },
         ],
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
       },
     },
     {

@@ -1,3 +1,5 @@
+import { Link } from "gatsby"
+import React from "react"
 import styled from "styled-components"
 
 export const H1 = styled.h1`
@@ -39,10 +41,50 @@ export const Container = styled.div`
   padding: ${props => props.theme.spacing.small} 0;
 `
 
-export const Date = styled.h5`
+export const Subtitle = styled.h5`
   margin: ${props => props.theme.spacing.small} 0;
   color: ${props => props.theme.color.textLight};
   font-weight: 500;
+`
+
+export const InternalLink = styled(({ invertedunderline, ...props }) => (
+  <Link {...props} />
+))`
+  padding: 0 ${props => props.theme.spacing.xSmall};
+  color: ${props => props.theme.color.link};
+  text-decoration: ${props => (props.invertedunderline ? "none" : "underline")};
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    text-decoration: ${props =>
+      props.invertedunderline ? "underline" : "none"};
+    color: ${props => props.theme.color.link};
+  }
+
+  &:link,
+  &:visited {
+    color: ${props => props.theme.color.link};
+  }
+`
+
+export const ExternalLink = styled.a`
+  padding: 0 ${props => props.theme.spacing.xSmall};
+  color: ${props => props.theme.color.link};
+  text-decoration: ${props => (props.invertedunderline ? "none" : "underline")};
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    text-decoration: ${props =>
+      props.invertedunderline ? "underline" : "none"};
+    color: ${props => props.theme.color.link};
+  }
+
+  &:link,
+  &:visited {
+    color: ${props => props.theme.color.link};
+  }
 `
 
 export const P = styled.p`

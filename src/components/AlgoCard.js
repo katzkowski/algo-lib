@@ -1,11 +1,11 @@
 import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import { Date, H3, P } from "./elements"
+import { H3, P, Subtitle } from "./elements"
 import { Tag, TagBar } from "./Tag"
 
-const CardWrapper = styled.div`
-  margin: 0 ${props => props.theme.spacing.xSmall};
+const CardWrapper = styled.article`
+  margin: ${props => props.theme.spacing.xSmall};
   padding: ${props => props.theme.spacing.small};
   border: 1px solid ${props => props.theme.color.background};
   border-radius: 5px;
@@ -26,7 +26,7 @@ const CardTitle = styled(H3)`
   margin: 0;
 `
 
-const CardDate = styled(Date)`
+const CardDate = styled(Subtitle)`
   margin: 0;
 `
 
@@ -34,7 +34,7 @@ const CardText = styled(P)`
   margin: ${props => props.theme.spacing.xSmall} 0
     ${props => props.theme.spacing.xSmall};
   line-height: 1.32;
-  color: ${props => props.theme.color.text};
+  color: ${props => props.theme.color.textLight};
   font-size: 1.05rem;
 `
 
@@ -54,13 +54,13 @@ export const AlgoCard = ({ date, preview_text, slug, title, tags }) => {
       : undefined
 
   return (
-    <CardLink to={`/${slug}`}>
-      <CardWrapper>
+    <CardWrapper>
+      <CardLink to={`/${slug}`}>
         <CardTitle>{title}</CardTitle>
         <CardDate>{date}</CardDate>
         <CardText>{preview_text}</CardText>
-        <TagBar>{Tags}</TagBar>
-      </CardWrapper>
-    </CardLink>
+      </CardLink>
+      <TagBar>{Tags}</TagBar>
+    </CardWrapper>
   )
 }

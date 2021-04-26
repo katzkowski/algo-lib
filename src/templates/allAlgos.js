@@ -1,7 +1,7 @@
 import { graphql } from "gatsby"
 import React from "react"
 import { AlgoCard } from "../components/AlgoCard"
-import ContentWrapper from "../components/ContentWrapper"
+import PageWrapper from "../components/PageWrapper"
 import { Pagination } from "../components/Pagination"
 
 export default function allAlgos({ pageContext, data }) {
@@ -14,10 +14,7 @@ export default function allAlgos({ pageContext, data }) {
   const algos = data.allMdx.edges
 
   return (
-    <ContentWrapper>
-      <h1>Test heading</h1>
-      <p>Test text for something</p>
-
+    <PageWrapper>
       {algos.map(algo => (
         <AlgoCard
           key={algo.node.frontmatter.slug}
@@ -34,7 +31,7 @@ export default function allAlgos({ pageContext, data }) {
         prevPage={prevPage}
         nextPage={nextPage}
       />
-    </ContentWrapper>
+    </PageWrapper>
   )
 }
 

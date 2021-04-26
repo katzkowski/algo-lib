@@ -5,14 +5,15 @@ import styled, { ThemeContext } from "styled-components"
 import { AlgoCard } from "../components/AlgoCard"
 import ContentWrapper from "../components/ContentWrapper"
 import {
-  Date,
   H1,
   H2,
   H3,
+  InternalLink,
   LandingHeadline,
   LandingSubtitle,
   P,
   Pre,
+  Subtitle,
 } from "../components/elements"
 import Footer from "../components/Footer"
 import { Nav } from "../components/Nav"
@@ -32,8 +33,13 @@ const SearchWrapper = styled.div`
   }
 `
 
-const RecentTitle = styled(Date)`
+const RecentTitle = styled(Subtitle)`
   margin: ${props => props.theme.spacing.xSmall} 0 0 1.5rem;
+`
+
+const ViewMoreLink = styled(InternalLink)`
+  margin: ${props => props.theme.spacing.xSmall} 0 0 1.5rem;
+  padding: 0;
 `
 
 export default function Index({ data }) {
@@ -82,6 +88,10 @@ export default function Index({ data }) {
               tags={algo.node.frontmatter.tags}
             />
           ))}
+
+          <ViewMoreLink tabIndex="0" to={"/2"}>
+            View more
+          </ViewMoreLink>
         </ContentWrapper>
         <Footer></Footer>
       </MDXProvider>

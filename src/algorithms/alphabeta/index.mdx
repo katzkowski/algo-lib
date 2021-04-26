@@ -62,7 +62,7 @@ minNode(depth, alpha, beta) {
 
 The Alpha-Beta algorithm searches a game tree in a recursive depth first search fashion, just like Minimax. While player _A_ tries to maximize his score, player _B_ tries to minimize the score, since the loss of a player is the other one's gain. After all positions have been considered, the best score for the player to move is propagated back to the root.
 
-The function takes additional parameters `alpha` and `beta` to keep track of the best score each player is assured of. Initially, `alpha` is set to _-INFINITY_ acting as a lower bound for the maximizing player and `beta` to _INFINITY_ acting as the upper bound for the minimizing player. Whenever a player can improve his assured score, the corresponding bound is updated and the alpha-beta bounds are coming closer. If a move turns out to be worse than the known bound, it can safely be pruned since there already exists a move that scores better and will be propagated back instead. The maximizing player prunes moves that score below the lower bound `alpha` and the minimizing player prunes moves that score above `beta`.
+The function takes additional parameters `alpha` and `beta` to keep track of the best score each player is assured of. Initially, `alpha` is set to $-\infty$ acting as a lower bound for the maximizing player and `beta` to $\infty$ acting as the upper bound for the minimizing player. Whenever a player can improve his assured score, the corresponding bound is updated and the alpha-beta bounds are coming closer. If a move turns out to be worse than the known bound, it can safely be pruned since there already exists a move that scores better and will be propagated back instead. The maximizing player prunes moves that score below the lower bound `alpha` and the minimizing player prunes moves that score above `beta`.
 
 Finding a good first move to refute other moves early in a position is key to further improve the algorithm. Therefore, move ordering should be considered for fast game tree traversal.
 
@@ -74,10 +74,18 @@ The initial call to start the tree search depends on the player to move. The min
 
 ## Complexity
 
-**Time**
-For a branching factor _b_ and depth _d_:
-$$\mathcal{O}(b^d)$$
+**Time**:
 
-**Space**
-For maximum number of child nodes _n_ for all nodes and depth _d_:
-$$\mathcal{O}(b \cdot d)$$
+$$
+\mathcal{O}(b^d)
+$$
+
+for a branching factor $b$ and depth $d$.
+
+**Space**:
+
+$$
+\mathcal{O}(b \cdot d)
+$$
+
+for a maximum number of child nodes $n$ for all nodes and depth $d$.

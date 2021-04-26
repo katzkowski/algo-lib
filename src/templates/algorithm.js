@@ -3,6 +3,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
 import PageWrapper from "../components/PageWrapper"
 import { Title } from "../components/Title"
+require("katex/dist/katex.min.css")
 
 export default function algorithmPage({ data }) {
   return (

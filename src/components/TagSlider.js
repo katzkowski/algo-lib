@@ -2,7 +2,7 @@ import React from "react"
 import ScrollMenu from "react-horizontal-scrolling-menu"
 import styled from "styled-components"
 import Arrow from "./Arrow"
-import { Date } from "./elements"
+import { Subtitle } from "./elements"
 import { MediumTag } from "./Tag"
 
 const Wrapper = styled.div`
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   }
 `
 
-const SliderTitle = styled(Date)`
+const SliderTitle = styled(Subtitle)`
   margin: ${props => props.theme.spacing.xSmall} 0
     ${props => props.theme.spacing.xSmall} 1.5rem;
 `

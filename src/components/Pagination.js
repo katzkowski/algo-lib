@@ -1,13 +1,15 @@
-import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
+import { InternalLink } from "./elements"
 
 const PaginationWrapper = styled.div`
   width: 80%;
-  padding: ${props => props.theme.spacing.xLarge} 0;
+  margin: 0 auto;
+  padding: ${props => props.theme.spacing.xLarge}
+    ${props => props.theme.spacing.medium};
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   a:nth-child(1) {
     color: ${props =>
@@ -24,24 +26,21 @@ const PaginationWrapper = styled.div`
   }
 `
 
-const PaginationElement = styled(props => <Link {...props} />)`
+const PaginationElement = styled(InternalLink)`
   font-size: 0.875rem;
   line-height: 1.125rem;
-  font-weight: 400;
-  text-decoration: none;
   margin: 0 ${props => props.theme.spacing.large};
-
-  &:hover,
-  &:focus {
-    text-decoration: underline;
-  }
 `
 
 export const Pagination = ({ isFirst, isLast, prevPage, nextPage }) => {
   return (
     <PaginationWrapper isFirst={isFirst} isLast={isLast}>
-      <PaginationElement to={prevPage}>Previous Page</PaginationElement>
-      <PaginationElement to={nextPage}>Next Page</PaginationElement>
+      <PaginationElement invertedunderline to={prevPage}>
+        &lt; Previous page
+      </PaginationElement>
+      <PaginationElement invertedunderline to={nextPage}>
+        Next page &gt;
+      </PaginationElement>
     </PaginationWrapper>
   )
 }
