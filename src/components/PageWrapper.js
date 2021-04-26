@@ -30,6 +30,11 @@ export const GlobalStyle = createGlobalStyle`
       margin: 1rem -1rem; /* full screen */
     }
   }
+
+  /* Latex color */
+  .katex-html {
+    color: ${props => props.theme.color.text};
+  }
 `
 
 export default function PageWrapper({ children, tags }) {
