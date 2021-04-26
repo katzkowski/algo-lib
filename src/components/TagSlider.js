@@ -7,15 +7,19 @@ import { MediumTag } from "./Tag"
 
 const Wrapper = styled.div`
   position: relative;
-  width: 100%;
+  // width: 100%;
 
-  margin: ${props => props.theme.spacing.medium} auto;
+  margin: ${props => props.theme.spacing.medium} -25px;
 
   display: flex;
   flex-direction: column;
 
   .scroll-menu-arrow--disabled {
     visibility: hidden;
+  }
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    margin: ${props => props.theme.spacing.medium} auto;
   }
 `
 

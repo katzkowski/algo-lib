@@ -34,7 +34,11 @@ const SearchWrapper = styled.div`
 `
 
 const RecentTitle = styled(Subtitle)`
-  margin: ${props => props.theme.spacing.xSmall} 0 0 1.5rem;
+  margin: ${props => props.theme.spacing.xSmall} 0 0;
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    margin: ${props => props.theme.spacing.xSmall} 0 0 1.5rem;
+  }
 `
 
 const ViewMoreLink = styled(InternalLink)`

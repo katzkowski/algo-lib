@@ -5,7 +5,7 @@ import { H3, P, Subtitle } from "./elements"
 import { Tag, TagBar } from "./Tag"
 
 const CardWrapper = styled.article`
-  margin: ${props => props.theme.spacing.xSmall};
+  margin: ${props => props.theme.spacing.xSmall} -${props => props.theme.spacing.small};
   padding: ${props => props.theme.spacing.small};
   border: 1px solid ${props => props.theme.color.background};
   border-radius: 5px;
@@ -19,6 +19,10 @@ const CardWrapper = styled.article`
 
   &:first-child() {
     margin-top: ${props => props.theme.spacing.xSmall};
+  }
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    margin: ${props => props.theme.spacing.xSmall};
   }
 `
 
