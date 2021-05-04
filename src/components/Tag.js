@@ -99,7 +99,8 @@ export const LargeTag = props => {
 }
 
 export const TagBar = styled.div`
-  margin: ${props => props.theme.spacing.medium} 0 0;
+  // align-self: flex-end;
+  margin: ${props => props.theme.spacing.small} 0 0;
   display: flex;
   align-items: flex-start;
 `

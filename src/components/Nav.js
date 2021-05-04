@@ -18,15 +18,18 @@ const BarWrapper = styled.div`
   z-index: 10;
   box-shadow: ${props =>
     props.shadowVisible ? props.theme.shadow.menu : "none"};
+  // box-shadow: ${props => props.theme.shadow.menu};
   transition: box-shadow 0.3s;
+  background: ${props => props.theme.color.background};
 `
 
 // styled component for nav
 const NavContainer = styled.nav`
   width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
   height: 64px;
   z-index: 1;
-  background: ${props => props.theme.color.background};
 
   display: flex;
   padding: 0 ${props => props.theme.spacing.medium};

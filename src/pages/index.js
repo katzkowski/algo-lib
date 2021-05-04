@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import React, { useContext } from "react"
 import styled, { ThemeContext } from "styled-components"
 import { AlgoCard } from "../components/AlgoCard"
-import ContentWrapper from "../components/ContentWrapper"
+import { Wrapper } from "../components/ContentWrapper"
 import {
   H1,
   H2,
@@ -21,10 +21,21 @@ import { GlobalStyle } from "../components/PageWrapper"
 import { SearchBar } from "../components/SearchBar"
 import { TagSlider } from "../components/TagSlider"
 
-const SearchWrapper = styled.div`
+const IndexWrapper = styled(Wrapper)`
+  margin: 0 auto;
+  padding-top: 100px;
+  max-width: 100%;
+`
+const RecentWrapper = styled.div`
+  margin: 0 auto;
+  max-width: 1200px;
+`
+
+const SearchWrapper = styled.section`
   margin: ${props => props.theme.spacing.xLarge} auto;
   position: relative;
   width: 50%;
+  max-width: 600px;
 
   @media ${props => props.theme.breakpoint.mobile} {
     flex-grow: 1;
@@ -33,8 +44,22 @@ const SearchWrapper = styled.div`
   }
 `
 
+const SliderContainer = styled.section`
+  margin: ${props => props.theme.spacing.xLarge} auto
+    ${props => props.theme.spacing.xxLarge};
+  max-width: 1200px;
+`
+
+const CardContainer = styled.section`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`
+
 const RecentTitle = styled(Subtitle)`
-  margin: ${props => props.theme.spacing.xSmall} 0 0;
+  margin: 0 0 0 ${props => props.theme.spacing.xSmall};
 
   @media ${props => props.theme.breakpoint.mobile} {
     margin: ${props => props.theme.spacing.xSmall} 0 0 1.5rem;
@@ -42,8 +67,15 @@ const RecentTitle = styled(Subtitle)`
 `
 
 const ViewMoreLink = styled(InternalLink)`
-  margin: ${props => props.theme.spacing.xSmall} 0 0 1.5rem;
+  font-size: 0.83rem;
+  font-weight: 500;
+
+  margin: 0 0 0 ${props => props.theme.spacing.xSmall};
   padding: 0;
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    margin: ${props => props.theme.spacing.xSmall} 0 0 1.5rem;
+  }
 `
 
 export default function Index({ data }) {
@@ -64,7 +96,7 @@ export default function Index({ data }) {
         }}
       >
         <Nav hideSearchBar />
-        <ContentWrapper>
+        <IndexWrapper>
           <center>
             <LandingHeadline>A library of algorithms</LandingHeadline>
             <LandingSubtitle>
@@ -74,29 +106,37 @@ export default function Index({ data }) {
           <SearchWrapper>
             <SearchBar id="search-landing" inNavbar={false} />
           </SearchWrapper>
+          <SliderContainer>
+            <TagSlider
+              category="by application"
+              tags={tags.concat(tags)}
+            ></TagSlider>
+            <TagSlider
+              category="by type"
+              tags={[].concat(tags).reverse().concat(tags.reverse())}
+            ></TagSlider>
+          </SliderContainer>
 
-          <TagSlider category="by application" tags={tags}></TagSlider>
-          <TagSlider
-            category="by type"
-            tags={[].concat(tags).reverse()}
-          ></TagSlider>
+          <RecentWrapper>
+            <RecentTitle>Recently added v</RecentTitle>
+            <CardContainer>
+              {algos.map(algo => (
+                <AlgoCard
+                  key={algo.node.frontmatter.slug}
+                  date={algo.node.frontmatter.date}
+                  title={algo.node.frontmatter.title}
+                  preview_text={algo.node.frontmatter.preview_text}
+                  slug={algo.node.frontmatter.slug}
+                  tags={algo.node.frontmatter.tags}
+                />
+              ))}
+            </CardContainer>
 
-          <RecentTitle>Recently added v</RecentTitle>
-          {algos.map(algo => (
-            <AlgoCard
-              key={algo.node.frontmatter.slug}
-              date={algo.node.frontmatter.date}
-              title={algo.node.frontmatter.title}
-              preview_text={algo.node.frontmatter.preview_text}
-              slug={algo.node.frontmatter.slug}
-              tags={algo.node.frontmatter.tags}
-            />
-          ))}
-
-          <ViewMoreLink tabIndex="0" to={"/2"}>
-            View more
-          </ViewMoreLink>
-        </ContentWrapper>
+            <ViewMoreLink tabIndex="0" to={"/2"}>
+              View more
+            </ViewMoreLink>
+          </RecentWrapper>
+        </IndexWrapper>
         <Footer></Footer>
       </MDXProvider>
     </div>

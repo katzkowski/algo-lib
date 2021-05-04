@@ -9,7 +9,8 @@ const Wrapper = styled.div`
   position: relative;
   // width: 100%;
 
-  margin: ${props => props.theme.spacing.medium} -25px;
+  margin: ${props => props.theme.spacing.medium} -1rem;
+  // margin: ${props => props.theme.spacing.medium} 0;
 
   display: flex;
   flex-direction: column;

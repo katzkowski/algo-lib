@@ -27,7 +27,8 @@ export const H3 = styled.h3`
 
 export const LandingHeadline = styled(H1)`
   font-weight: 600;
-  margin: 0 0 ${props => props.theme.spacing.xSmall};
+  margin: ${props => props.theme.spacing.medium} 0
+    ${props => props.theme.spacing.xSmall};
 `
 
 export const LandingSubtitle = styled(H3)`

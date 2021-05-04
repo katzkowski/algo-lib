@@ -5,24 +5,34 @@ import { H3, P, Subtitle } from "./elements"
 import { Tag, TagBar } from "./Tag"
 
 const CardWrapper = styled.article`
-  margin: ${props => props.theme.spacing.xSmall} -${props => props.theme.spacing.small};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 32%;
+  min-height: 220px;
+  max-height: 240px;
+
+  margin: ${props => props.theme.spacing.xSmall};
   padding: ${props => props.theme.spacing.small};
-  border: 1px solid ${props => props.theme.color.background};
+
+  border: 2px solid ${props => props.theme.color.surface};
   border-radius: 5px;
   transition: border 0.1s;
   transition: box-shadow 0.3s;
 
   &:hover {
-    // border: 1px solid ${props => props.theme.color.textLight};
     box-shadow: ${props => props.theme.shadow.menu};
   }
 
-  &:first-child() {
-    margin-top: ${props => props.theme.spacing.xSmall};
+  @media ${props => props.theme.breakpoint.tablet} {
+    width: 47.5%;
+    min-height: 205px;
   }
 
   @media ${props => props.theme.breakpoint.mobile} {
-    margin: ${props => props.theme.spacing.xSmall};
+    width: 98%;
+    min-height: 180px;
   }
 `
 
@@ -61,7 +71,7 @@ export const AlgoCard = ({ date, preview_text, slug, title, tags }) => {
     <CardWrapper>
       <CardLink to={`/${slug}`}>
         <CardTitle>{title}</CardTitle>
-        <CardDate>{date}</CardDate>
+        {/* <CardDate>{date}</CardDate> */}
         <CardText>{preview_text}</CardText>
       </CardLink>
       <TagBar>{Tags}</TagBar>
