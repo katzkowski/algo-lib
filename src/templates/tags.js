@@ -1,9 +1,10 @@
 import { graphql, Link } from "gatsby"
 import React from "react"
-import { AlgoCard } from "../components/AlgoCard"
+import { AlgoCard, CardContainer } from "../components/AlgoCard"
 import PageWrapper from "../components/PageWrapper"
 import { Pagination } from "../components/Pagination"
-import TagTitle from "../components/TagTitle"
+import { LargeTag } from "../components/Tag"
+import { Title } from "../components/Title"
 
 const Tags = ({ pageContext, data }) => {
   const { tag, currentPage, numPagesForTag } = pageContext
@@ -19,18 +20,27 @@ const Tags = ({ pageContext, data }) => {
 
   return (
     <PageWrapper tags={[tag]}>
-      <TagTitle tag={tag} totalCount={totalCount} />
+      <Title
+        subtitle={`${totalCount} algorithm${
+          totalCount === 1 ? "" : "s"
+        } tagged`}
+      >
+        Tag: <LargeTag to={`/${tag}`}>{tag}</LargeTag>
+      </Title>
 
-      {algos.map(algo => (
-        <AlgoCard
-          key={algo.node.frontmatter.slug}
-          date={algo.node.frontmatter.date}
-          title={algo.node.frontmatter.title}
-          preview_text={algo.node.frontmatter.preview_text}
-          slug={algo.node.frontmatter.slug}
-          tags={algo.node.frontmatter.tags}
-        />
-      ))}
+      <CardContainer>
+        {algos.map(algo => (
+          <AlgoCard
+            key={algo.node.frontmatter.slug}
+            date={algo.node.frontmatter.date}
+            title={algo.node.frontmatter.title}
+            preview_text={algo.node.frontmatter.preview_text}
+            slug={algo.node.frontmatter.slug}
+            tags={algo.node.frontmatter.tags}
+          />
+        ))}
+      </CardContainer>
+
       <Pagination
         isFirst={isFirst}
         isLast={isLast}

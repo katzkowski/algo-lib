@@ -6,9 +6,13 @@ import { Title } from "../components/Title"
 require("katex/dist/katex.min.css")
 
 export default function algorithmPage({ data }) {
+  const frontmatter = data.mdx.frontmatter
+
   return (
-    <PageWrapper tags={data.mdx.frontmatter.tags}>
-      <Title data={data} />
+    <PageWrapper tags={frontmatter.tags}>
+      <Title tags={frontmatter.tags} subtitle={frontmatter.date}>
+        {frontmatter.title}
+      </Title>
       <MDXRenderer MDXRenderer>{data.mdx.body}</MDXRenderer>
     </PageWrapper>
   )

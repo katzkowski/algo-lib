@@ -7,7 +7,7 @@ const StyledTag = styled(props => <Link {...props} />)`
   display: inline-block;
 
   padding: ${props => props.theme.spacing.xxSmall};
-  margin: 0 ${props => props.theme.spacing.xxSmall};
+  margin: 0 ${props => props.theme.spacing.xSmall} 0 0;
 
   font-size: 0.75rem;
   text-decoration: none;
@@ -80,16 +80,17 @@ export const MediumTag = props => {
 }
 
 export const StyledLargeTag = styled(StyledTag)`
-  font-size: 1.75rem;
+  font-size: 3rem;
   font-weight: bold;
+  margin-left: ${props => props.theme.spacing.small}:
 
   padding: ${props => props.theme.spacing.xSmall};
-  margin: 0 0 ${props => props.theme.spacing.small}
-    ${props => props.theme.spacing.small};
+  // margin: 0 0 ${props => props.theme.spacing.small}
+  //   ${props => props.theme.spacing.small};
 
-  &:first-child {
-    margin-left: ${props => props.theme.spacing.small};
-  }
+  // &:first-child {
+  //   margin-left: ${props => props.theme.spacing.small};
+  // }
 `
 
 export const LargeTag = props => {
@@ -99,7 +100,6 @@ export const LargeTag = props => {
 }
 
 export const TagBar = styled.div`
-  // align-self: flex-end;
   margin: ${props => props.theme.spacing.small} 0 0;
   display: flex;
   align-items: flex-start;

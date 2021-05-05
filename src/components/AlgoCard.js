@@ -9,14 +9,12 @@ const CardWrapper = styled.article`
   flex-direction: column;
   justify-content: space-between;
 
-  width: 32%;
   min-height: 220px;
   max-height: 240px;
 
-  margin: ${props => props.theme.spacing.xSmall};
   padding: ${props => props.theme.spacing.small};
 
-  border: 2px solid ${props => props.theme.color.surface};
+  border: 2px solid ${props => props.theme.color.border};
   border-radius: 5px;
   transition: border 0.1s;
   transition: box-shadow 0.3s;
@@ -26,12 +24,10 @@ const CardWrapper = styled.article`
   }
 
   @media ${props => props.theme.breakpoint.tablet} {
-    width: 47.5%;
     min-height: 205px;
   }
 
   @media ${props => props.theme.breakpoint.mobile} {
-    width: 98%;
     min-height: 180px;
   }
 `
@@ -55,6 +51,25 @@ const CardText = styled(P)`
 const CardLink = styled(Link)`
   text-decoration: none;
   color: ${props => props.theme.color.heading};
+`
+
+// container for multiple cards
+export const CardContainer = styled.section`
+  margin: ${props => props.theme.spacing.xSmall} 0;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: ${props => props.theme.spacing.small};
+  grid-row-gap: ${props => props.theme.spacing.small};
+
+  @media ${props => props.theme.breakpoint.tablet} {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    grid-template-columns: 1fr;
+  }
 `
 
 export const AlgoCard = ({ date, preview_text, slug, title, tags }) => {

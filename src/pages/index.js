@@ -2,7 +2,7 @@ import { MDXProvider } from "@mdx-js/react"
 import { graphql } from "gatsby"
 import React, { useContext } from "react"
 import styled, { ThemeContext } from "styled-components"
-import { AlgoCard } from "../components/AlgoCard"
+import { AlgoCard, CardContainer } from "../components/AlgoCard"
 import { Wrapper } from "../components/ContentWrapper"
 import {
   H1,
@@ -48,14 +48,6 @@ const SliderContainer = styled.section`
   margin: ${props => props.theme.spacing.xLarge} auto
     ${props => props.theme.spacing.xxLarge};
   max-width: 1200px;
-`
-
-const CardContainer = styled.section`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
 `
 
 const RecentTitle = styled(Subtitle)`

@@ -3,17 +3,20 @@ import { H1, Subtitle } from "../components/elements"
 import { Tag, TagBar } from "./Tag"
 
 export function Title(props) {
-  const Tags = props.data.mdx.frontmatter.tags.map(tag => (
-    <Tag to={`/${tag}`} key={tag}>
-      {tag}
-    </Tag>
-  ))
+  const Tags = props.tags
+    ? props.tags.map(tag => (
+        <Tag to={`/${tag}`} key={tag}>
+          {tag}
+        </Tag>
+      ))
+    : undefined
 
+  // TODO TagBar
   return (
     <div>
-      <TagBar>{Tags}</TagBar>
-      <H1>{props.data.mdx.frontmatter.title}</H1>
-      <Subtitle>{props.data.mdx.frontmatter.date}</Subtitle>
+      {Tags ? <TagBar>{Tags}</TagBar> : null}
+      <H1>{props.children}</H1>
+      <Subtitle>{props.subtitle}</Subtitle>
     </div>
   )
 }

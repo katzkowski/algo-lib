@@ -6,7 +6,12 @@ export const H1 = styled.h1`
   font-size: 3rem;
   font-weight: bold;
   color: ${props => props.theme.color.heading};
-  margin: 0.75rem 0 ${props => props.theme.spacing.medium};
+  margin: ${props => props.theme.spacing.small} 0;
+
+  &:first-child {
+    margin: ${props => props.theme.spacing.xSmall} 0
+      ${props => props.theme.spacing.large};
+  }
 `
 
 export const H2 = styled.h2`
