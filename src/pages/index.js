@@ -20,6 +20,7 @@ import { Nav } from "../components/Nav"
 import { GlobalStyle } from "../components/PageWrapper"
 import { SearchBar } from "../components/SearchBar"
 import { TagSlider } from "../components/TagSlider"
+import { getTagCategory } from "../utils/tag-categories"
 
 const IndexWrapper = styled(Wrapper)`
   margin: 0 auto;
@@ -101,11 +102,12 @@ export default function Index({ data }) {
           <SliderContainer>
             <TagSlider
               category="by application"
-              tags={tags.concat(tags)}
+              tags={tags.filter(tag => getTagCategory(tag) === "application")}
             ></TagSlider>
             <TagSlider
               category="by type"
-              tags={[].concat(tags).reverse().concat(tags.reverse())}
+              // tags={[].concat(tags).reverse().concat(tags.reverse())}
+              tags={tags.filter(tag => getTagCategory(tag) === "type")}
             ></TagSlider>
           </SliderContainer>
 

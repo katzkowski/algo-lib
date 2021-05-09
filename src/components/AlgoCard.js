@@ -1,7 +1,7 @@
 import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import { H3, P, Subtitle } from "./elements"
+import { H3, P } from "./elements"
 import { Tag, TagBar } from "./Tag"
 
 const CardWrapper = styled.article`
@@ -33,10 +33,6 @@ const CardWrapper = styled.article`
 `
 
 const CardTitle = styled(H3)`
-  margin: 0;
-`
-
-const CardDate = styled(Subtitle)`
   margin: 0;
 `
 

@@ -2,6 +2,7 @@ import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import { camelCase } from "../utils/string"
+import { getTagCategory } from "../utils/tag-categories"
 
 // regular tag size
 const StyledTag = styled(props => <Link {...props} />)`
@@ -58,6 +59,16 @@ const StyledLargeTag = styled(StyledTag)`
 export const Tag = props => {
   const linkTarget = props.to.toLowerCase()
   const size = props.size !== undefined ? props.size.toLowerCase() : undefined
+
+  // check if tag has been definied in tag-categories.js
+  const tagDefined =
+    getTagCategory({ tag: props.children }) !== undefined ? true : false
+  console.log(tagDefined)
+
+  // do not render if tag has not been defined
+  if (!tagDefined) {
+    return null
+  }
 
   // render according to tag size
   if (size === "large") {
