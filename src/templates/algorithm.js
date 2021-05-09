@@ -10,7 +10,11 @@ export default function algorithmPage({ data }) {
 
   return (
     <PageWrapper tags={frontmatter.tags}>
-      <Title tags={frontmatter.tags} subtitle={frontmatter.date}>
+      <Title
+        tags={frontmatter.tags}
+        date={frontmatter.date}
+        author={frontmatter.author}
+      >
         {frontmatter.title}
       </Title>
       <MDXRenderer MDXRenderer>{data.mdx.body}</MDXRenderer>
@@ -28,6 +32,7 @@ export const pageQuery = graphql`
         slug
         title
         tags
+        author
         published
       }
     }

@@ -1,6 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
-import { AlgoCard } from "../components/AlgoCard"
+import { AlgoCard, CardContainer } from "../components/AlgoCard"
 import PageWrapper from "../components/PageWrapper"
 import { Pagination } from "../components/Pagination"
 
@@ -15,16 +15,18 @@ export default function allAlgos({ pageContext, data }) {
 
   return (
     <PageWrapper>
-      {algos.map(algo => (
-        <AlgoCard
-          key={algo.node.frontmatter.slug}
-          date={algo.node.frontmatter.date}
-          title={algo.node.frontmatter.title}
-          preview_text={algo.node.frontmatter.preview_text}
-          slug={algo.node.frontmatter.slug}
-          tags={algo.node.frontmatter.tags}
-        />
-      ))}
+      <CardContainer>
+        {algos.map(algo => (
+          <AlgoCard
+            key={algo.node.frontmatter.slug}
+            date={algo.node.frontmatter.date}
+            title={algo.node.frontmatter.title}
+            preview_text={algo.node.frontmatter.preview_text}
+            slug={algo.node.frontmatter.slug}
+            tags={algo.node.frontmatter.tags}
+          />
+        ))}
+      </CardContainer>
       <Pagination
         isFirst={isFirst}
         isLast={isLast}

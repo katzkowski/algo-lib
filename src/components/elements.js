@@ -47,7 +47,7 @@ export const Container = styled.div`
   padding: ${props => props.theme.spacing.small} 0;
 `
 
-export const Subtitle = styled.h5`
+export const Subtitle = styled.h4`
   margin: ${props => props.theme.spacing.small} 0;
   color: ${props => props.theme.color.textLight};
   font-weight: 500;
