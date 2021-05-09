@@ -67,7 +67,7 @@ exports.createPages = async ({ graphql, actions }) => {
           i === 0
             ? `/${tag.tag.toLowerCase()}`
             : `/${tag.tag.toLowerCase()}/${i + 1}`,
-        component: require.resolve(`./src/templates/tags.js`),
+        component: require.resolve(`./src/templates/tag.js`),
         context: {
           tag: tag.tag,
           limit: algosPerPage,
