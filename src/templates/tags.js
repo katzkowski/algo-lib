@@ -3,7 +3,7 @@ import React from "react"
 import { AlgoCard, CardContainer } from "../components/AlgoCard"
 import PageWrapper from "../components/PageWrapper"
 import { Pagination } from "../components/Pagination"
-import { LargeTag } from "../components/Tag"
+import { Tag } from "../components/Tag"
 import { Title } from "../components/Title"
 
 const Tags = ({ pageContext, data }) => {
@@ -25,7 +25,10 @@ const Tags = ({ pageContext, data }) => {
           totalCount === 1 ? "" : "s"
         } tagged`}
       >
-        Tag: <LargeTag to={`/${tag}`}>{tag}</LargeTag>
+        Tag:{" "}
+        <Tag size="large" to={`/${tag}`}>
+          {tag}
+        </Tag>
       </Title>
 
       <CardContainer>

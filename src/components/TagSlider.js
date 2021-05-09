@@ -3,7 +3,7 @@ import ScrollMenu from "react-horizontal-scrolling-menu"
 import styled from "styled-components"
 import Arrow from "./Arrow"
 import { Subtitle } from "./elements"
-import { MediumTag } from "./Tag"
+import { Tag } from "./Tag"
 
 const Wrapper = styled.div`
   position: relative;
@@ -37,11 +37,11 @@ export const TagSlider = props => {
       <SliderTitle>{props.category} &gt;</SliderTitle>
       <ScrollMenu
         data={tags.map(tag => (
-          <MediumTag key={tag.tag} to={`/${tag.tag}`}>
+          <Tag size="medium" key={tag.tag} to={`/${tag.tag}`}>
             {tag.tag}
-          </MediumTag>
+          </Tag>
         ))}
-        itemStyle={MediumTag}
+        itemStyle={Tag}
         alignCenter={false}
         arrowLeft={<Arrow direction="left" />}
         arrowRight={<Arrow direction="right" />}
