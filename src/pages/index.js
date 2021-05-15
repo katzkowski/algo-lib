@@ -106,7 +106,6 @@ export default function Index({ data }) {
             ></TagSlider>
             <TagSlider
               category="by type"
-              // tags={[].concat(tags).reverse().concat(tags.reverse())}
               tags={tags.filter(tag => getTagCategory(tag) === "type")}
             ></TagSlider>
           </SliderContainer>

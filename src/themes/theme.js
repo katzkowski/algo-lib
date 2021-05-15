@@ -17,11 +17,11 @@ const lightTheme = {
     disabled: "rgba(0,0,0,0.38)",
     tag: {
       // tag names need to be in camelCase
-      recursive: "lightblue",
-      backtracking: "lightgreen",
-      sorting: "#F2C94C",
-      divideAndConquer: "#C07DFF",
-      search: "#2D9CDB",
+      recursive: "rgba(173, 216, 230, 1)", // lightblue
+      backtracking: "rgba(144, 238, 144, 1)", // lightgreen
+      sorting: "rgba(242, 201, 76, 1)",
+      divideAndConquer: "rgba(192, 125, 255, 1)",
+      search: "rgba(45, 156, 219, 1)",
     },
   },
   breakpoint: {
@@ -55,6 +55,7 @@ const darkTheme = {
     // surface: "#393e46",
     surface: "#121212",
     border: "#515151",
+    borderHover: "#717171",
     heading: "rgba(255,255,255,0.87)",
     text: "rgba(255,255,255,0.87)",
     textLight: "rgba(255,255,255,0.7)",
@@ -63,11 +64,11 @@ const darkTheme = {
     disabled: "rgba(255,255,255,0.38)",
     tag: {
       // tag names need to be in camelCase
-      recursive: "lightblue",
-      backtracking: "lightgreen",
-      sorting: "#F2C94C",
-      divideAndConquer: "#C07DFF",
-      search: "#2D9CDB",
+      recursive: "rgba(173, 216, 230, 0.85)",
+      backtracking: "rgba(144, 238, 144, 0.85)",
+      sorting: "rgba(242, 201, 76, 0.85)",
+      divideAndConquer: "rgba(192, 125, 255, 0.85)",
+      search: "rgba(45, 156, 219, 0.85)",
     },
   },
   breakpoint: {

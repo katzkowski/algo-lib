@@ -1,6 +1,7 @@
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import React from "react"
 import { AlgoCard, CardContainer } from "../components/AlgoCard"
+import { InternalLink } from "../components/elements"
 import PageWrapper from "../components/PageWrapper"
 import { Pagination } from "../components/Pagination"
 import { Tag } from "../components/Tag"
@@ -50,7 +51,7 @@ const Tags = ({ pageContext, data }) => {
         prevPage={prevPage}
         nextPage={nextPage}
       />
-      <Link to="/tags">All tags</Link>
+      <InternalLink to="/tags">All tags</InternalLink>
     </PageWrapper>
   )
 }
