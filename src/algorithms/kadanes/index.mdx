@@ -1,0 +1,70 @@
+---
+title: Kadane's-Algorithm
+slug: kadane's-algorithm
+date: 2021-06-04
+preview-text: Kadane's algorithm solves the maximum-subarray-problem, where the task is finding the contiguous subarray with maximal sum.
+tags: ["Search", "Dynamic Programming"]
+author: Jakob Hackstein
+published: true
+---
+
+<!-- Intro -->
+
+<!--
+TODO:
+
+- Replace Description with Explanation?
+- Short Cuts to all sections?
+- Add "Dynamic Programming" and "Array" tag
+- slug with ' usage ok?
+- consistent pseudo code
+-->
+
+Kadane's algorithm solves the maximum-subarray-problem, where the contiguous subarray with maximal sum in any given array `A` has to be determined. The algorithm uses a hidden dynamic programming pattern as local results at index `(i - 1)` are stored to compute the following result at index `i`. However, local results are stored in a single variable instead of an array, like typical dynamic programming approaches prefer.
+
+## Implementation
+
+```cpp
+function kadanes(A):
+    local_best = global_best = A[0]
+
+    for i from 1 to length(A):
+        local_best = max(A[i], A[i] + local_best)
+        global_best = max(local_best, global_best)
+
+    return global_best
+```
+
+## Description
+
+Although the algorithm might seem to skip certain combinations of potential maximal subarrays, the maximum-subarray-problem is always solved optimal. Let's consider the _i_-th iteration with current element `A[i]`. The `local_best` represents the sum of the currently viewed subarray.
+If `local_best` can be improved by adding `A[i]`, the `local_best` is updated accordingly. If the current element worsens the `local_best`, then `A[i]` is considered to be the first element of a new subarray that is analysed from now on. `global_best` keeps track of the best sum found so far and is updated if `local_best` finds a better sum.
+
+For a trivial example with an array of positive integers `A = [1, 2, 3, 4]` the `local_best` can always be improved by the following element, as they are all positive. Thus, `local_best` adds all elements and improves on `global_best`. The maximum subarray in this case is `A` and therefore `kadanes()` returns `10`.
+
+The key insight to understand the optimality of `kadanes()` can be illustrated with the following invariants: At iteration `i > 0` of the algorithm, the maximum-subarray solution for `A[0, ..., i - 1]` is `global_best` whereas `local_best` represents the best sum for a currently analysed subarray starting from arbitrary `j`, e.g. `A[j, ..., i - 1]`.
+
+## Usage
+
+The function containing Kadane's algorithm needs an non-empty array as input and returns the maximum-subarray sum.
+
+```cpp
+A = [3, -4, 2, 1, 0, ...]
+maxSubSum = kadanes(A)
+```
+
+## Complexity
+
+**Time**:
+
+$$
+\mathcal{O}(n)
+$$
+
+for arrays of length _n_.
+
+**Space**:
+
+$$
+\mathcal{O}(1)
+$$
