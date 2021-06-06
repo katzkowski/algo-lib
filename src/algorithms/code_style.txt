@@ -1,0 +1,23 @@
+function function_name:
+
+    // Declare variables
+    var = 9
+    A = new Array[length]
+
+    // conditional keywords
+    if cond_1 == cond_2 and true:
+        do_something()
+    else if cond_1 or cond_3:
+        do_something_else()
+    else:
+        return false
+
+    // iterate over array A
+    for i from 0 to length(A):
+        do_something()
+
+    // iterate over array of objects O
+    for object in O:
+        do_something()
+
+    return true

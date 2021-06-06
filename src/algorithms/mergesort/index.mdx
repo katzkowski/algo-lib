@@ -1,11 +1,104 @@
 ---
 title: Mergesort
 slug: mergesort
-date: 2020-12-13
-preview-text: Mergesort is a great algorithm for sorting things fast.
+date: 2021-06-06
+preview-text: Mergesort is a recursive sorting algorithm based on divide and conquer principle.
 tags: ["Sorting", "Divide-and-Conquer"]
-author: Sir Test
+author: Jakob Hackstein
 published: true
 ---
 
-Mergesort is a great algorithm for sorting things fast.
+<!-- Intro -->
+
+Mergesort is a recursive sorting algorithm based on divide and conquer principle. As sorting a huge array is a difficult task, the array is divided into arrays of length one. Single element arrays are trivially sorted and thus can be easily combined into a sorted solution.
+
+## Implementation
+
+```cpp
+function mergeSort(A, left, right):
+    // Return if array has length one
+    if left == right:
+        return A[left]
+
+    middle = left + (right - left) / 2
+
+    // Divide array recursivly until they have length one
+    leftSubArray = mergeSort(A, left, middle)
+    rightSubArray = mergeSort(A, middle + 1, right)
+
+    return merge(leftSubArray, rightSubArray)
+
+
+function merge(leftSubArray, rightSubArray)
+    leftLen = length(leftSubArray)
+    rightLen = length(rightSubArray)
+    leftIndex = rightIndex = solutionIndex = 0
+
+    // New array to be filled by sorted elements of both subarrays
+    sortedSubArray = new Array[leftLen + rightLen]
+
+    // Sort while both subArrays have elements left
+    while leftIndex < leftLen and rightIndex < rightLen:
+        if leftSubArray[leftIndex] < rightSubArray[rightIndex]:
+            sortedSubArray[solutionIndex] = leftSubArray[leftIndex]
+            leftIndex++
+        else:
+            sortedSubArray[solutionIndex] = leftSubArray[rightIndex]
+            rightIndex++
+
+        solutionIndex++
+
+    // Sort remaining elements of either leftSubArray or rightSubArray
+    while leftIndex < leftLen:
+        sortedSubArray[solutionIndex] = leftSubArray[leftIndex]
+        leftIndex++
+        solutionIndex++
+
+    while rightIndex < rightLen:
+        sortedSubArray[solutionIndex] = leftSubArray[rightIndex]
+        rightIndex++
+        solutionIndex++
+
+    return sortedSubArray
+```
+
+## Explanation
+
+For any given array `A`, Mergesort consists of two phases.
+
+#### `mergeSort()`: Divide the array recursivly into subarrays of length one
+
+First, the array is recursivly split in half until subarrays have a length of one. To this end, the middle index is computed and the function `mergeSort()` is called with adjusted indices until the left and right indices are equal (subarray with one element). At the lowest recursion level subarrays have a length of one and at the highest recursion level the array `A` is simply split in half.
+
+#### `merge()`: Repeatedly merge two subarrays by picking the smaller leading element until no elements left.
+
+The merge phase in function `merge()` receives two sorted subarrays `leftSubArray`, `rightSubArray` and returns them combined and sorted as `sortedSubArray`. The first merging step is trivial since the first `merge()` call is at lowest recursion level and both subarrays have only one element. In this case, the function returns a 2-element array with the smaller element ordered first and the greater element ordered second. Now, this sorted subarray is merged with another sorted 2-element array as recursion level decreases.
+
+Although the function is called recursivly with subarrays increasing in length, the merge step stays simple. As both `leftSubArray` and `rightSubArray` are already sorted, the merge step just compares their leading element to find the smallest element and builds the sorted subarray in a single loop. In case the `leftSubArray` has no elements left, just add the remaining elements of `rightSubArray` to `sortedSubArray` and vice versa. When there is only one subarray left, this is the final sorted version of `A`.
+
+## Usage
+
+For any given array `A` the sorted array is computed with the following pseudo-code.
+
+```python
+length = length(A)
+sortedArray = mergeSort(A, 0, length - 1)
+```
+
+## Complexity
+
+**Time**:
+
+$$
+\mathcal{O}(n \log n)
+$$
+
+for arrays of length _n_.
+
+**Space**:
+
+$$
+\mathcal{O}(n)
+$$
+
+for arrays of length _n_.

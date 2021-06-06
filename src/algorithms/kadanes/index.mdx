@@ -18,6 +18,7 @@ TODO:
 - Add "Dynamic Programming" and "Array" tag
 - slug with ' usage ok?
 - consistent pseudo code
+- pseudo-code style-file
 -->
 
 Kadane's algorithm solves the maximum-subarray-problem, where the contiguous subarray with maximal sum in any given array `A` has to be determined. The algorithm uses a hidden dynamic programming pattern as local results at index `(i - 1)` are stored to compute the following result at index `i`. However, local results are stored in a single variable instead of an array, like typical dynamic programming approaches prefer.
@@ -35,7 +36,7 @@ function kadanes(A):
     return global_best
 ```
 
-## Description
+## Explanation
 
 Although the algorithm might seem to skip certain combinations of potential maximal subarrays, the maximum-subarray-problem is always solved optimal. Let's consider the _i_-th iteration with current element `A[i]`. The `local_best` represents the sum of the currently viewed subarray.
 If `local_best` can be improved by adding `A[i]`, the `local_best` is updated accordingly. If the current element worsens the `local_best`, then `A[i]` is considered to be the first element of a new subarray that is analysed from now on. `global_best` keeps track of the best sum found so far and is updated if `local_best` finds a better sum.

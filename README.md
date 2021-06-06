@@ -2,16 +2,15 @@
 
 A collection of algorithms
 
-<!-- - [x] minimax
+- [x] minimax
 - [x] alphaBeta
 - [ ] quicksort
-- [ ] mergesort -->
-
+- [x] mergesort
 - [ ] strict alternation
 - [ ] fisher algorithm
 - [ ] a\*
 - [ ] dijkstra
-- [ ] max subarray (Kadanes algorithm)
+- [x] max subarray (Kadanes algorithm)
 - [ ] hamming distance (dp algo)
 - [ ] internal iterative deepening
 - [ ] square root algorithm (goldschmidts algo, zu lang?)
