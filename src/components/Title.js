@@ -7,6 +7,10 @@ const Author = styled.span`
   font-weight: 600;
 `
 
+const CardsHeading = styled(Subtitle)`
+  margin: 0;
+`
+
 export function Title(props) {
   const Tags = props.tags
     ? props.tags.map(tag => (
@@ -16,7 +20,7 @@ export function Title(props) {
       ))
     : undefined
 
-  // display author and date or subtitle
+  // display author and date or subtitle or heading for card section
   return (
     <div>
       {Tags ? <TagBar>{Tags}</TagBar> : null}
@@ -27,6 +31,8 @@ export function Title(props) {
         </Subtitle>
       ) : props.subtitle ? (
         <Subtitle>{props.subtitle}</Subtitle>
+      ) : props.cardsHeading ? (
+        <CardsHeading>{props.cardsHeading}</CardsHeading>
       ) : null}
     </div>
   )

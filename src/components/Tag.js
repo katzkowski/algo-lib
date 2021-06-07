@@ -63,7 +63,6 @@ export const Tag = props => {
   // check if tag has been definied in tag-categories.js
   const tagDefined =
     getTagCategory({ tag: props.children }) !== undefined ? true : false
-  console.log(tagDefined)
 
   // do not render if tag has not been defined
   if (!tagDefined) {

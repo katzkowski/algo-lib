@@ -23,7 +23,7 @@ const Tags = ({ pageContext, data }) => {
   return (
     <PageWrapper tags={[tag]}>
       <Title
-        subtitle={`${totalCount} algorithm${
+        cardsHeading={`${totalCount} algorithm${
           totalCount === 1 ? "" : "s"
         } tagged`}
       >

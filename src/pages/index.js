@@ -51,7 +51,7 @@ const SliderContainer = styled.section`
   max-width: 1200px;
 `
 
-const RecentTitle = styled(Subtitle)`
+export const RecentTitle = styled(Subtitle)`
   margin: 0 0 0 ${props => props.theme.spacing.xSmall};
 
   @media ${props => props.theme.breakpoint.mobile} {

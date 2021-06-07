@@ -8,7 +8,7 @@ const FooterWrapper = styled.footer`
   position: relative;
   max-height: 76px;
   background: ${props => props.theme.color.surface};
-  margin-top: ${props => props.theme.spacing.xLarge};
+  margin: ${props => props.theme.spacing.medium} 0;
   bottom: 0;
 
   @media ${props => props.theme.breakpoint.mobile} {
