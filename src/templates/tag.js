@@ -3,19 +3,20 @@ import React from "react"
 import { AlgoCard, CardContainer } from "../components/AlgoCard"
 import { InternalLink } from "../components/elements"
 import PageWrapper from "../components/PageWrapper"
-import { Pagination } from "../components/Pagination"
 import { Tag } from "../components/Tag"
 import { Title } from "../components/Title"
 
 const Tags = ({ pageContext, data }) => {
-  const { tag, currentPage, numPagesForTag } = pageContext
-  const isFirst = currentPage === 1
-  const isLast = currentPage === numPagesForTag
-  const prevPage =
-    currentPage - 1 === 1
-      ? `/${tag.toLowerCase()}`
-      : `/${tag}/${currentPage - 1}`
-  const nextPage = `/${tag.toLowerCase()}/${currentPage + 1}`
+  const { tag } = pageContext
+  // Not using pagination
+  // const { tag, currentPage, numPagesForTag } = pageContext
+  // const isFirst = currentPage === 1
+  // const isLast = currentPage === numPagesForTag
+  // const prevPage =
+  //   currentPage - 1 === 1
+  //     ? `/${tag.toLowerCase()}`
+  //     : `/${tag}/${currentPage - 1}`
+  // const nextPage = `/${tag.toLowerCase()}/${currentPage + 1}`
   const { totalCount } = data.allMdx
   const algos = data.allMdx.edges
 
@@ -45,12 +46,13 @@ const Tags = ({ pageContext, data }) => {
         ))}
       </CardContainer>
 
-      <Pagination
+      {/* <Pagination
         isFirst={isFirst}
         isLast={isLast}
         prevPage={prevPage}
         nextPage={nextPage}
-      />
+        numPages={numPagesForTag}
+      /> */}
       <InternalLink to="/tags">All tags</InternalLink>
     </PageWrapper>
   )
@@ -58,13 +60,15 @@ const Tags = ({ pageContext, data }) => {
 
 export default Tags
 
+// Not using pagination
+// query($tag: String, $skip: Int!, $limit: Int!)
+// allMdx limit: $limit
+// allMdx skip: $skip
 export const pageQuery = graphql`
-  query($tag: String, $skip: Int!, $limit: Int!) {
+  query($tag: String) {
     allMdx(
-      limit: $limit
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }
-      skip: $skip
     ) {
       totalCount
       edges {

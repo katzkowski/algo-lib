@@ -125,9 +125,9 @@ export default function Index({ data }) {
               ))}
             </CardContainer>
 
-            <ViewMoreLink tabIndex="0" to={"/2"}>
+            {/* <ViewMoreLink tabIndex="0" to={"/2"}>
               View more
-            </ViewMoreLink>
+            </ViewMoreLink> */}
           </RecentWrapper>
         </IndexWrapper>
         <Footer></Footer>
@@ -138,7 +138,7 @@ export default function Index({ data }) {
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allMdx(sort: { fields: frontmatter___date, order: DESC }, limit: 8) {
+    allMdx(sort: { fields: frontmatter___date, order: DESC }) {
       edges {
         node {
           frontmatter {

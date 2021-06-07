@@ -91,6 +91,7 @@ const NavItem = styled(props => <Link {...props} />)`
 
   font-size: 1.05rem;
   text-decoration: none;
+  // text-transform: capitalize;
   color: ${props => props.theme.color.text};
 
   padding: 0 ${props => props.theme.spacing.small};

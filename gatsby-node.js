@@ -28,18 +28,19 @@ exports.createPages = async ({ graphql, actions }) => {
   const algosPerPage = 1
   const numAlgoPages = Math.ceil(algorithms.edges.length / algosPerPage)
 
-  Array.from({ length: numAlgoPages }).forEach((_, i) => {
-    actions.createPage({
-      path: `/${i + 1}`,
-      component: require.resolve("./src/templates/allAlgos.js"),
-      context: {
-        limit: algosPerPage,
-        skip: i * algosPerPage,
-        numAlgoPages,
-        currentPage: i + 1,
-      },
-    })
-  })
+  // Not using pagination
+  // Array.from({ length: numAlgoPages }).forEach((_, i) => {
+  //   actions.createPage({
+  //     path: `/${i + 1}`,
+  //     component: require.resolve("./src/templates/allAlgos.js"),
+  //     context: {
+  //       limit: algosPerPage,
+  //       skip: i * algosPerPage,
+  //       numAlgoPages,
+  //       currentPage: i + 1,
+  //     },
+  //   })
+  // })
 
   // create single algorithm page
   algorithms.edges.forEach(edge => {
@@ -58,24 +59,35 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // create pages for every tag
   tags.forEach(tag => {
-    let numPagesForTag = Math.ceil(tag.totalCount / algosPerPage)
+    // Not using pagination
+    //   let numPagesForTag = Math.ceil(tag.totalCount / algosPerPage)
 
-    // create paginated pages for each tag
-    Array.from({ length: numPagesForTag }).forEach((_, i) => {
-      actions.createPage({
-        path:
-          i === 0
-            ? `/${tag.tag.toLowerCase()}`
-            : `/${tag.tag.toLowerCase()}/${i + 1}`,
-        component: require.resolve(`./src/templates/tag.js`),
-        context: {
-          tag: tag.tag,
-          limit: algosPerPage,
-          skip: i * algosPerPage,
-          numPagesForTag,
-          currentPage: i + 1,
-        },
-      })
+    //   // create paginated pages for each tag
+    //   Array.from({ length: numPagesForTag }).forEach((_, i) => {
+    //     actions.createPage({
+    //       path:
+    //         i === 0
+    //           ? `/${tag.tag.toLowerCase()}`
+    //           : `/${tag.tag.toLowerCase()}/${i + 1}`,
+    //       component: require.resolve(`./src/templates/tag.js`),
+    //       context: {
+    //         tag: tag.tag,
+    //         limit: algosPerPage,
+    //         skip: i * algosPerPage,
+    //         numPagesForTag,
+    //         currentPage: i + 1,
+    //       },
+    //     })
+    //   })
+    // })
+
+    // create a page for each tag
+    actions.createPage({
+      path: `/${tag.tag.toLowerCase()}`,
+      component: require.resolve(`./src/templates/tag.js`),
+      context: {
+        tag: tag.tag,
+      },
     })
   })
 }

@@ -5,9 +5,9 @@ import PageWrapper from "../components/PageWrapper"
 import { Pagination } from "../components/Pagination"
 
 export default function allAlgos({ pageContext, data }) {
-  const { currentPage, numPages } = pageContext
+  const { currentPage, numAlgoPages } = pageContext
   const isFirst = currentPage === 1
-  const isLast = currentPage === numPages
+  const isLast = currentPage === numAlgoPages
   // const prevPage = currentPage - 1 === 1 ? "/" : `/${currentPage - 1}`
   const prevPage = `/${currentPage - 1}`
   const nextPage = `/${currentPage + 1}`
@@ -31,7 +31,9 @@ export default function allAlgos({ pageContext, data }) {
         isFirst={isFirst}
         isLast={isLast}
         prevPage={prevPage}
+        currentPage={currentPage}
         nextPage={nextPage}
+        numPages={numAlgoPages}
       />
     </PageWrapper>
   )
