@@ -1,7 +1,7 @@
 import { graphql } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import { H3 } from "../components/elements"
+import { Anchor, H3 } from "../components/elements"
 import PageWrapper from "../components/PageWrapper"
 import { Tag } from "../components/Tag"
 import { Title } from "../components/Title"
@@ -31,7 +31,10 @@ const Tags = ({ data }) => {
         All Tags
       </Title>
 
-      <H3>by type</H3>
+      <H3>
+        <Anchor id="types" />
+        by type
+      </H3>
       <TagContainer>
         {tags
           .filter(tag => getTagCategory(tag) === "type")
@@ -41,7 +44,10 @@ const Tags = ({ data }) => {
             </Tag>
           ))}
       </TagContainer>
-      <H3>by application</H3>
+      <H3>
+        <Anchor id="applications" />
+        by application
+      </H3>
       <TagContainer>
         {tags
           .filter(tag => getTagCategory(tag) === "application")

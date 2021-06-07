@@ -260,8 +260,8 @@ export const Nav = props => {
         </Brand>
 
         <NavItems visible={navDisplayed}>
-          <NavItem to="/">applications</NavItem>
-          <NavItem to="/">types</NavItem>
+          <NavItem to="/tags#applications">applications</NavItem>
+          <NavItem to="/tags#types">types</NavItem>
           <NavItem to="/">about</NavItem>
         </NavItems>
 
@@ -322,8 +322,8 @@ export const Nav = props => {
       <GradientBar tags={props.tags} visible={props.showGradient} />
       <MobileNav visible={mobileMenuVisible}>
         <div>
-          <NavItem to="/">applications</NavItem>
-          <NavItem to="/">types</NavItem>
+          <NavItem to="/tags#applications">applications</NavItem>
+          <NavItem to="/tags#types">types</NavItem>
           <NavItem to="/">about</NavItem>
         </div>
       </MobileNav>

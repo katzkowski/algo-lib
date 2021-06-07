@@ -28,6 +28,7 @@ export const H3 = styled.h3`
   color: ${props => props.theme.color.heading};
   margin: ${props => props.theme.spacing.medium} 0
     ${props => props.theme.spacing.small};
+  position: relative; /* for nesting anchors */
 `
 
 export const LandingHeadline = styled(H1)`
@@ -91,6 +92,11 @@ export const ExternalLink = styled.a`
   &:visited {
     color: ${props => props.theme.color.link};
   }
+`
+
+export const Anchor = styled.span`
+  position: absolute;
+  top: -80px; /* navbar height and extra space */
 `
 
 export const P = styled.p`

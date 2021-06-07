@@ -68,7 +68,7 @@ export default function Footer() {
           <InternalLink tabIndex="0" to={"/about"} invertedunderline>
             about
           </InternalLink>
-          <InternalLink tabIndex="0" to={"/about"} invertedunderline>
+          <InternalLink tabIndex="0" to={"/tags"} invertedunderline>
             all tags
           </InternalLink>
           <ExternalLink
