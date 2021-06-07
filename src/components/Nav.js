@@ -18,7 +18,6 @@ const BarWrapper = styled.div`
   z-index: 10;
   box-shadow: ${props =>
     props.shadowVisible ? props.theme.shadow.menu : "none"};
-  // box-shadow: ${props => props.theme.shadow.menu};
   transition: box-shadow 0.3s;
   background: ${props => props.theme.color.background};
 `
@@ -96,15 +95,34 @@ const NavItem = styled(props => <Link {...props} />)`
 
   padding: 0 ${props => props.theme.spacing.small};
 
-  &:hover {
+  &:hover,
+  &:active {
     background-color: ${props => props.theme.color.hover};
   }
 
   @media ${props => props.theme.breakpoint.mobile} {
-    display: none;
+    padding: ${props => props.theme.spacing.small}
+      ${props => props.theme.spacing.medium};
   }
 `
 
+// mobile nav menu
+const MobileNav = styled.nav`
+  display: none;
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    display: ${props => (props.visible ? "flex" : "none")};
+    flex-direction: column;
+    position: absolute;
+    z-index: 1;
+
+    width: 100vw;
+    background-color: ${props => props.theme.color.surface};
+    box-shadow: ${props => props.theme.shadow.mobileMenu};
+  }
+`
+
+// right side of nav bar containing search bar + icons
 const RightSide = styled.div`
   display: flex;
   flex-grow: 1;
@@ -302,6 +320,13 @@ export const Nav = props => {
         </RightSide>
       </NavContainer>
       <GradientBar tags={props.tags} visible={props.showGradient} />
+      <MobileNav visible={mobileMenuVisible}>
+        <div>
+          <NavItem to="/">applications</NavItem>
+          <NavItem to="/">types</NavItem>
+          <NavItem to="/">about</NavItem>
+        </div>
+      </MobileNav>
     </BarWrapper>
   )
 }

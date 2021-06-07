@@ -38,8 +38,9 @@ const lightTheme = {
     xxLarge: "4rem",
   },
   shadow: {
-    shadow1: "0px 5px 20px rgba(30, 30, 31, 0.05)",
     menu: "0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)",
+    mobileMenu:
+      "0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px -6px rgb(60 64 67 / 15%)",
   },
 }
 
@@ -85,9 +86,10 @@ const darkTheme = {
     xxLarge: "4rem",
   },
   shadow: {
-    shadow1: "0px 5px 20px rgba(30, 30, 31, 0.05)",
     menu:
       "0 1px 2px 0 rgb(120 120 120 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)",
+    mobileMenu:
+      "0 1px 2px 0 rgb(120 120 120 / 30%), 0 2px 6px -6px rgb(60 64 67 / 15%)",
   },
 }
 
