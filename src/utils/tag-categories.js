@@ -16,4 +16,6 @@ const tagCategories = {
   divideAndConquer: "type",
   sorting: "application",
   search: "application",
+  criticalSection: "application",
+  dynamicProgramming: "type",
 }

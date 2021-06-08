@@ -1,0 +1,76 @@
+---
+title: Fisher's Algorithm
+slug: fisher
+date: 2021-06-07
+preview-text: Fisher's protocol is an algorithm to solve the mutual exclusion problem.
+tags: ["Critical Section"]
+author: Jakob Hackstein
+published: true
+---
+
+<!-- Intro -->
+
+Fisher's protocol is an algorithm to solve the mutual exclusion problem. In applications with multiple processes or threads a shared resource must be protected from simultaneous read and write operations. The correct implementation based on delays and atomic read and write operations grants mutucally exclusive access and thus prevents corrupted memory.
+
+The algorithm can never end up in a deadlock but does not distribute the access fairly to all processes.
+
+## Implementation
+
+```cpp
+// Global variable indicates current procces in critical section
+x = 0
+
+// Get mutually exclusive access for i-th process
+function enterCritical(ID):
+    while true:
+        while x != 0:
+            continue
+
+        x = ID
+        sleepNanoSeconds(500)
+
+        if x == ID:
+            // Now entering critical section
+            return
+endfunction
+
+// Reset global variable for waiting processes
+function leaveCritical():
+    x = 0
+endfunction
+```
+
+## Explanation
+
+Consider a number of processes with distinct process IDs that are trying to access a shared resource _m_. The algorithm uses a global variable `x` that is shared between all processes. `x` holds the value of the current process ID with access on the shared resource or `0` if there is no current process modifying `m`.
+
+Suppose that process _p_ with `ID = 1` wants exclusivly access _m_ among other processes. First, _p_ has to wait for a potential process in the critical section to leave. Only when there is no process modifying _m_, indicated by `x == 0`, then _p_ is allowed to set `x = 1`. As soon as `x == 0` the infinite while-loop stops and `x` is set to the respective process ID. However, due to race conditions other processes might read `x = 0` too before _p_ is able to set `x = 1`. In order to keep the shared variable `x` synchronized, each process updating `x` has to wait a certain amount of time. This delay causes processes to wait so long that, if race conditions let several processes update `x` simultaneously then all processes can finish their update of `x` completely. Therefore, all processes will read the exact same value of `x` in the statement `if x == ID`. The process which successfully managed to write it's ID into `x` can finally mutually exclusive modify _m_ while others start over and wait for `x` to become `0` again. A critical section is left by simply setting `x = 0` as now other processes can try to write their ID into `x` and claim exclusive mutually access.
+
+## Usage
+
+The following pseudocode provides an example how process with `ID = 1` can safely modify a shared memory segment _m_ mutucally exclusive.
+
+```cpp
+function modifySharedMemory():
+    // When enterCritical() returns, critical section is entered
+    enterCritical(1)
+
+    modify(m)
+
+    leaveCritical()
+endfunction
+```
+
+## Complexity
+
+**Time**:
+
+$$
+\mathcal{O}(1)
+$$
+
+**Space**:
+
+$$
+\mathcal{O}(1)
+$$

@@ -22,6 +22,8 @@ const lightTheme = {
       sorting: "rgba(242, 201, 76, 1)",
       divideAndConquer: "rgba(192, 125, 255, 1)",
       search: "rgba(45, 156, 219, 1)",
+      criticalSection: "rgba(255, 77, 77, 1)",
+      dynamicProgramming: "rgba(128, 128, 255, 1)",
     },
   },
   breakpoint: {
@@ -70,6 +72,8 @@ const darkTheme = {
       sorting: "rgba(242, 201, 76, 0.85)",
       divideAndConquer: "rgba(192, 125, 255, 0.85)",
       search: "rgba(45, 156, 219, 0.85)",
+      criticalSection: "rgba(255, 77, 77, 0.85)",
+      dynamicProgramming: "rgba(128, 128, 255, 0.85)",
     },
   },
   breakpoint: {

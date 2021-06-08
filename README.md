@@ -7,7 +7,7 @@ A collection of algorithms
 - [ ] quicksort
 - [x] mergesort
 - [ ] strict alternation
-- [ ] fisher algorithm
+- [x] fisher algorithm
 - [ ] a\*
 - [ ] dijkstra
 - [x] max subarray (Kadanes algorithm)
