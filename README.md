@@ -30,3 +30,4 @@ A collection of algorithms
 - [ ] o1 scheduler
 - [ ] cyk algo
 - [ ] towers hanoi
+- [ ] find missing value

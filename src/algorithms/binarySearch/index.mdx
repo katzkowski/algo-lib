@@ -1,0 +1,63 @@
+---
+title: Binary-Search
+slug: binary-search
+date: 2021-06-08
+preview-text: Binary search is an algorithm to find a given element within a sorted array.
+tags: ["Search", "Divide-and-Conquer"]
+author: Jakob Hackstein
+published: true
+---
+
+<!-- Intro -->
+
+Binary-Search is an algorithm that finds the index of a given element within a sorted array. The divide and conquer paradigm is partially used as the sorted array is repeatedly split in half until the target is found. If the array does not contain the target, the function returns `-1`. The algorithm is known for fast execution time with both best and worst case scenarios running in logarithmic time.
+
+## Implementation
+
+```cpp
+function binarySearch(A, t):
+    left = 0
+    right = length(A) - 1
+
+    while (left <= right):
+        mid = left + (right - left) / 2
+
+        if A[mid] == t:
+            return mid
+
+        if A[mid] < t:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return -1
+```
+
+## Explanation
+
+Given a sorted array `A` and the target `t`. The algorithm starts with a basic assumption: If `t` is in the array, it has to be somewhere between the first and last index of `A`. This search area, denoted by `left` and `right`, is then repeatedly split in half with each iteration. If `t` is greater than the middle element `A[mid]` of current search area `A[left, ..., mid, ..., right]`, the new search area is adjusted to `A[mid + 1, ..., right]`. `t` cannot be in the left half because `A` is sorted. If `t` is smaller than the middle element, the new search area is adjusted analog. At some point, `t` might be the middle element `A[mid]` and the algorithm successfully returns `mid`. If `t` is not within `A`, the search area ends up empty as `left > right` and Binary-Search returns an invalid index `-1`.
+
+## Usage
+
+For any given sorted array `A` and target `t`, the index of `t` is computed with the following code.
+
+```cpp
+A = [1, 4, 7, 13, 15, 45, 157, ...]
+t = 45
+
+targetIndex = binarySearch(A, t) // returns 5
+```
+
+## Complexity
+
+**Time**:
+
+$$
+\mathcal{O}(\log n)
+$$
+
+**Space**:
+
+$$
+\mathcal{O}(1)
+$$
