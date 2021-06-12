@@ -6,7 +6,7 @@ A collection of algorithms
 - [x] alphaBeta
 - [ ] quicksort
 - [x] mergesort
-- [ ] strict alternation
+- [x] strict alternation
 - [x] fisher algorithm
 - [ ] a\*
 - [ ] dijkstra

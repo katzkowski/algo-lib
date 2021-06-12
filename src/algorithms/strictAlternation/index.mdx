@@ -1,0 +1,71 @@
+---
+title: Strict Alternation
+slug: strict-alternation
+date: 2021-06-12
+preview-text: Strict-Alternation is turn-based algorithm to solve the mutual exclusion problem.
+tags: ["Critical Section"]
+author: Jakob Hackstein
+published: true
+---
+
+<!-- Intro -->
+
+Strict-Alternation is an algorithm to solve the mutual exclusion problem. This problem occurs, when a resource shared between multiple processes has to be protected from simultaneous read and write operations. These so called critical sections need algorithms like Strict-Alternation to grant mutually exclusive access on the shared resource. Otherwise, processes might read corrupted data because another process has not finished a write operation yet.
+
+Strict-Alternation is always fair. However, there are situations where Strict-Alternation might end up in a deadlock. Therefore, this algorithm is only used for academic purposes while other approaches like Fisher's algorithm find attention in real world applications.
+
+## Implementation
+
+```cpp
+// Global variable indicates current procces in critical section
+turn = 0
+
+// Fixed number of processes, for example 10
+numProc = 10
+
+// Get mutually exclusive access for i-th process
+function enterCritical(ID):
+    while x != ID:
+        continue
+endfunction
+
+// Reset global variable for waiting processes
+function leaveCritical():
+    ID = (ID + 1) % numProc
+endfunction
+```
+
+## Explanation
+
+Consider _numProc_ - many processes with distinct process IDs that are trying to access a shared resource _m_. The algorithm uses a global turn variable `turn` to determine which process is allowed to enter the critical section. This variable is initially set to `0` and from there on only updated by the process currently in the critical section. Consequently, `turn` is always safe to read at all times and cannot be corrupted. After the _i_-th process finished mofifying _m_, the `turn` variable is set to the next process _(i + 1) % numProc_. Other processes trying to enter the critical section have to wait until their `ID` is set.
+
+Strict-Alternation assumes that the next process in line wants to access _m_. If for any reason the process does not enter the critical section, the `turn` variable never gets updated - a deadlock occurs. This flaw makes the algorithm hardly usuable in real world applications.
+
+## Usage
+
+The following pseudocode provides an example how a process with `ID = 1` enters the critical section to modify a shared resource _m_.
+
+```cpp
+function modifySharedMemory():
+    // When enterCritical() returns, critical section is entered
+    enterCritical(1)
+
+    modify(m)
+
+    leaveCritical()
+endfunction
+```
+
+## Complexity
+
+**Time**:
+
+$$
+\mathcal{O}(1)
+$$
+
+**Space**:
+
+$$
+\mathcal{O}(1)
+$$
