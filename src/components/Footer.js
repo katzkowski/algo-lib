@@ -8,7 +8,7 @@ const FooterWrapper = styled.footer`
   position: relative;
   max-height: 76px;
   background: ${props => props.theme.color.surface};
-  margin: ${props => props.theme.spacing.medium} 0;
+  margin: ${props => props.theme.spacing.medium} 0 0;
   bottom: 0;
 
   @media ${props => props.theme.breakpoint.mobile} {
@@ -34,12 +34,11 @@ const FooterContent = styled.div`
   border-radius: 5px 5px 0 0;
 
   @media ${props => props.theme.breakpoint.tablet} {
-    margin: 0 ${props => props.theme.spacing.medium};
+    // margin: 0 ${props => props.theme.spacing.medium};
   }
 
   @media ${props => props.theme.breakpoint.mobile} {
     max-width: 100%;
-    min-height: 100px;
     margin: 0 ${props => props.theme.spacing.small};
   }
 `

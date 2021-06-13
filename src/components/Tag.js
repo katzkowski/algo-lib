@@ -57,7 +57,7 @@ const StyledLargeTag = styled(StyledTag)`
 `
 
 export const Tag = props => {
-  const linkTarget = props.to.toLowerCase()
+  const linkTarget = props.to.toLowerCase().replace(" ", "-")
   const size = props.size !== undefined ? props.size.toLowerCase() : undefined
 
   // check if tag has been definied in tag-categories.js

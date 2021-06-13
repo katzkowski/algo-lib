@@ -74,7 +74,6 @@ const SearchBarIcon = styled(Search)`
 export const SearchBar = props => {
   const [searchQuery, setSearchQuery] = useState("")
   const [showResults, setShowResults] = useState(false)
-  const [linkClicked, setLinkClicked] = useState(false)
   const data = useStaticQuery(graphql`
     query {
       localSearchAlgorithms {
@@ -90,6 +89,23 @@ export const SearchBar = props => {
     data.localSearchAlgorithms.store
   )
 
+  const handleBlur = e => {
+    const parent = e.currentTarget.parentNode
+    console.log(parent)
+    console.log(document.relatedTarget)
+    // Check the newly focused element in the next tick of the event loop
+    setTimeout(() => {
+      // Check if the new activeElement is a child of the original container
+      if (!parent.contains(document.activeElement)) {
+        // You can invoke a callback or add custom logic here
+        setShowResults(false)
+        if (props.onBlur) {
+          props.onBlur()
+        }
+      }
+    }, 0)
+  }
+
   return (
     <SearchBarWrapper
       mobileSearchVisible={props.mobileSearchVisible}
@@ -103,10 +119,10 @@ export const SearchBar = props => {
       <SearchInput
         id={props.id}
         type="text"
-        placeholder="search ..."
+        placeholder="search algorithms..."
         mobileSearchVisible={props.mobileSearchVisible && props.inNavbar}
         onFocus={props.onFocus}
-        onBlur={linkClicked ? undefined : props.onBlur}
+        onBlur={handleBlur}
         onChange={e => {
           setSearchQuery(e.target.value)
           e.target.value.trim() !== ""
@@ -120,7 +136,6 @@ export const SearchBar = props => {
           (props.mobileSearchVisible || props.expanded || !props.inNavbar)
         }
         results={results}
-        setLinkClicked={setLinkClicked}
       />
     </SearchBarWrapper>
   )

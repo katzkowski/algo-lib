@@ -1,16 +1,19 @@
 const lightTheme = {
   font: {
-    main: "Roboto, sans-serif",
+    main:
+      "system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, Liberation Sans, sans-serif",
     code: "Roboto Mono, monospace",
   },
   color: {
     background: "white",
     hover: "rgba(32, 33, 36, 0.04)",
-    surface: "#f6f7f9",
-    border: "#f6f7f9",
+    // surface: "#f6f7f9",
+    surface: "#edf0f5",
+    border: "#dee2e6",
     heading: "#202124",
     // text: "rgba(0,0,0,0.87)",
-    text: "#393939",
+    // text: "#393939",
+    text: "#212529",
     textLight: "rgba(0,0,0,.7)",
     tagText: "#121212",
     link: "rgba(0,0,0,.7)",
@@ -43,12 +46,14 @@ const lightTheme = {
     menu: "0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)",
     mobileMenu:
       "0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px -6px rgb(60 64 67 / 15%)",
+    card: "rgba(3, 0, 71, 0.09) 0px 1px 3px 0px",
   },
 }
 
 const darkTheme = {
   font: {
-    main: "Roboto, sans-serif",
+    main:
+      "system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, Liberation Sans, sans-serif",
     code: "Roboto Mono, monospace",
   },
   color: {
@@ -94,6 +99,7 @@ const darkTheme = {
       "0 1px 2px 0 rgb(120 120 120 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)",
     mobileMenu:
       "0 1px 2px 0 rgb(120 120 120 / 30%), 0 2px 6px -6px rgb(60 64 67 / 15%)",
+    card: "rgba(3, 0, 71, 0.09) 0px 1px 3px 0px",
   },
 }
 

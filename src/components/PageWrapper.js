@@ -12,22 +12,24 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    line-height: 1.42;
+    line-height: 1.2;
   }
 
   html, body {
     font-family: ${props => props.theme.font.main};
-    background-color: ${props => props.theme.color.surface};
+    background-color: ${props => props.theme.color.background};
   }
 
   pre {
     font-family: ${props => props.theme.font.code};
   }
+  
 
   /* code blocks */
   div.gatsby-highlight {
     @media ${props => props.theme.breakpoint.mobile} {
       margin: 1rem -1rem; /* full screen */
+      background-color: ${props => props.theme.color.surface}; 
     }
   }
 

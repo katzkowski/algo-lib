@@ -15,11 +15,11 @@ export const H1 = styled.h1`
 `
 
 export const H2 = styled.h2`
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.8rem;
+  font-weight: 500;
   color: ${props => props.theme.color.heading};
   margin: ${props => props.theme.spacing.medium} 0
-    ${props => props.theme.spacing.xxSmall};
+    ${props => props.theme.spacing.xSmall};
 `
 
 export const H3 = styled.h3`
@@ -52,6 +52,14 @@ export const Subtitle = styled.h4`
   margin: ${props => props.theme.spacing.small} 0;
   color: ${props => props.theme.color.textLight};
   font-weight: 500;
+`
+
+export const RecentTitle = styled(Subtitle)`
+  margin: 0 0 0 ${props => props.theme.spacing.xSmall};
+
+  @media ${props => props.theme.breakpoint.mobile} {
+    margin: ${props => props.theme.spacing.xSmall} 0 0 1.5rem;
+  }
 `
 
 export const InternalLink = styled(({ invertedunderline, ...props }) => (
@@ -102,8 +110,8 @@ export const Anchor = styled.span`
 export const P = styled.p`
   margin: 0 0 1.25rem;
   color: ${props => props.theme.color.text};
-  line-height: 2rem;
-  font-size: 1.15rem;
+  line-height: 1.5rem;
+  font-size: 1rem;
 `
 
 export const Pre = styled.pre`

@@ -13,7 +13,8 @@ const ResultsWrapper = styled.div`
 
   padding-top: ${props => props.theme.spacing.xSmall};
   background-color: ${props => props.theme.color.background};
-  border: 1px solid ${props => props.theme.color.surface};
+  border: 1px solid ${props => props.theme.color.textLight};
+  border-top: 1px solid ${props => props.theme.color.background};
   border-radius: 0 0 5px 5px;
 `
 
@@ -35,12 +36,7 @@ export const SearchResults = props => {
   const noResultsText = <NoResults>No results</NoResults>
 
   const algos = props.results.map(algo => (
-    <SearchResultItem
-      key={algo.slug}
-      to={algo.slug}
-      item={algo}
-      onClick={props.setLinkClicked(true)}
-    />
+    <SearchResultItem key={algo.slug} to={algo.slug} item={algo} />
   ))
 
   return (

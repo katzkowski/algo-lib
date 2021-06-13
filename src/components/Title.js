@@ -8,7 +8,7 @@ const Author = styled.span`
 `
 
 const CardsHeading = styled(Subtitle)`
-  margin: 0;
+  margin: ${props => props.theme.spacing.small} 0;
 `
 
 export function Title(props) {

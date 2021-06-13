@@ -83,7 +83,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
     // create a page for each tag
     actions.createPage({
-      path: `/${tag.tag.toLowerCase()}`,
+      path: `/${tag.tag.toLowerCase().replace(" ", "-")}`,
       component: require.resolve(`./src/templates/tag.js`),
       context: {
         tag: tag.tag,

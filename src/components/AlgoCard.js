@@ -14,13 +14,13 @@ const CardWrapper = styled.article`
 
   padding: ${props => props.theme.spacing.small};
 
-  border: 2px solid ${props => props.theme.color.border};
+  border: 1px solid ${props => props.theme.color.border};
   border-radius: 5px;
   transition: border 0.1s;
   transition: box-shadow 0.3s;
 
   &:hover {
-    box-shadow: ${props => props.theme.shadow.menu};
+    box-shadow: ${props => props.theme.shadow.card};
   }
 
   @media ${props => props.theme.breakpoint.tablet} {

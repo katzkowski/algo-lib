@@ -23,11 +23,10 @@ const Tags = ({ pageContext, data }) => {
   return (
     <PageWrapper tags={[tag]}>
       <Title
-        cardsHeading={`${totalCount} algorithm${
+        cardsHeading={`Found ${totalCount} algorithm${
           totalCount === 1 ? "" : "s"
-        } tagged`}
+        }`}
       >
-        Tag:{" "}
         <Tag size="large" to={`/${tag}`}>
           {tag}
         </Tag>

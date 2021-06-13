@@ -8,12 +8,11 @@ import {
   H1,
   H2,
   H3,
-  InternalLink,
   LandingHeadline,
   LandingSubtitle,
   P,
   Pre,
-  Subtitle,
+  RecentTitle,
 } from "../components/elements"
 import Footer from "../components/Footer"
 import { Nav } from "../components/Nav"
@@ -51,25 +50,17 @@ const SliderContainer = styled.section`
   max-width: 1200px;
 `
 
-export const RecentTitle = styled(Subtitle)`
-  margin: 0 0 0 ${props => props.theme.spacing.xSmall};
+// const ViewMoreLink = styled(InternalLink)`
+//   font-size: 0.83rem;
+//   font-weight: 500;
 
-  @media ${props => props.theme.breakpoint.mobile} {
-    margin: ${props => props.theme.spacing.xSmall} 0 0 1.5rem;
-  }
-`
+//   margin: 0 0 0 ${props => props.theme.spacing.xSmall};
+//   padding: 0;
 
-const ViewMoreLink = styled(InternalLink)`
-  font-size: 0.83rem;
-  font-weight: 500;
-
-  margin: 0 0 0 ${props => props.theme.spacing.xSmall};
-  padding: 0;
-
-  @media ${props => props.theme.breakpoint.mobile} {
-    margin: ${props => props.theme.spacing.xSmall} 0 0 1.5rem;
-  }
-`
+//   @media ${props => props.theme.breakpoint.mobile} {
+//     margin: ${props => props.theme.spacing.xSmall} 0 0 1.5rem;
+//   }
+// `
 
 export default function Index({ data }) {
   const theme = useContext(ThemeContext)
