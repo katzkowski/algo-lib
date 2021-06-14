@@ -14,18 +14,23 @@ export const Wrapper = styled.div`
   );
 
   margin: 100px auto 0 auto;
-  padding: 1rem 1.5rem;
+  padding: ${props => props.theme.spacing.small}
+    ${props => props.theme.spacing.medium};
   border-radius: 3px;
   background: ${props => props.theme.color.background};
 
   @media ${props => props.theme.breakpoint.tablet} {
-    margin: 100px ${props => props.theme.spacing.medium} 0
-      ${props => props.theme.spacing.medium};
+    margin: 100px ${props => props.theme.spacing.small} 0
+      ${props => props.theme.spacing.small};
+    padding: ${props => props.theme.spacing.small};
+    // ${props => props.theme.spacing.medium};
   }
 
   @media ${props => props.theme.breakpoint.mobile} {
     max-width: 100%;
     margin: 100px 0 0 0;
+    padding: ${props => props.theme.spacing.small}
+      ${props => props.theme.spacing.xSmall};
 
     min-height: calc(
       100vh - 100px - ${props => props.theme.spacing.xLarge} - 100px

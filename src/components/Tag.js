@@ -20,6 +20,7 @@ const StyledTag = styled(props => <Link {...props} />)`
   margin: 0 ${props => props.theme.spacing.xSmall} 0 0;
 
   font-size: 0.75rem;
+  font-weight: bold;
   color: ${props => props.theme.color.tagText};
   text-decoration: none;
 
@@ -40,7 +41,6 @@ const StyledTag = styled(props => <Link {...props} />)`
 // medium tag size
 const StyledMediumTag = styled(StyledTag)`
   font-size: 1.25rem;
-  font-weight: bold;
 
   padding: ${props => props.theme.spacing.small}
     ${props => props.theme.spacing.medium};
@@ -50,7 +50,6 @@ const StyledMediumTag = styled(StyledTag)`
 // large tag size
 const StyledLargeTag = styled(StyledTag)`
   font-size: 3rem;
-  font-weight: bold;
 
   padding: ${props => props.theme.spacing.xSmall};
   margin-left: ${props => props.theme.spacing.small}:;

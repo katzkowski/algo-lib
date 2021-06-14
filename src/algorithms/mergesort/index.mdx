@@ -66,11 +66,11 @@ function merge(leftSubArray, rightSubArray)
 
 For any given array `A`, Mergesort consists of two phases.
 
-#### `mergeSort()`: Divide the array recursivly into subarrays of length one
+### `mergeSort()`: Divide the array recursivly into subarrays of length one
 
 First, the array is recursivly split in half until subarrays have a length of one. To this end, the middle index is computed and the function `mergeSort()` is called with adjusted indices until the left and right indices are equal (subarray with one element). At the lowest recursion level subarrays have a length of one and at the highest recursion level the array `A` is simply split in half.
 
-#### `merge()`: Repeatedly merge two subarrays by picking the smaller leading element until no elements left.
+### `merge()`: Repeatedly merge two subarrays by picking the smaller leading element until no elements left.
 
 The merge phase in function `merge()` receives two sorted subarrays `leftSubArray`, `rightSubArray` and returns them combined and sorted as `sortedSubArray`. The first merging step is trivial since the first `merge()` call is at lowest recursion level and both subarrays have only one element. In this case, the function returns a 2-element array with the smaller element ordered first and the greater element ordered second. Now, this sorted subarray is merged with another sorted 2-element array as recursion level decreases.
 
@@ -80,25 +80,17 @@ Although the function is called recursivly with subarrays increasing in length, 
 
 For any given array `A` the sorted array is computed with the following pseudo-code.
 
-```python
+```cpp
 length = length(A)
 sortedArray = mergeSort(A, 0, length - 1)
 ```
 
 ## Complexity
 
-**Time**:
-
-$$
-\mathcal{O}(n \log n)
-$$
-
-for arrays of length _n_.
-
-**Space**:
-
-$$
-\mathcal{O}(n)
-$$
-
-for arrays of length _n_.
+> **Time**
+>
+> For arrays of length $n$: $$\mathcal{O}(n \log n)$$
+>
+> **Space**
+>
+> For arrays of length $n$: $$\mathcal{O}(n)$$

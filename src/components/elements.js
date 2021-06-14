@@ -117,3 +117,18 @@ export const P = styled.p`
 export const Pre = styled.pre`
   font-family: ${props => props.theme.font.code};
 `
+
+export const Blockquote = styled.div`
+  padding: 1.25rem;
+  margin: 1.25rem 0;
+  color: ${props => props.theme.color.text};
+
+  border: 1px solid ${props => props.theme.color.border};
+  border-left-width: ${props => props.theme.spacing.xxSmall};
+  border-left-color: ${props => props.theme.color.code.inlineCodeColor};
+  border-radius: 5px;
+
+  & p {
+    margin: 0;
+  }
+`

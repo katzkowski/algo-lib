@@ -2,7 +2,7 @@ import { MDXProvider } from "@mdx-js/react"
 import React, { useContext } from "react"
 import { createGlobalStyle, ThemeContext } from "styled-components"
 import ContentWrapper from "./ContentWrapper"
-import { H1, H2, H3, P, Pre } from "./elements"
+import { Blockquote, H1, H2, H3, P, Pre } from "./elements"
 import Footer from "./Footer"
 import { Nav } from "./Nav"
 require("katex/dist/katex.min.css")
@@ -158,6 +158,7 @@ export const GlobalStyle = createGlobalStyle`
   div.gatsby-highlight {
     margin: 0;
     background-color: ${props => props.theme.color.surface}; 
+    border-radius: 5px;
   }
 
   /* code blocks */
@@ -173,7 +174,7 @@ export const GlobalStyle = createGlobalStyle`
 
   /* Latex color */
   .katex-html {
-    color: ${props => props.theme.color.text};
+    color: ${props => props.theme.color.code.inlineCodeColor};
   }
 `
 
@@ -190,6 +191,7 @@ export default function PageWrapper({ children, tags }) {
           h3: H3,
           p: P,
           pre: Pre,
+          blockquote: Blockquote,
         }}
       >
         <Nav tags={tags} showGradient hideSearchbar={false} />
