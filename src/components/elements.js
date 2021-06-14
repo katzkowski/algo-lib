@@ -115,6 +115,5 @@ export const P = styled.p`
 `
 
 export const Pre = styled.pre`
-  margin: 1rem -1rem;
   font-family: ${props => props.theme.font.code};
 `
