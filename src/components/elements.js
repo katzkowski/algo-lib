@@ -20,12 +20,22 @@ export const H2 = styled.h2`
   color: ${props => props.theme.color.heading};
   margin: ${props => props.theme.spacing.medium} 0
     ${props => props.theme.spacing.xSmall};
+  position: relative; /* for nesting anchors */
 `
 
 export const H3 = styled.h3`
   font-size: 1.375rem;
   font-weight: bold;
   color: ${props => props.theme.color.heading};
+  margin: ${props => props.theme.spacing.medium} 0
+    ${props => props.theme.spacing.small};
+  position: relative; /* for nesting anchors */
+`
+
+export const H4 = styled.h4`
+  font-size: 1.175rem;
+  font-weight: bold;
+  color: ${props => props.theme.color.textLight};
   margin: ${props => props.theme.spacing.medium} 0
     ${props => props.theme.spacing.small};
   position: relative; /* for nesting anchors */

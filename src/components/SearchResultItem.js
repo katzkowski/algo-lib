@@ -10,7 +10,6 @@ const SearchItem = styled(props => <Link {...props} />)`
     ${props => props.theme.spacing.medium};
 
   &:hover {
-    // background-color: rgba(32, 33, 36, 0.04); // TODO new theme color
     background-color: ${props => props.theme.color.hover};
   }
 

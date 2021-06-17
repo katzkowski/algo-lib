@@ -1,8 +1,9 @@
 import { MDXProvider } from "@mdx-js/react"
 import React, { useContext } from "react"
 import { createGlobalStyle, ThemeContext } from "styled-components"
+import { AnchorH2 } from "./AnchorH2"
 import ContentWrapper from "./ContentWrapper"
-import { Blockquote, H1, H2, H3, P, Pre } from "./elements"
+import { Blockquote, H1, H3, P, Pre } from "./elements"
 import Footer from "./Footer"
 import { Nav } from "./Nav"
 require("katex/dist/katex.min.css")
@@ -187,7 +188,7 @@ export default function PageWrapper({ children, tags }) {
       <MDXProvider
         components={{
           h1: H1,
-          h2: H2,
+          h2: AnchorH2,
           h3: H3,
           p: P,
           pre: Pre,

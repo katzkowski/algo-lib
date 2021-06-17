@@ -1,10 +1,16 @@
 import { graphql } from "gatsby"
 import React from "react"
+import styled from "styled-components"
 import { AlgoCard, CardContainer } from "../components/AlgoCard"
 import { InternalLink } from "../components/elements"
 import PageWrapper from "../components/PageWrapper"
 import { Tag } from "../components/Tag"
 import { Title } from "../components/Title"
+
+const AllTagsLink = styled(InternalLink)`
+  // position: absolute;
+  // bottom: ${props => props.theme.spacing.small};
+`
 
 const Tags = ({ pageContext, data }) => {
   const { tag } = pageContext
@@ -52,7 +58,7 @@ const Tags = ({ pageContext, data }) => {
         nextPage={nextPage}
         numPages={numPagesForTag}
       /> */}
-      <InternalLink to="/tags">All tags</InternalLink>
+      <AllTagsLink to="/tags">View all tags</AllTagsLink>
     </PageWrapper>
   )
 }

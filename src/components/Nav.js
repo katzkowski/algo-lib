@@ -323,9 +323,18 @@ export const Nav = props => {
       <GradientBar tags={props.tags} visible={props.showGradient} />
       <MobileNav visible={mobileMenuVisible}>
         <div>
-          <NavItem to="/tags#applications">applications</NavItem>
-          <NavItem to="/tags#types">types</NavItem>
-          <NavItem to="/">about</NavItem>
+          <NavItem
+            onClick={() => toggleMobileMenu(false)}
+            to="/tags#applications"
+          >
+            applications
+          </NavItem>
+          <NavItem onClick={() => toggleMobileMenu(false)} to="/tags#types">
+            types
+          </NavItem>
+          <NavItem onClick={() => toggleMobileMenu(false)} to="/">
+            about
+          </NavItem>
         </div>
       </MobileNav>
     </BarWrapper>

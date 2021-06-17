@@ -10,7 +10,7 @@ published: true
 
 The Minimax algorithm determines the best score in a game after players get to move a certain number of times. Minimax is only applicable in 2-player games, where the gain of player _A_ is exactly the loss of player _B_.
 
-### Implementation
+## Implementation
 
 ```cpp
 maxNode(int depth) {
@@ -48,19 +48,19 @@ minNode(depth) {
 }
 ```
 
-### Description
+## Description
 
 The algorithm is split into two functions, `max` and `min`, which are called recursivly from each other. Both functions take turns at each depth like players take turns in a game. By playing all possible moves for each position, a game tree is generated. If depth is 0, the position is then evaluated according to side and the score is propagated back. Now, each depth in the tree represents the possible outcomes for player _A_ or player _B_.
 
 For all nodes in the tree, the player to turn chooses the move that scores best for him: The maximizing player decides to take the highest score while the minimizing player takes the lowest score. Therefore, the best outcome at each node is propagated back to the parent node. The root node receives the bets score, if both players always play their best moves.
 
-### Usage
+## Usage
 
 The Minimax Algorithm is used in a variety of 2-player games like Chess, Go or Shogi. It acts as artifial intelligence in order to play the most promising moves and in the game. However, most implementations rely on a modified version called Negamax to avoid redundant code.
 
 The initial call to start a recursive game tree search depends on the player to move. The minimizing player calls `min(depth)` while the maximizing player finds his best score with `max(depth)`.
 
-### Complexity
+## Complexity
 
 > **Time**
 >

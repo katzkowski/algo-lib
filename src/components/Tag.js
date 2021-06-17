@@ -50,9 +50,12 @@ const StyledMediumTag = styled(StyledTag)`
 // large tag size
 const StyledLargeTag = styled(StyledTag)`
   font-size: 3rem;
+  font-size: min(3rem, 12.5vw);
+  max-witdh: 100%;
 
   padding: ${props => props.theme.spacing.xSmall};
-  margin-left: ${props => props.theme.spacing.small}:;
+  margin-left: ${props => props.theme.spacing.small};
+  margin-right: 0;
 `
 
 export const Tag = props => {
