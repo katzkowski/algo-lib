@@ -263,7 +263,7 @@ export const Nav = props => {
         <NavItems visible={navDisplayed}>
           <NavItem to="/tags#applications">applications</NavItem>
           <NavItem to="/tags#types">types</NavItem>
-          <NavItem to="/">about</NavItem>
+          <NavItem to="/about">about</NavItem>
         </NavItems>
 
         <RightSide>
