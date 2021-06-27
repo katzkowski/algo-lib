@@ -7,7 +7,7 @@
 export const camelCase = str => {
   return str !== undefined
     ? str
-        .replaceAll("-", " ")
+        .replace(/-/g, " ")
         .split(" ")
         .map(s => s.slice(0, 1).toUpperCase() + s.slice(1).toLowerCase())
         .join("")

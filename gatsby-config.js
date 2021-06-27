@@ -7,6 +7,7 @@ const remarkMath = require(`remark-math`)
 const rehypeKatex = require("rehype-katex")
 
 module.exports = {
+  pathPrefix: "/algo-lib",
   siteMetadata: {
     title: "algo-lib | a library of algorithms",
     titleTemplate: "%s | algo-lib",
