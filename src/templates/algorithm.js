@@ -3,6 +3,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
 import styled from "styled-components"
 import PageWrapper from "../components/PageWrapper"
+import SEO from "../components/Seo"
 import { TableOfContents } from "../components/TableOfContents"
 import { Title } from "../components/Title"
 require("katex/dist/katex.min.css")
@@ -39,6 +40,13 @@ export default function algorithmPage({ data }) {
         </MDXWrapper>
         <TableOfContents slug={data.mdx.frontmatter.slug}></TableOfContents>
       </AlgoWrapper>
+      <SEO
+        title={frontmatter.title}
+        slug={frontmatter.slug}
+        description={frontmatter.preview_text}
+        article={true}
+        keywords={[frontmatter.title].concat(frontmatter.tags)}
+      />
     </PageWrapper>
   )
 }

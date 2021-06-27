@@ -18,6 +18,7 @@ import Footer from "../components/Footer"
 import { Nav } from "../components/Nav"
 import { GlobalStyle } from "../components/PageWrapper"
 import { SearchBar } from "../components/SearchBar"
+import SEO from "../components/Seo"
 import { TagSlider } from "../components/TagSlider"
 import { getTagCategory } from "../utils/tag-categories"
 
@@ -49,18 +50,6 @@ const SliderContainer = styled.section`
     ${props => props.theme.spacing.xxLarge};
   max-width: 1200px;
 `
-
-// const ViewMoreLink = styled(InternalLink)`
-//   font-size: 0.83rem;
-//   font-weight: 500;
-
-//   margin: 0 0 0 ${props => props.theme.spacing.xSmall};
-//   padding: 0;
-
-//   @media ${props => props.theme.breakpoint.mobile} {
-//     margin: ${props => props.theme.spacing.xSmall} 0 0 1.5rem;
-//   }
-// `
 
 export default function Index({ data }) {
   const theme = useContext(ThemeContext)
@@ -122,6 +111,7 @@ export default function Index({ data }) {
           </RecentWrapper>
         </IndexWrapper>
         <Footer></Footer>
+        <SEO article={false} keywords={["algo-lib"]} />
       </MDXProvider>
     </div>
   )

@@ -7,6 +7,13 @@ const remarkMath = require(`remark-math`)
 const rehypeKatex = require("rehype-katex")
 
 module.exports = {
+  siteMetadata: {
+    title: "algo-lib | a library of algorithms",
+    titleTemplate: "%s | algo-lib",
+    description:
+      "algo-lib is a library of interesting algorithms with code and additional information.",
+    url: "https://www.algo-lib.com",
+  },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
@@ -42,20 +49,6 @@ module.exports = {
         dark: require(`${__dirname}/src/themes/theme.js`).darkTheme,
       },
     },
-    // {
-    //   resolve: `gatsby-transformer-remark`,
-    //   options: {
-    //     plugins: [
-    //       {
-    //         resolve: `gatsby-remark-katex`,
-    //         options: {
-    //           // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
-    //           // strict: `ignore`,
-    //         },
-    //       },
-    //     ],
-    //   },
-    // },
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
@@ -79,6 +72,7 @@ module.exports = {
         rehypePlugins: [rehypeKatex],
       },
     },
+    `gatsby-plugin-react-helmet`,
     {
       resolve: "gatsby-plugin-local-search",
       options: {

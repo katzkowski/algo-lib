@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { AlgoCard, CardContainer } from "../components/AlgoCard"
 import { InternalLink } from "../components/elements"
 import PageWrapper from "../components/PageWrapper"
+import SEO from "../components/Seo"
 import { Tag } from "../components/Tag"
 import { Title } from "../components/Title"
 
@@ -59,6 +60,15 @@ const Tags = ({ pageContext, data }) => {
         numPages={numPagesForTag}
       /> */}
       <AllTagsLink to="/tags">View all tags</AllTagsLink>
+      <SEO
+        title={tag}
+        slug={tag}
+        description={`${totalCount} algorithm${
+          totalCount === 1 ? "" : "s"
+        } tagged with ${tag}`}
+        article={false}
+        keywords={[tag]}
+      />
     </PageWrapper>
   )
 }
