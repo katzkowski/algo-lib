@@ -1,4 +1,3 @@
-import { graphql } from "gatsby"
 import React from "react"
 import { AlgoCard, CardContainer } from "../components/AlgoCard"
 import PageWrapper from "../components/PageWrapper"
@@ -39,24 +38,24 @@ export default function allAlgos({ pageContext, data }) {
   )
 }
 
-export const pageQuery = graphql`
-  query AllAlgosQuery($skip: Int!, $limit: Int!) {
-    allMdx(
-      sort: { fields: frontmatter___date, order: DESC }
-      skip: $skip
-      limit: $limit
-    ) {
-      edges {
-        node {
-          frontmatter {
-            date(formatString: "MMM DD, YYYY")
-            preview_text
-            slug
-            title
-            tags
-          }
-        }
-      }
-    }
-  }
-`
+// export const pageQuery = graphql`
+//   query AllAlgosQuery($skip: Int!, $limit: Int!) {
+//     allMdx(
+//       sort: { fields: frontmatter___date, order: DESC }
+//       skip: $skip
+//       limit: $limit
+//     ) {
+//       edges {
+//         node {
+//           frontmatter {
+//             date(formatString: "MMM DD, YYYY")
+//             preview_text
+//             slug
+//             title
+//             tags
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
