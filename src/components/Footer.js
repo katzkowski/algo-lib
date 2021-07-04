@@ -138,7 +138,7 @@ export default function Footer() {
               tabIndex="0"
               href="https://github.com/katzkowski/algo-lib"
             >
-              Github repository
+              GitHub repository
             </ExternalLink>
             .
           </div>

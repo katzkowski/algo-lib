@@ -43,7 +43,7 @@ const About = () => {
       </Ul>
       <P>
         If you encounter any issues or typos, you can contact us via e-mail or
-        create an issue in out Github repository. We also gladly appreciate any
+        create an issue in out GitHub repository. We also gladly appreciate any
         kind of feedback or suggestions.
       </P>
       <P>
