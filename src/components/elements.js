@@ -42,7 +42,7 @@ export const H4 = styled.h4`
 `
 
 export const Ul = styled.ul`
-  margin: ${props => props.theme.spacing.xxSmall} 2.25rem;
+  margin: 1.25rem 2.25rem;
   color: ${props => props.theme.color.text};
   line-height: 1.5rem;
   font-size: 1rem;
