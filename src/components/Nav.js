@@ -274,6 +274,7 @@ export const Nav = props => {
                 expandSearchBar(true)
                 toggleMobileSearch(true)
                 toggleNavDisplay(false)
+                toggleMobileMenu(false)
               }}
               onBlur={() => {
                 expandSearchBar(false)

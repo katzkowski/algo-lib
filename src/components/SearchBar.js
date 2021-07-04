@@ -38,7 +38,13 @@ const SearchInput = styled.input`
   color: ${props => props.theme.color.textLight};
 
   border-radius: 5px;
-  border: 1px solid ${props => props.theme.color.surface};
+  border: 1px solid
+    ${props =>
+      props.resultsDisplayed
+        ? props.theme.color.textLight
+        : props.theme.color.surface};
+
+  // 1px solid ${props => props.theme.color.surface};
   max-height: 2.25rem;
   min-height: 2.25rem;
 
@@ -91,13 +97,17 @@ export const SearchBar = props => {
 
   const handleBlur = e => {
     const parent = e.currentTarget.parentNode
-    console.log(parent)
-    console.log(document.relatedTarget)
+
     // Check the newly focused element in the next tick of the event loop
     setTimeout(() => {
-      // Check if the new activeElement is a child of the original container
       if (!parent.contains(document.activeElement)) {
-        // You can invoke a callback or add custom logic here
+        // if new activeElement is not child of original container
+        setShowResults(false)
+        if (props.onBlur) {
+          props.onBlur()
+        }
+      } else if (document.location.href === document.activeElement.href) {
+        // if new activeElement is link to current page
         setShowResults(false)
         if (props.onBlur) {
           props.onBlur()
@@ -121,6 +131,7 @@ export const SearchBar = props => {
         type="text"
         placeholder="search algorithms..."
         mobileSearchVisible={props.mobileSearchVisible && props.inNavbar}
+        resultsDisplayed={showResults}
         onFocus={props.onFocus}
         onBlur={handleBlur}
         onChange={e => {
