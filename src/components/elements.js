@@ -41,6 +41,13 @@ export const H4 = styled.h4`
   position: relative; /* for nesting anchors */
 `
 
+export const Ul = styled.ul`
+  margin: ${props => props.theme.spacing.xxSmall} 2.25rem;
+  color: ${props => props.theme.color.text};
+  line-height: 1.5rem;
+  font-size: 1rem;
+`
+
 export const LandingHeadline = styled(H1)`
   font-weight: 600;
   margin: ${props => props.theme.spacing.medium} 0
@@ -94,7 +101,7 @@ export const InternalLink = styled(({ invertedunderline, ...props }) => (
 `
 
 export const ExternalLink = styled.a`
-  padding: 0 ${props => props.theme.spacing.xSmall};
+  padding: 0;
   color: ${props => props.theme.color.link};
   text-decoration: ${props => (props.invertedunderline ? "none" : "underline")};
   cursor: pointer;

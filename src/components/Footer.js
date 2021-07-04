@@ -152,7 +152,7 @@ export default function Footer() {
                   <li>
                     <RecentAlgoLink
                       tabIndex="0"
-                      href={algo.node.frontmatter.slug}
+                      href={`/${algo.node.frontmatter.slug}`}
                     >
                       {algo.node.frontmatter.title}
                     </RecentAlgoLink>
