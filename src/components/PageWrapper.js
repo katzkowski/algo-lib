@@ -3,7 +3,7 @@ import React, { useContext } from "react"
 import { createGlobalStyle, ThemeContext } from "styled-components"
 import { AnchorH2 } from "./AnchorH2"
 import ContentWrapper from "./ContentWrapper"
-import { Blockquote, H1, H3, P, Pre } from "./elements"
+import { Blockquote, H1, H3, Ol, P, Pre, Ul } from "./elements"
 import Footer from "./Footer"
 import { Nav } from "./Nav"
 require("katex/dist/katex.min.css")
@@ -193,6 +193,8 @@ export default function PageWrapper({ children, tags }) {
           p: P,
           pre: Pre,
           blockquote: Blockquote,
+          ul: Ul,
+          ol: Ol,
         }}
       >
         <Nav tags={tags} showGradient hideSearchbar={false} />

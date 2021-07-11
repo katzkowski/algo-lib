@@ -7,12 +7,12 @@ const About = () => {
     <PageWrapper>
       <H1>About</H1>
       <P>
-        <b>algo-lib</b> is an open library of algorithms with code and
-        explanation, which is maintained by two computer science students from
-        the University of Bremen. The project emerged from the idea to collect
-        all algorithms, which we encounter during the studies, in one place. We
-        then decided to publish our continuously updated library, so that others
-        can benefit from our collection.
+        <b>algo-lib</b> is an open library of algorithms with pseudo-code and
+        explanations, which is maintained as a personal project by two computer
+        science students. The project emerged from the idea to collect all
+        algorithms, which we encounter during the studies, in one place. We then
+        decided to publish our continuously updated library, so that others can
+        benefit from our collection.
       </P>
       <P>
         On this page, algorithms are labeled with different tags, with can
@@ -44,7 +44,9 @@ const About = () => {
       <P>
         If you encounter any issues or typos, you can contact us via e-mail or
         create an issue in out GitHub repository. We also gladly appreciate any
-        kind of feedback or suggestions.
+        kind of feedback or suggestions. Please keep in mind that the intention
+        of this page is to present a summary of each algorithm, rather than a
+        detailed analysis or beginner-friendly explanation.
       </P>
       <P>
         This website was created using the JavaScript frameworks{" "}

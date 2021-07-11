@@ -1,11 +1,82 @@
 ---
 title: Quicksort
 slug: quicksort
-date: 2020-12-13
-preview-text: Quicksort is a great algorithm for sorting things even faster.
-tags: ["Sorting", "Divide-and-Conquer"]
-author: Sir Test
+date: 2021-07-11
+preview-text: Quicksort is a fast divide-and-conquer algorithm for sorting tasks. It works recursively and in-place.
+tags: ["Sorting", "Divide-and-Conquer", "Recursive"]
+author: Kevin Katzkowski
 published: true
 ---
 
-Quicksort is a great algorithm for sorting things even faster.
+Quicksort is a fast divide-and-conquer algorithm for sorting tasks. It works recursively and in-place.
+
+## Implementation
+
+```cpp
+// A: array, left: int, right: int
+function quickSort(A, left, right):
+    if left < right:
+        pivot_location = partition(A, left, right)
+
+        // recursively sort left and right array
+        quickSort(A, left, pivot_location - 1)
+        quickSort(A, pivot_location + 1, right)
+
+// A: array, left: int, right: int
+function partition(A, left, right):
+    // last element as pivot
+    pivot = A[right]
+
+    // indicates the correct position of pivot
+    i = left - 1
+
+    // iterate from left
+    for (j = left, j < right, j++):
+        // look for smaller/equal element
+        if A[j] <= pivot:
+            i ++ // increment index of smaller element
+            swap A[i] and A[j]
+
+    // swap pivot to correct position
+    swap A[i+1] and pivot
+    return i + 1
+
+```
+
+## Explanation
+
+The algorithm sorts the elements of the array using a **pivot** element. After each recursion step, it holds that
+
+1. The pivot element is in the correct position in the sorted array.
+2. All elements to the left of the pivot are smaller (or equal).
+3. All elements to the right of the pivot are larger.
+
+The function `partition` uses the last element of the specified array as a pivot and places it at the correct position in the sorted array. The `for`-loop searches the array from the left side for an element less than or equal to the pivot. If such an element is detected, the lower bound `i` is incremented and the element at `A[i]` is swapped with the element at `A[j]`. When the index `j` has reached the pivot element at `right`, the `for`-loop terminates and the pivot element is swapped to the correct position. The pivot's index is returned.
+
+Quicksort uses the pivot's index to split the array into two subarrays. In the left subarray, all elements are smaller than or equal to the pivot element (2). All elements on the right side are greater than the pivot (3), and the pivot is at its final position (1). The algorithm sorts the array recursively by calling `quickSort` on both subarrays, until each subarray only contains one element and `left < right` does not hold anymore.
+
+In its default implementation, quicksort is not a stable algorithm.
+
+## Applications
+
+As the name implies, quicksort is one of the fastest sorting algorithms. Because the algorithm works in-place, execution does not require additional memory apart from the recursion overhead.
+
+The C++ Standard Library implements a variant of quicksort called _introsort_ as its default sorting algorithm.
+
+## Complexity
+
+For arrays of length $n$
+
+> **Time**
+>
+> _Worst case_: $$\mathcal{O}(n^2)$$
+>
+> _Average case_: $$\mathcal{O}(n \log n)$$
+>
+> <br />
+>
+> **Space**
+>
+> _Worst case_: $$\mathcal{O}(n)$$
+>
+> _Average case_: $$\mathcal{O}(\log n)$$
