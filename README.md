@@ -63,4 +63,5 @@ The [website]() for this library was developed using the JavaScript frameworks [
 ## Contributors
 
 Kevin Katzkowski (developer, author) - [GitHub](https://github.com/katzkowski)
+
 Jakob Hackstein (author) - [GitHub](https://github.com/jakhac)
