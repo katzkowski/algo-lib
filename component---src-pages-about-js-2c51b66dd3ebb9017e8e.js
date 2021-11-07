@@ -1,0 +1,2 @@
+(self.webpackChunkalgo_lib=self.webpackChunkalgo_lib||[]).push([[682],{5518:function(e,t,l){"use strict";l.r(t);var n=l(7294),r=l(5662),o=l(1693);t.default=function(){return n.createElement(o.C,null,n.createElement(r.H1,null,"About"),n.createElement(r.P,null,n.createElement("b",null,"algo-lib")," is a project of two computer science students from the University of Bremen. It emerged from the idea to collect all algorithms encountered during the studies in one place."))}}}]);
+//# sourceMappingURL=component---src-pages-about-js-2c51b66dd3ebb9017e8e.js.map
