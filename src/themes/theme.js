@@ -24,6 +24,7 @@ const lightTheme = {
       search: "rgba(45, 156, 219, 1)",
       criticalSection: "rgba(255, 77, 77, 1)",
       dynamicProgramming: "rgba(128, 128, 255, 1)",
+      nlp: "rgba(31, 187, 122, 1)",
     },
     code: {
       inlineCodeColor: "#DB4C69",
@@ -92,6 +93,7 @@ const darkTheme = {
       search: "rgba(45, 156, 219, 0.85)",
       criticalSection: "rgba(255, 77, 77, 0.85)",
       dynamicProgramming: "rgba(128, 128, 255, 0.85)",
+      nlp: "rgba(31, 187, 122, 0.85)",
     },
     code: {
       // Adapted from Darcula theme

@@ -1,0 +1,79 @@
+---
+title: Wagner-Fischer (Edit Distance)
+slug: wagner-fischer
+date: 2021-10-27
+preview-text: The Wagner-Fischer algorithm is a dynamic programming algorithm to determine the (minimum) edit distance between two strings.
+tags: ["NLP", "Dynamic Programming"]
+author: Kevin Katzkowski
+published: true
+---
+
+The Wagner-Fischer algorithm is a dynamic programming algorithm which computes the (minimum) edit distance between two strings. It is often used in natural language processing (NLP) e.g. to correct spelling mistakes.
+
+## Implementation
+
+```cpp
+// D: matrix, source: string, target: string
+function minEditDistance(D, source, target):
+    // get string lengths
+    n = length(source)
+    m = length(target)
+
+    // distance between empty strings is 0
+    D[0,0] = 0
+
+    // insert distance from empty string
+    // to source string into first column
+    for (i = 1, i <= n, i++):
+        D[i,0] = D[i-1, 0] + delCost(source[i])
+
+    // insert distance from empty string
+    // to target string into first row
+    for (j = 1, j <= m, j++):
+        D[0,j] = D[0, j-1] + insCost(target[j])
+
+    // reccurence relation
+    for (i = 1, i <= n, i++): // for each row i
+        for (j = 1, j <= m, j++): // for each column j
+            // minimum edit distance
+            D[i,j] = min(D[i-1, j] + delCost(source[i]),
+                         D[i, j-1] + insCost(target[j]),
+                         D[i-1, j-1] + subCost(source[i], target[j]))
+
+
+    return D[n,m]
+```
+
+## Explanation
+
+To avoid repeated computations and increase speed, the Wagner-Fischer algorithm uses a dynamic programming approach to compute edit distance.
+
+The value at each position $[i,j]$ of the matrix describes the Levenshtein distance between both substrings, which is defined as the minimal cost of the operations necessary to change the first substring $source[1-i]$ into the second substring $target[1-j]$.
+
+There are three types operations: **deletion** (cost 1), **insertion** (cost 1) and **substitution** (cost 2). As a substitution consists of a deletion followed by an insertion, its cost is doubled compared to single operation.
+
+The algorithm fills the matrix bottom-up in an iterative manner. For each position $[i,j]$, the minimum edit distance is computed by taking the minimum value of the three possible paths through the matrix, which are:
+
+- Deletion from the _top_ substring: $D[i-1, j] + delCost(source[i])$
+- Insertion from the _left_ substring: $D[i, j-1] + insCost(target[j])$
+- Substitution from the _diagonally top-left_ substring: $D[i-1, j-1] + subCost(source[i], target[j])$
+
+In other words, each value $[i,j]$ is computed by taking the path with minimum edit cost from the already computed neighbors. This is where the dynamic programming approach becomes clear: the solution is determined based on previously computed sub-solutions.
+
+## Applications
+
+Whenever the edit distance is applied, the Wagner-Fischer algorithm can be used. In natural language processing, it can be used for the correction of spelling mistakes by finding the closest related word to the misspelled one.
+
+Another use-case of the edit distance is in computational biology, where minimum edit distance can be used to align and compare different RNA nucleon sequences.
+
+## Complexity
+
+> **Time**
+>
+> For strings of length $n$ and length $m$: $$\mathcal{O}((n +1) \cdot (m + 1)) = \mathcal{O}(n \cdot m)$$
+>
+> <br />
+>
+> **Space**
+>
+> For strings of length $n$ and length $m$: $$\mathcal{O}((n +1) \cdot (m + 1)) = \mathcal{O}(n \cdot m)$$

@@ -18,4 +18,5 @@ const tagCategories = {
   search: "application",
   criticalSection: "application",
   dynamicProgramming: "type",
+  nlp: "application",
 }

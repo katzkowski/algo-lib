@@ -73,7 +73,7 @@ export default function Index({ data }) {
           <center>
             <LandingHeadline>A library of algorithms</LandingHeadline>
             <LandingSubtitle>
-              with code snippets, explanation and usage information
+              with pseudo-code, explanation and usage information
             </LandingSubtitle>
           </center>
           <SearchWrapper>
