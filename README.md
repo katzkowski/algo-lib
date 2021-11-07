@@ -33,7 +33,7 @@ Below is an overview of algorithms currently documented in the library and the p
 - [ ] Maximum flow, edmond karp algo
 - [ ] Max cliquen algo
 
-### Maths Algorithms
+### Math Algorithms
 
 - [x] Kadanes algorithm (max subarray)
 - [ ] Karatsuba algorithm (multiplication)
@@ -49,6 +49,7 @@ Below is an overview of algorithms currently documented in the library and the p
 - [x] AlphaBeta
 - [x] Strict alternation
 - [x] Fisher algorithm
+- [x] Wagner-Fischer (Edit Distance)
 - [ ] Newton method (root finding)
 - [ ] CG algorithms
 - [ ] O1 scheduler
@@ -58,7 +59,7 @@ Below is an overview of algorithms currently documented in the library and the p
 
 ## Tech Stack
 
-The [website]() for this library was developed using the JavaScript frameworks [Gatsby](https://www.gatsbyjs.com/), [React](https://reactjs.org/) and [Styled Components](https://styled-components.com/).
+The [website](https://katzkowski.github.io/algo-lib) for this library was developed using the JavaScript frameworks [Gatsby](https://www.gatsbyjs.com/), [React](https://reactjs.org/) and [Styled Components](https://styled-components.com/).
 
 ## Contributors
 

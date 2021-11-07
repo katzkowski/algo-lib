@@ -44,7 +44,7 @@ function minEditDistance(D, source, target):
     return D[n,m]
 ```
 
-## Explanation
+## Description
 
 To avoid repeated computations and increase speed, the Wagner-Fischer algorithm uses a dynamic programming approach to compute edit distance.
 
@@ -60,7 +60,7 @@ The algorithm fills the matrix bottom-up in an iterative manner. For each positi
 
 In other words, each value $[i,j]$ is computed by taking the path with minimum edit cost from the already computed neighbors. This is where the dynamic programming approach becomes clear: the solution is determined based on previously computed sub-solutions.
 
-## Applications
+## Usage
 
 Whenever the edit distance is applied, the Wagner-Fischer algorithm can be used. In natural language processing, it can be used for the correction of spelling mistakes by finding the closest related word to the misspelled one.
 
