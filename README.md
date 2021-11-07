@@ -58,9 +58,10 @@ Below is an overview of algorithms currently documented in the library and the p
 
 ## Tech Stack
 
-The [website]() for this library was developed using the JavaScript frameworks [Gatsby]("https://www.gatsbyjs.com/"), [React]("https://reactjs.org/") and [Styled Components](https://styled-components.com/).
+The [website]() for this library was developed using the JavaScript frameworks [Gatsby](https://www.gatsbyjs.com/), [React](https://reactjs.org/) and [Styled Components](https://styled-components.com/).
 
 ## Contributors
 
 Kevin Katzkowski (developer, author) - [GitHub](https://github.com/katzkowski)
+
 Jakob Hackstein (author) - [GitHub](https://github.com/jakhac)
