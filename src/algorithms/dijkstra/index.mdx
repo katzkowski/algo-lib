@@ -1,0 +1,85 @@
+---
+title: Dijkstra's Algorithm
+slug: dijkstra
+date: 2021-11-16
+preview-text: Dijkstra's algrithm finds the shortest path between two nodes in a given graph, if all edges have positive weight.
+tags: ["Search", "Greedy"]
+author: Jakob Hackstein
+published: true
+---
+
+<!-- Intro -->
+
+Dijkstra's Algorithm finds the shortest path between two nodes _A_ and _B_ in a given graph _G_, if the weight of all edges is positive. A shortest path minimizes the sum of weights between to nodes in a graph. The algorithm utilizes a greedy approach as the sub-path with minimal total weight is expanded first in each iteration.
+
+## Implementation
+
+```js
+function dijkstra(G, A):
+    // Declare queue
+    Queue q
+
+    // Store node cost for all nodes in G
+    nodeCosts = new Array[nodes]
+    ant = new Array[nodes]
+
+    // Init all node costs
+    for nodes in G:
+        nodeCosts[node] = INFINITY
+        ant[node] = NULL
+        q.add(node)
+
+    // Node cost to start is zero
+    nodeCost[A] = 0
+
+    while !q.isEmpty():
+        // Find node that is expanded with minimal cost
+        v = minimalExplorablePath(nodeCosts)
+        q.remove(v)
+
+        // Update distance neighbors of v
+        for neighbors n of v:
+            newDistance = nodeCost[n] + distance(n, v)
+            if newDistance < nodeCost[n]:
+                nodeCost[n] = newDistance
+                ant[n] = v
+end
+```
+
+## Explanation
+
+### Algorithm
+
+The algorithm assigns a _node cost_ to each node, which represents the lowest known distance from the start _A_ to the node so far. At start, these distances are unknown and therefore set to infinity. The variable _q_ denotes a queue holding all unvisited nodes, which are initially all nodes in _G_. As soon as a node is visited, it is removed from _q_.
+
+In each iteration the algorithm has to choose, which edge is explored next. The basic idea is to calculate a tentative distance to all unvisited nodes and chose the edge providing the minimal tentative distance. The minimum combination of _node cost + cost of unexplored incident edge_ is easily obtained from the `nodeCosts` array and indidactes the best candidate to be explored. Note that unvisited nodes have a _node cost_ of infinity and thus only edges incident to nodes in _q_ have a chance to be picked. The newly visited node _C_ is then removed from _q_ to ensure that this node is never explored twice. Edges incident to _C_ might provide a shorter path to nodes that are already visited. If a path via _C_ can improve _node cost_ of an already explored node, the corresponding node costs are updated. As the algorithm does not explores towards the goal _B_ but along the shortest path, this invariant assures the optimal distance between _A_ and _B_ when all nodes are explored and _q_ is empty.
+
+### Implementation
+
+The basic algorithm only calculates the shortest distance between _A_ and _B_. In order compute the actual shortest path as a series of edges, nodes store an antecessor in addition to their _node cost_. If edges incident to a newly explored node _C_ provide a shorter path via _C_ to an already visited node _D_, then _node costs_ of _D_ are updated and the antecessor of _D_ is set to _C_, because the shortest path to _D_ is now via _C_. If every node stores its antecessor, the shortest path can be computed by going along all antecessors starting from end node _B_. This technique even allows to calculate the shortest path to _B_ from _all_ nodes in the given graph.
+
+The queue _q_ is used to obtain the minimal tentative costs possible. Modern approaches implement a priority queue to achieve a better running time.
+
+## Usage
+
+```js
+Graph G = new Graph(V, E)
+start = A
+target = B
+shortestPath = [] // Shortest path is inserted here
+
+// Fill in nodeCost and antecessor arrays
+dijkstra(G, start)
+
+// Backtracking to
+if ant[target] != NULL:
+    while ant[target] != NULL:
+        temp = ant[target]
+        shortestPath.insert(temp)
+```
+
+## Complexity
+
+> **Time** : $$\mathcal{O}(E + V \log V)$$
+
+> **Space** : $$\mathcal{O}(V)$$
